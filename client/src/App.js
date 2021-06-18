@@ -2,7 +2,7 @@ import './App.css';
 
 function App() {
   return (
-    <div>this will make a conflict</div>
+      <div>this will make a conflict</div>
   );
 }
 
