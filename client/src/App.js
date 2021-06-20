@@ -1,8 +1,11 @@
 import './App.css';
+import DetailedView from './components/DetailedView';
 
 function App() {
   return (
-      <div>this will make a conflict</div>
+      <div>
+        <DetailedView></DetailedView>
+      </div>
   );
 }
 

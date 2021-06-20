@@ -1,0 +1,44 @@
+.mainContianer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.itemTitle{
+    display: flex;
+    justify-content: center;
+}
+
+.raffleItem{
+    width: 220px;
+    height: 250px;
+}
+
+.itemInfo{
+    border: 1px solid black;
+    width: 280px;
+    height: 150px;
+}
+
+.ticketCounter{
+    border: 1px solid green;
+    width: 500px;
+    height: 80px;
+    background-color: green;
+}
+
+.purchaseButton{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    max-width: 80px;
+}
+
+.buttonWrapper{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-right: 100px;
+}
