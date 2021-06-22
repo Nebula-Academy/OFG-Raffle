@@ -1,5 +1,5 @@
 import React from 'react'
-import GridView from './GridView.css'
+import './GridView.css' 
 
 class GridView extends React.Component{
     state = {
@@ -22,8 +22,8 @@ class GridView extends React.Component{
 
     render(){
         return(
-            <div className='itemContainer'>
-                {this.state.raffleItems.map(raffleItem => <div key={raffleItem.title}>  
+            <div id='grid'>
+                {this.state.raffleItems.map(raffleItem => <div className='itemContainer' key={raffleItem.title}>  
                 <h3 className='ItemName'> {raffleItem.title}</h3>
                 <img className='ItemImg' src={raffleItem.img}></img>
                 <p className='Tickets'> {raffleItem.title}</p>
