@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+#ht-masthead {
+    display: flex;
+    justify-content: space-between;
+}
+
+#ht-masthead h1 {
+    padding: 0 15px;
+}
+
+#ht-masthead a {
+    font-size: 32px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    line-height: 1px;  
+    text-shadow: 2px 2px rgb(0 0 0 / 30%);
+    color:#800020;
+}
+
+header{
+  background-color: rgb(219, 219, 219);
+  height: 94px;
+  border-top: 4px solid #800020;
+}
