@@ -12,7 +12,7 @@ class Header extends React.Component {
                 </h1>
                 <nav>
                     <ul>
-                        <li onClick={this.Raffle}>RAFFLE</li>
+                        <li onClick={this.raffle}>RAFFLE</li>
                         <li onClick={this.home}>HOME</li>
                         <li onClick={this.about}>ABOUT</li>
                         <li onClick={this.gallery}>GALLERY</li>
