@@ -1,11 +1,39 @@
 #grid{
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: space-evenly;
+    grid-row-gap: 100px;
+    grid-template-columns: auto auto;
 }
 
 .itemContainer{
-    border: 1px solid black;
-    height: 300px;
-    width: 400px;
+    color: aliceblue;
+    background-color: #802;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    height: 350px;
+    width: 500px;
+}
+
+.TicketHolder{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Tickets{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid white;
+    background-color: gray;
+    padding: 10px;
+}
+
+.GoTo{
+    display: flex;
+    align-self: flex-end;
+    justify-self: flex-end;
 }
