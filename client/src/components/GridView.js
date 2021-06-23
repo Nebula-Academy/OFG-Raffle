@@ -26,7 +26,7 @@ class GridView extends React.Component{
                 {this.state.raffleItems.map(raffleItem => <div className='itemContainer' key={raffleItem.title}>  
                 <h3 className='ItemName'> {raffleItem.title}</h3>
                 <img className='ItemImg' src={raffleItem.img}></img>
-                <p className='Tickets'> {raffleItem.title}</p>
+                <p className='Tickets'> {raffleItem.ticketsSold}</p>
                 <p className='TicketPrice'>{raffleItem.ticketPrice}</p>
                 <button className='GoTo'>View</button>
                 </div>)}
