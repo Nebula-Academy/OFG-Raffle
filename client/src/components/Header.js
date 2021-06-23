@@ -11,11 +11,15 @@ class Header extends React.Component {
                     </a>
                 </h1>
                 <nav>
-                    <button>RAFFLE</button>
-                    <button>HOME</button>
-                    <button>About</button>
-                    <button>GALLERY</button>
-                    <button>SCHOLARSHIPS</button>
+                    <ul>
+                        <li onClick={this.raffle}>RAFFLE</li>
+                        <li onClick={this.home}>HOME</li>
+                        <li onClick={this.about}>ABOUT</li>
+                        <li onClick={this.gallery}>GALLERY</li>
+                        <li onClick={this.scholarships}>SCHOLARSHIPS</li>
+
+                    </ul>
+
                 </nav>
             </header>
         )
