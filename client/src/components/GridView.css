@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     border: 2px solid black;
-    height: 350px;
+    
     width: 500px;
 }
 
@@ -30,10 +30,13 @@
     border: 1px solid white;
     background-color: gray;
     padding: 10px;
+    margin: 50px;
 }
 
 .GoTo{
     display: flex;
     align-self: flex-end;
     justify-self: flex-end;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
