@@ -4,10 +4,10 @@ const password = process.env.PSQL_PASS
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-    user: '',
-    password: '',
-    host: '',
-    database: '',
+    user: 'ofg-admin',
+    password: 'BzhN@5psjDYbL0V$gfl7!wAz&',
+    host: 'ofg-raffle.chivpnllwkir.us-east-1.rds.amazonaws.com',
+    database: 'postgres',
     port: 5432
 })
 
