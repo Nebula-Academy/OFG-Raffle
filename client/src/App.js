@@ -1,6 +1,8 @@
 import './App.css';
 import Header from './components/Header'
 import { BrowserRouter, Link, Route } from 'react-router-dom'
+import DetailedView from './components/DetailedView';
+import GridView from './components/GridView';
 import LandingPage from './components/LandingPage'
 
 function App() {
@@ -15,8 +17,10 @@ function App() {
       <Route path="/" exact>
         <LandingPage />
       </Route>
+      <Route path="/raffles">
+         <GridView/>
+      </Route>
     </BrowserRouter>
-
   );
 }
 

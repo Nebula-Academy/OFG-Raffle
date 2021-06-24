@@ -1,6 +1,6 @@
-body {
+/* body {
     background:#802;
-}
+} */
 #main-container{
     display:flex;
     flex-direction: column;

@@ -6,27 +6,45 @@
     height: 100vh;
 }
 
+.mainContianerWrapper{
+    /* display: flex;
+    justify-content: center; */
+    border: 3px solid #802;
+    background-color: #802;
+    height: 700px;
+    width: 900px;
+}
+
 .itemTitle{
     display: flex;
     justify-content: center;
+    color: white;
 }
 
 .raffleItem{
     width: 220px;
     height: 250px;
+    border: 5px solid #404040;
 }
 
 .itemInfo{
-    border: 1px solid black;
+    border: 3px solid black;
+    background-color: white;
     width: 280px;
     height: 150px;
+    text-align: center;
+    overflow: scroll;
 }
 
 .ticketCounter{
+    display: flex;
+    flex-direction: column;
     border: 1px solid green;
     width: 500px;
     height: 80px;
     background-color: green;
+    text-align: center;
+    justify-content: center;
 }
 
 .purchaseButton{
@@ -34,6 +52,29 @@
     align-items: end;
     justify-content: end;
     max-width: 80px;
+    background-color: whitesmoke;
+    color: #802;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-left-width: 10px;
+    border-left-style: solid;
+    border-right-width: 10px;
+    border-right-style: solid;
+    border-top-color: #802;
+    border-bottom-color: #802;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'Pontano Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.5s;
+}
+
+.purchaseButton:hover{
+    color: whitesmoke;
+    background-color: #404040;
+    transform: scale(1.05)
 }
 
 .buttonWrapper{
