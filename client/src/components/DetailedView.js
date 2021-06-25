@@ -1,32 +1,35 @@
 import React from 'react'
 import './DetailedView.css'
+import {getTableById} from './NetworkRequests'
 
 class DetailedView extends React.Component {
 
+    state = {
+        raffle: {}
+    }
 
-
-
-    changeTicketBar() {
-        // ticketCounter.innertext = this.ticketsSold;
-        // let width = this.ticketsSold / 
+    async componentDidMount(){
+        
+        const {id} = this.props.match.params;
+        const raffle = (await getTableById("raffle", id))[0];
+        this.setState({raffle})
     }
 
     render() {
+        console.log(this.state.raffle)
         return (
             <div className='mainContianerWrapper'>
                 <div className='mainContianer'>
                     <h3 className='itemTitle'>
-                        {/* {this.props.itemName}  */}
-                        Laptop
+                        {this.state.raffle.title}
                     </h3>
-                    <img className='raffleItem' src='https://static.frame.work/pttnfnm54ipt03wzyqhzlwfk4f6t'>
-                        {/* {this.props.img} should go in atributes? */}
-                    </img>
-                    <p className='itemInfo'>
-                        This item is a place holder, It was provided by no one and has a market value of absolutely nothing. All proceedes from purchased tickets for this item will go directly into my back pocket
-                        {/* {this.props.info} */}
-                    </p>
-                    <div className='ticketCounter'> 100/83 </div>
+                    <img className='raffleItem' src={this.state.raffle.image_file_path}/>
+                    <text className='itemInfo'> 
+                        Ticket Price: {this.state.raffle.ticket_price} 
+                        <br/>
+                        {this.state.raffle.raffle_description}
+                    </text>
+                    <div className='ticketCounter'> {this.state.raffle.total_tickets}/{this.state.raffle.tickets_sold} </div>
                     <div className='buttonWrapper'>
                         <button className='purchaseButton'>Buy Ticket</button>
                     </div>

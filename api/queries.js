@@ -17,9 +17,17 @@ const getTable = (request, response) => {
         if (error) {
             throw error;
         }
-        console.log(result);
         response.status(200).json(result.rows);
     });
+}
+
+const getTableById = (request, response) => {
+    pool.query(`SELECT * FROM ${request.params.table} WHERE ${request.params.table}_id = ${request.params.id}`, (error, results) => {
+        if (error) {
+            throw error;
+        }
+        response.status(200).json(results.rows);
+    })
 }
 
 const postTable = (request, response) => {
@@ -68,16 +76,17 @@ const updateTable = (request, response) => {
         return sqlStatement
     }
 
-    pool.query(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`, values, (error, resuslts) => {
+    pool.query(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`, values, (error, results) => {
         if(error){
             throw error
         }
-        response.status(200).json(resuslts.rows)
+        response.status(200).json(results.rows)
     })
 }
 
 module.exports = {
     getTable,
+    getTableById,
     postTable,
     updateTable
 }

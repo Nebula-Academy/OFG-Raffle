@@ -20,6 +20,7 @@ function App() {
       <Route path="/raffles">
          <GridView/>
       </Route>
+      <Route path="/raffle/:id" component={DetailedView} />
     </BrowserRouter>
   );
 }

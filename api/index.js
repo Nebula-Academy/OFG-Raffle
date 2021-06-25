@@ -16,6 +16,8 @@ app.get('/', (request, response) => {
 
 app.get('/:table', db.getTable);
 
+app.get('/:table/:id', db.getTableById);
+
 app.post('/:table', db.postTable); 
 
 app.put('/:table/:id', db.updateTable);
@@ -23,3 +25,4 @@ app.put('/:table/:id', db.updateTable);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
