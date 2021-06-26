@@ -1,0 +1,31 @@
+.inputs{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.modal{
+    width: 600px;
+    height: 500px;
+    position: absolute;
+    top: 50%!important;
+    left: 50%!important;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+.inputColumn{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.closeButton{
+    width: 40px;
+    margin-left: auto;
+}
+
+.submitButton{
+    width: 80px;
+    margin: auto;
+}

@@ -34,13 +34,12 @@ const postTable = (request, response) => {
     const { table } = request.params;
     const values = Object.values(request.body)
     const keys = Object.keys(request.body);
-    const number = Object.keys.length;
     let PSQLvalueString = ''
-    for (i = 0; i < number; i++) {
-        PSQLvalueString += `$${i + 1}`
+    for (i = 0; i < keys.length; i++) {
+        PSQLvalueString += `$${i + 1}${i != keys.length-1 ? ',' : ''}`
     }
     pool.query(
-        `INSERT INTO ${table} ${(keys.join(','))} VALUES ${PSQLvalueString} RETURNING *`,
+        `INSERT INTO ${table} (${(keys.join(','))}) VALUES (${PSQLvalueString}) RETURNING *`,
         values,
         (error, results) => {
             if (error) {

@@ -44,3 +44,9 @@
     padding-right: 10px;
     padding-bottom: 10px;
 }
+
+.createRaffle{
+    position: absolute;
+    right: 5px;
+    margin-top: 5px;
+}
