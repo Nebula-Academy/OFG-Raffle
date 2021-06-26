@@ -16,6 +16,10 @@
     width: 500px;
 }
 
+.ItemImg{
+    width: 400px;
+}
+
 .TicketHolder{
     display: flex;
     flex-direction: row;

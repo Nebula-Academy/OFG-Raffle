@@ -5,7 +5,7 @@ export const getTable = async (table) => {
 
 export const getTableById = async (table, id) => {
     const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`)
-    return holdResponse.json();
+    return ( await holdResponse.json() )[0];
 }
 
 export const addTable = async (table, data) => {
