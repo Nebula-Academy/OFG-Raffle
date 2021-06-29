@@ -14,6 +14,15 @@ CREATE TABLE IF NOT EXISTS member (
     donated BOOLEAN DEFAULT FALSE NOT NULL
 );      
 
+CREATE TABLE IF NOT EXISTS category (
+  category_id serial PRIMARY KEY UNIQUE NOT NULL,
+  category_name varchar(255) NOT NULL,
+  parent_id int DEFAULT NULL,
+  CONSTRAINT fk_category
+  FOREIGN KEY (parent_id) REFERENCES category (category_id) 
+    ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS raffle (
     raffle_id serial PRIMARY KEY UNIQUE NOT NULL,
     title varchar NOT NULL,
@@ -28,14 +37,6 @@ CREATE TABLE IF NOT EXISTS raffle (
     CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES category (category_id)
 );
 
-CREATE TABLE IF NOT EXISTS category (
-  category_id serial PRIMARY KEY UNIQUE NOT NULL,
-  category_name varchar(255) NOT NULL,
-  parent_id int DEFAULT NULL,
-  CONSTRAINT fk_category
-  FOREIGN KEY (parent_id) REFERENCES category (category_id) 
-    ON DELETE CASCADE ON UPDATE CASCADE
-);
 
 CREATE TABLE IF NOT EXISTS winner	(
 winner_id serial PRIMARY KEY UNIQUE NOT NULL,
