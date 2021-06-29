@@ -1,0 +1,14 @@
+#ticket-bar{
+    height:25px;
+    width:260px;
+    background: black;
+    position:relative;
+
+}
+#filled-ticket-bar{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    background:red;
+}

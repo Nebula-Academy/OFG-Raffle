@@ -2,6 +2,7 @@ import React from 'react'
 import './DetailedView.css'
 import { Link } from 'react-router-dom'
 import { getTableById } from './NetworkRequests'
+import TicketBar from './TicketBar'
 
 class DetailedView extends React.Component {
 
@@ -28,13 +29,14 @@ class DetailedView extends React.Component {
                         {this.state.raffle.title}
                     </h3>
                     <img className='raffleItem' src={this.state.raffle.image_file_path} />
-                    <text className='itemInfo'>
+                     <text className='itemInfo'>
                         Ticket Price: ${this.state.raffle.ticket_price}
                         <br />
                         <br />
                         {this.state.raffle.raffle_description}
                     </text>
-                    <div className='ticketCounter'> {this.state.raffle.tickets_sold}/{this.state.raffle.total_tickets} </div>
+                    <TicketBar tickets_sold={this.state.raffle.tickets_sold} total_tickets={this.state.raffle.total_tickets} />
+                    {/* <div className='ticketCounter'> {this.state.raffle.tickets_sold}/{this.state.raffle.total_tickets} </div> */} 
                     <div className='buttonWrapper'>
                         <button className='purchaseButton'>Buy Ticket</button>
                     </div>
