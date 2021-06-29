@@ -4,25 +4,45 @@ import React from 'react';
 class MemberDashboard extends React.Component {
     render() {
         return (
-            <header id="ht-masthead" class="ht-site-header">
+            <div>
                 <h1>
                     <a>
                         Member Profile Page
                     </a>
                 </h1>
                 <nav>
-                    <div>
-                        <button className='membutton' onClick={this.firstName}>First_Name</button>
-                        <button className='membutton' onClick={this.lastName}>Last_Name</button>
-                        <button className='membutton' onClick={this.phone}>Phone</button>
-                        <button className='membutton' onClick={this.email}>Email</button>
-                        <button className='membutton' onClick={this.address1}>Address_1</button>
-                        <button className='membutton' onClick={this.address2}>Address_2</button>
-                        <button className='membutton' onClick={this.city}>City</button>
-                        <button className='membutton' onClick={this.state}>State</button>
+                    <div className='memberdashboard'>
+                        <form>
+                            <label>First_Name
+                                <input className='membutton' onClick={this.firstName} />
+                            </label>
+                            <label>Last_Name
+                                <input className='membutton' onclick={this.lastName} />
+                            </label>
+                            <label>Phone
+                                <input className='membutton' onClick={this.phone} />
+                            </label>
+                            <label>Email
+                                <input className='membutton' onClick={this.email} />
+                            </label>
+                            <label>Address1
+                                <input className='membutton' onClick={this.address1} />
+                            </label>
+                            <label>Address2
+                                <input className='membutton' onClick={this.address2} />
+                            </label>
+                            <label>City
+                                <input className='membutton' onClick={this.city} />
+                            </label>
+                            <label>State
+                                <input className='membutton' onClick={this.state} />
+                            </label>
+
+                        </form>
                     </div>
                 </nav>
-            </header>
+            </div >
+            
         )
     }
 }

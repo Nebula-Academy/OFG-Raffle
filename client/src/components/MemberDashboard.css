@@ -1,9 +1,16 @@
-div {
+.memberdashboard {
     display: flex;
+    flex-direction: column;
+}
+
+.purchasebuttton {
+    flex-direction: row;
+    
 }
 
 .membutton {
     display: flex;
+   
     
     
 }
