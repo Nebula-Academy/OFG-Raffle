@@ -1,5 +1,6 @@
 import './App.css';
 import Header from './components/Header'
+import MemberDashboard from './components/MemberDashboard';
 import { BrowserRouter, Link, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 
@@ -11,6 +12,9 @@ function App() {
         <h1>
           This is the sign Up Page!
         </h1>
+      </Route>
+      <Route path="/memberinfo">
+        <MemberDashboard />
       </Route>
       <Route path="/" exact>
         <LandingPage />
