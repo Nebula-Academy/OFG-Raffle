@@ -1,11 +1,16 @@
 import React from 'react';
 import './UpdateRaffle.css';
-import { updateRaffle } from './NetworkRequests';
+import { updateTable } from './NetworkRequests';
 const requiredFields = ['title', 'raffle_description','total_tickets','ticket_price', 'item_cost','image_file_path', 'category_id']
 
 class UpdateRaffle extends React.Component{
 
     state = {}
+
+    componentDidMount(){
+        console.log(this.props.raffle)
+        this.setState(this.props.raffle);
+    }
 
     titleTranslator(title){
         let newTitle = title.split('_').map(word => word[0].toUpperCase() + word.substring(1)).join(' ')
@@ -26,8 +31,8 @@ class UpdateRaffle extends React.Component{
             alert("Please fill all required fields");
             return
         }
-        let data = {...this.state, tickets_sold: 0, category_id: 1};
-        updateRaffle('raffle', id, data);
+        let data = {...this.state};
+        await updateTable('raffle', this.state.raffle_id, data);
         this.setState({})
         this.props.refresh();
         this.props.close();
@@ -50,3 +55,5 @@ class UpdateRaffle extends React.Component{
         )
     }
 }
+
+export default UpdateRaffle

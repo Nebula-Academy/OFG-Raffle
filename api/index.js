@@ -22,8 +22,6 @@ app.post('/:table', db.postTable);
 
 app.put('/:table/:id', db.updateTable);
 
-app.put('/:raffle/:id', db.updateRaffle);
-
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

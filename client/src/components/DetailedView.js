@@ -3,7 +3,7 @@ import './DetailedView.css'
 import { Link } from 'react-router-dom'
 import { getTableById } from './NetworkRequests'
 import Modal from '@material-ui/core/Modal'
-import updateRaffle from './UpdateRaffle'
+import UpdateRaffle from './UpdateRaffle'
 
 class DetailedView extends React.Component {
 
@@ -45,7 +45,7 @@ class DetailedView extends React.Component {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description" 
                 >
-                    <updateRaffle close={this.closeUpdateRaffleModal} refresh={this.refresh}></updateRaffle>
+                    <UpdateRaffle close={this.closeUpdateRaffleModal} refresh={this.refresh} raffle={this.state.raffle}></UpdateRaffle>
                 </Modal>
                 <button className= 'updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> 
                 <div className='mainContianer'>

@@ -20,21 +20,10 @@ export const addTable = async (table, data) => {
 }
 
 export const updateTable = async (table, id, data) => {
-    const holdResponse = await fetch(`http://localhost:3030/:table/:${table}/${id}`, {
+    const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    return holdResponse;
-}
-
-export const updateRaffle = async ( raffle, id, data ) => {
-    const holdResponse = await fetch(`http://localhost:3030/:raffle/:${raffle}/${id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json" 
         },
         body: JSON.stringify(data)
     })

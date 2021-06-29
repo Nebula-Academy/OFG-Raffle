@@ -27,7 +27,7 @@ class AddRaffle extends React.Component{
             return
         }
         let data = {...this.state, tickets_sold: 0, category_id: 1};
-        addTable('raffle', data)
+        await addTable('raffle', data)
         this.setState({});
         this.props.refresh();
         this.props.close();
