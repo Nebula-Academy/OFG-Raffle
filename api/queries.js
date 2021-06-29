@@ -83,11 +83,36 @@ const updateTable = (request, response) => {
     })
 }
 
+const updateRaffle = (request, response) => {
+    const { raffle, id } = request.params;
+    const values = Object.values(request.body)
+    const keys = Object.keys(request.body);
+    const number = Object.keys.length;
+    const configureString = () => {
+        let sqlStatement = "";
+        for(let i = 0; i < keys.length; i++){
+            if(i === keys.length-1) sqlStatement += `${keys[i]}=$${i+1}`
+            else sqlStatement += `${keys[i]}=$${i+1}, `
+        }
+        return sqlStatement
+    }
+
+    pool.query(`UPDATE ${raffle} SET ${configureString()} WHERE ${raffle}_id=${id} RETURNING *`, values, (error, results) => {
+        if(error){
+            throw error
+        }
+        response.status(200).json(results.rows) 
+    })
+}
+
+
+
 module.exports = {
     getTable,
     getTableById,
     postTable,
-    updateTable
+    updateTable,
+    updateRaffle
 }
 
 
