@@ -1,16 +1,22 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const {PSQL_PASS} = process.env;
-const {PSQL_HOST} = process.env;
+const { PSQL_PASS } = process.env;
+const { PSQL_HOST } = process.env;
 const Pool = require('pg').Pool;
-
 const pool = new Pool({
-    user: 'bayleyarens',
-    password: 'postgres',
-    host: 'localhost',
-    database: 'test',
+    user: 'ofg_admin',
+    password: PSQL_PASS,
+    host: PSQL_HOST,
+    database: 'raffle',
     port: 5432
 })
+// const pool = new Pool({
+//     user: 'bayleyarens',
+//     password: 'postgres',
+//     host: 'localhost',
+//     database: 'test',
+//     port: 5432
+// })
 
 const getTable = (request, response) => {
     pool.query(`SELECT * FROM ${request.params.table}`, (error, result) => {
@@ -36,7 +42,7 @@ const postTable = (request, response) => {
     const keys = Object.keys(request.body);
     let PSQLvalueString = ''
     for (i = 0; i < keys.length; i++) {
-        PSQLvalueString += `$${i + 1}${i != keys.length-1 ? ',' : ''}`
+        PSQLvalueString += `$${i + 1}${i != keys.length - 1 ? ',' : ''}`
     }
     pool.query(
         `INSERT INTO ${table} (${(keys.join(','))}) VALUES (${PSQLvalueString}) RETURNING *`,
@@ -68,15 +74,15 @@ const updateTable = (request, response) => {
     const number = Object.keys.length;
     const configureString = () => {
         let sqlStatement = "";
-        for(let i = 0; i < keys.length; i++){
-            if(i === keys.length-1) sqlStatement += `${keys[i]}=$${i+1}`
-            else sqlStatement += `${keys[i]}=$${i+1}, `
+        for (let i = 0; i < keys.length; i++) {
+            if (i === keys.length - 1) sqlStatement += `${keys[i]}=$${i + 1}`
+            else sqlStatement += `${keys[i]}=$${i + 1}, `
         }
         return sqlStatement
     }
 
     pool.query(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`, values, (error, results) => {
-        if(error){
+        if (error) {
             throw error
         }
         response.status(200).json(results.rows)
@@ -91,10 +97,3 @@ module.exports = {
 }
 
 
-// const pool = new Pool({
-//     user: 'ofg_admin',
-//     password: PSQL_PASS,
-//     host: PSQL_HOST,
-//     database: 'postgres',
-//     port: 5432
-// })
