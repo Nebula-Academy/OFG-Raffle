@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { getTableById } from './NetworkRequests'
 import Modal from '@material-ui/core/Modal'
 import UpdateRaffle from './UpdateRaffle'
+import TicketBar from './TicketBar'
+
 
 class DetailedView extends React.Component {
 
@@ -54,13 +56,12 @@ class DetailedView extends React.Component {
                         {this.state.raffle.title}
                     </h3>
                     <img className='raffleItem' src={this.state.raffle.image_file_path} />
-                    <text className='itemInfo'>
-                        Ticket Price: ${this.state.raffle.ticket_price}
-                        <br />
-                        <br />
-                        {this.state.raffle.raffle_description}
-                    </text>
-                    <div className='ticketCounter'> {this.state.raffle.tickets_sold}/{this.state.raffle.total_tickets} </div>
+                     <div className='itemInfo'>
+                     <p>   Ticket Price: ${this.state.raffle.ticket_price}</p>
+                        <TicketBar tickets_sold={this.state.raffle.tickets_sold} total_tickets={this.state.raffle.total_tickets} />
+                      <p> {this.state.raffle.raffle_description}</p>
+                    </div>
+                    {/* <div className='ticketCounter'> {this.state.raffle.tickets_sold}/{this.state.raffle.total_tickets} </div> */} 
                     <div className='buttonWrapper'>
                         <button className='purchaseButton'>Buy Ticket</button>
                     </div>

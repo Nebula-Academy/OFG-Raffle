@@ -1,0 +1,21 @@
+#ticket-bar{
+    height:25px;
+    width:260px;
+    background: lightslategray;
+    border:2px solid black;
+    position:relative;
+    margin:10px;
+    border-radius: 25px;
+    overflow: hidden;
+
+
+}
+#filled-ticket-bar{
+    
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    background:red;
+    
+}

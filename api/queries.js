@@ -9,7 +9,7 @@ const pool = new Pool({
     host: PSQL_HOST,
     database: 'raffle',
     port: 5432
-})
+});
 
 const getTable = (request, response) => {
     pool.query(`SELECT * FROM ${request.params.table}`, (error, result) => {
@@ -89,4 +89,3 @@ module.exports = {
     postTable,
     updateTable
 }
-

@@ -1,0 +1,29 @@
+
+#main-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color:aliceblue;
+}
+
+.box
+{
+    height:250px;
+    width:200px;
+    border:5px solid #fff;
+    z-index:1; 
+    position:relative;
+}
+#card-div{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+#name-div{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+.card{
+    margin-bottom: 6px;
+}
