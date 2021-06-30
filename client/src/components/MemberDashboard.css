@@ -1,0 +1,31 @@
+.member-dashboard-container {
+    color:white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.member-dashboard, .raf-bio {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.membutton {
+    display: flex;
+   
+}
+
+.raf-bio div {
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+}
+.rafbutton {
+    display: flex;
+}
