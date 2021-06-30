@@ -1,11 +1,16 @@
 import React from 'react';
-import './AddRaffle.css';
-import { addTable } from './NetworkRequests'
-const requiredFields = ['title', 'raffle_description','total_tickets','ticket_price', 'item_cost','image_file_path']
+import './UpdateRaffle.css';
+import { updateTable } from './NetworkRequests';
+const requiredFields = ['title', 'raffle_description','total_tickets','ticket_price', 'item_cost','image_file_path', 'category_id']
 
-class AddRaffle extends React.Component{
-    
+class UpdateRaffle extends React.Component{
+
     state = {}
+
+    componentDidMount(){
+        console.log(this.props.raffle)
+        this.setState(this.props.raffle);
+    }
 
     titleTranslator(title){
         let newTitle = title.split('_').map(word => word[0].toUpperCase() + word.substring(1)).join(' ')
@@ -26,18 +31,18 @@ class AddRaffle extends React.Component{
             alert("Please fill all required fields");
             return
         }
-        let data = {...this.state, tickets_sold: 0, category_id: 1};
-        await addTable('raffle', data)
-        this.setState({});
+        let data = {...this.state};
+        await updateTable('raffle', this.state.raffle_id, data);
+        this.setState({})
         this.props.refresh();
         this.props.close();
-        alert("The raffle was succesfully submitted")
+        alert("The raffle was succesfully updated")
     }
 
     render(){
         return(
+            
             <div className='inputs'>
-                
                 <button className='closeButton' onClick={this.props.close}>X</button>
                 {requiredFields.map(input => <div className='inputColumn' key={input}>
                     <label>
@@ -51,4 +56,4 @@ class AddRaffle extends React.Component{
     }
 }
 
-export default AddRaffle
+export default UpdateRaffle

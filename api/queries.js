@@ -1,22 +1,15 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const { PSQL_PASS } = process.env;
-const { PSQL_HOST } = process.env;
+const { PSQL_PASS, PSQL_HOST, PSQL_USER } = process.env;
 const Pool = require('pg').Pool;
+
 const pool = new Pool({
-    user: 'ofg_admin',
+    user: PSQL_USER,
     password: PSQL_PASS,
     host: PSQL_HOST,
     database: 'raffle',
     port: 5432
-})
-// const pool = new Pool({
-//     user: 'bayleyarens',
-//     password: 'postgres',
-//     host: 'localhost',
-//     database: 'test',
-//     port: 5432
-// })
+});
 
 const getTable = (request, response) => {
     pool.query(`SELECT * FROM ${request.params.table}`, (error, result) => {
@@ -89,11 +82,10 @@ const updateTable = (request, response) => {
     })
 }
 
+
 module.exports = {
     getTable,
     getTableById,
     postTable,
     updateTable
 }
-
-

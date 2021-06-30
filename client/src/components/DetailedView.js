@@ -2,19 +2,34 @@ import React from 'react'
 import './DetailedView.css'
 import { Link } from 'react-router-dom'
 import { getTableById } from './NetworkRequests'
+import Modal from '@material-ui/core/Modal'
+import UpdateRaffle from './UpdateRaffle'
 import TicketBar from './TicketBar'
+
 
 class DetailedView extends React.Component {
 
     state = {
-        raffle: {}
+        raffle: {},
+        UpdateRaffleModal: false
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.refresh();
+    }
 
+    refresh = async () => {
         const { id } = this.props.match.params;
         const raffle = await getTableById("raffle", id);
         this.setState({ raffle })
+    }
+
+    openUpdateRaffleModal = () => {
+        this.setState({ UpdateRaffleModal: true })
+    }
+
+    closeUpdateRaffleModal = () => {
+        this.setState({ UpdateRaffleModal: false })
     }
 
     render() {
@@ -24,7 +39,19 @@ class DetailedView extends React.Component {
                 <Link to={`/raffles`}>
                     <button>↩️</button>
                 </Link>
+
+                <Modal 
+                className='modal'
+                open= {this.state.UpdateRaffleModal}
+                Onclose= {this.closeUpdateRaffleModal} 
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description" 
+                >
+                    <UpdateRaffle close={this.closeUpdateRaffleModal} refresh={this.refresh} raffle={this.state.raffle}></UpdateRaffle>
+                </Modal>
+                <button className= 'updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> 
                 <div className='mainContianer'>
+                    
                     <h3 className='itemTitle'>
                         {this.state.raffle.title}
                     </h3>
