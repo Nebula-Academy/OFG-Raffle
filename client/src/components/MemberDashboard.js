@@ -40,7 +40,7 @@ class MemberDashboard extends React.Component {
                     </form>
                 </div>
                 <div className='raf-bio'>
-                    <h2>RAFFLE</h2>
+                    <h2>RAFFLE</h2>              
                     <div>
                         <label>RAFFLE TITLE
                             <input className='rafbutton' onclick={this.raftitle} />

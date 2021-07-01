@@ -6,7 +6,7 @@ import DetailedView from './components/DetailedView';
 import GridView from './components/GridView';
 import LandingPage from './components/LandingPage'
 import AccountVerification from './components/AccountVerification'
-
+import LoginPage from './components/LoginPage'
 function App() {
   return (
     <BrowserRouter>

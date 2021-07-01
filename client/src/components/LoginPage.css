@@ -1,8 +1,4 @@
-body {
-    background:#802;
-   }
-
-h1 {
+#login-page h1 {
     color: white;
     display: flex;
     justify-content: center;
@@ -29,7 +25,7 @@ h1 {
     align-items:center ;
 }
 
-button {
+#login-page button {
     color: white;
     background-color: #802;
     border: solid 1px white;
@@ -41,7 +37,7 @@ button {
     
 }
 
-input {
+#login-page input {
     display: flex;
     padding: 12px;
     margin: 12px;
