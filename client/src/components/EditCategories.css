@@ -1,0 +1,5 @@
+.editCategories{
+    display: flex;
+    flex-direction: column;
+}
+

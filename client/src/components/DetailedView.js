@@ -11,6 +11,7 @@ class DetailedView extends React.Component {
 
     state = {
         raffle: {},
+        category: '',
         UpdateRaffleModal: false
     }
 
@@ -21,7 +22,8 @@ class DetailedView extends React.Component {
     refresh = async () => {
         const { id } = this.props.match.params;
         const raffle = await getTableById("raffle", id);
-        this.setState({ raffle })
+        const category = await getTableById("category", raffle.category_id)
+        this.setState({ raffle, category: category.category_name })
     }
 
     openUpdateRaffleModal = () => {
@@ -60,8 +62,8 @@ class DetailedView extends React.Component {
                      <p>   Ticket Price: ${this.state.raffle.ticket_price}</p>
                         <TicketBar tickets_sold={this.state.raffle.tickets_sold} total_tickets={this.state.raffle.total_tickets} />
                       <p> {this.state.raffle.raffle_description}</p>
-                    </div>
-                    {/* <div className='ticketCounter'> {this.state.raffle.tickets_sold}/{this.state.raffle.total_tickets} </div> */} 
+                      <p> Category: {this.state.category} </p>
+                    </div> 
                     <div className='buttonWrapper'>
                         <button className='purchaseButton'>Buy Ticket</button>
                     </div>

@@ -30,3 +30,4 @@ export const updateTable = async (table, id, data) => {
     return holdResponse;
 }
 
+
