@@ -14,9 +14,9 @@ class Header extends React.Component {
                     <ul>
                         <li onClick={this.raffle}>RAFFLE</li>
                         <li onClick={this.home}>HOME</li>
-                        <li onClick={this.about}>ABOUT</li>
-                        <li onClick={this.gallery}>GALLERY</li>
-                        <li onClick={this.scholarships}>SCHOLARSHIPS</li>
+                        <li onClick={this.signIn}>SIGN-IN</li>
+                        <li onClick={this.signUp}>SIGN-UP</li>
+                        
 
                     </ul>
 
