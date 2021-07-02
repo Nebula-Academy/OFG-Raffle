@@ -1,0 +1,11 @@
+.editCategories{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    
+}
+
+.categories{
+    padding: 10px;
+}
+

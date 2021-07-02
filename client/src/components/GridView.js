@@ -4,19 +4,25 @@ import { getTable } from './NetworkRequests'
 import { Link } from 'react-router-dom'
 import Modal from '@material-ui/core/Modal'
 import AddRaffle from './AddRaffle'
+import RaffleCategories from './RaffleCategories'
+import EditCategories from './EditCategories'
 
 class GridView extends React.Component {
     state = {
         raffleItems: [],
-        addRaffleModal: false
+        addRaffleModal: false,
+        editCategory: false
     }
 
     componentDidMount() {
         this.refresh();
     }
 
-    refresh = async () => {
-        const raffleItems = await getTable("raffle");
+    refresh = async (category_id) => {
+        let raffleItems = await getTable("raffle");
+        if (category_id) {
+            raffleItems = raffleItems.filter(raffleItem => raffleItem.category_id == category_id)
+        }
         this.setState({ raffleItems });
     };
 
@@ -29,6 +35,14 @@ class GridView extends React.Component {
 
     }
 
+    openEditCategory = () => {
+        this.setState({ editCategory: true })
+    }
+
+    closeEditCategory = () => {
+        this.setState({ editCategory: false })
+
+    }
     render() {
         return (
 
@@ -42,6 +56,17 @@ class GridView extends React.Component {
                 >
                     <AddRaffle close={this.closeAddRaffleModal} refresh={this.refresh} />
                 </Modal>
+                <RaffleCategories refresh={this.refresh} />
+                <Modal
+                    className='modal'
+                    open={this.state.editCategory}
+                    onClose={this.closeEditCategory}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                >
+                    <EditCategories close={this.closeEditCategory} refresh={this.refresh} />
+                </Modal>
+                <button className='editButton' onClick={this.openEditCategory}>Edit Categories</button>
                 <button className='createRaffle' onClick={this.openAddRaffleModal}> Create Raffle </button>
                 <div id='grid'>
                     {this.state.raffleItems.map(raffleItem => <div className='itemContainer' key={raffleItem.title}>
