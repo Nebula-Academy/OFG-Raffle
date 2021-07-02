@@ -20,6 +20,9 @@ class RaffleCategories extends React.Component{
     dropDownMenue = (e) => {
         this.setState({ selectedCategory: e.target.value})
         this.props.refresh(e.target.value)
+        if(e.target.value == 'all categories'){
+            this.props.refresh()
+        }
     }
 
     render(){
@@ -27,10 +30,9 @@ class RaffleCategories extends React.Component{
             <div>
                 {this.state.categoryMenu.length > 0 && <select onChange={this.dropDownMenue} value={this.state.selectedCategory}>
                 <option disabled value=''>Categories</option>
+                <option value='all categories'>All</option>
                 {this.state.categoryMenu.map(category => <option key={category.category_id} value={category.category_id}>{category.category_name}</option>)}
                 </select>}
-                   
-
             </div>
         )
     }
