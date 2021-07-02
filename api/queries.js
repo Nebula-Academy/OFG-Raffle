@@ -11,6 +11,26 @@ const pool = new Pool({
     port: 5432
 });
 
+const createMember = (request, response) => {
+    const { username } = request.body;
+    pool.query(`INSERT INTO member (email) VALUES ($1) RETURNING *`, [username], (error, results) => {
+        if(error) {
+            throw error;
+        }
+        response.status(200).json(results.rows);
+    });
+}
+
+const getMember = (request, response) => {
+    const { username } = request.body;
+    pool.query(`SELECT * FROM member WHERE email = $1`, [username], (error, results) => {
+        if(error) {
+            throw error;
+        }
+        response.status(200).json(results.rows);
+    });
+}
+
 const getTable = (request, response) => {
     pool.query(`SELECT * FROM ${request.params.table}`, (error, result) => {
         if (error) {
@@ -87,5 +107,7 @@ module.exports = {
     getTable,
     getTableById,
     postTable,
-    updateTable
+    updateTable,
+    createMember,
+    getMember
 }

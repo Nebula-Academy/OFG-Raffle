@@ -22,7 +22,7 @@ h1 {
     align-items: center;
 }
 
-#new-user-signup {
+.new-user-signup {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -66,4 +66,10 @@ input {
     display: flex;
     border-radius: 0px;
     padding: 0px;
+}
+
+.verify-new-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
