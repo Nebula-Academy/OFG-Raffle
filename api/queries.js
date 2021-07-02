@@ -69,16 +69,16 @@ const postTable = (request, response) => {
     )
 }
 
-// start on delete function, stretch goal to finish 
-// const deleteTable = (request, response) => {
-//     const { table } = request.params;
-//     pool.query(`DELETE FROM ${table}`, (error, results) => {
-//         if(error){
-//             throw error;
-//         }
-//         response.status(200).json(results.rows)
-//     })
-// }
+
+const deleteTableByID = (request, response) => {
+    const { table, id } = request.params;
+    pool.query(`DELETE FROM ${table} WHERE ${table}_id = ${id}`, (error, results) => {
+        if (error) {
+            throw error;
+        }
+        response.status(200).json(results.rows)
+    })
+}
 
 const updateTable = (request, response) => {
     const { table, id } = request.params;
@@ -109,5 +109,6 @@ module.exports = {
     postTable,
     updateTable,
     createMember,
-    getMember
+    getMember,
+    deleteTableByID
 }

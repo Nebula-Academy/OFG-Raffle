@@ -20,6 +20,7 @@ export const addTable = async (table, data) => {
 }
 
 export const updateTable = async (table, id, data) => {
+    console.log(data)
     const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`, {
         method: "PUT",
         headers: {
@@ -51,3 +52,14 @@ export const getMember = async (data) => {
     })
     return holdResponse;
 }
+export const deleteTableById = async (table, id) => {
+    const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    return holdResponse
+}
+
+

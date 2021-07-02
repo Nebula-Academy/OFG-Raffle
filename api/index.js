@@ -24,6 +24,8 @@ app.post('/:table', db.postTable);
 
 app.put('/:table/:id', db.updateTable);
 
+app.delete('/:table/:id', db.deleteTableByID);
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
