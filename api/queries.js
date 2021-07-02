@@ -74,7 +74,6 @@ const updateTable = (request, response) => {
         return sqlStatement
     }
 
-    console.log(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`)
     pool.query(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`, values, (error, results) => {
         if (error) {
             throw error
