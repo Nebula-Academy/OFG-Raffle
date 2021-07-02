@@ -4,7 +4,7 @@ import React from 'react';
 class Header extends React.Component {
     render() {
         return (
-            <header id="ht-masthead" class="ht-site-heder">
+            <header id="ht-masthead" className="ht-site-heder">
                 <h1>
                     <a>
                         OUR FUTURE GENERATION
