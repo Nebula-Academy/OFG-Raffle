@@ -42,15 +42,9 @@ export const createMember = async (data) => {
     return holdResponse;
 }
 
-export const getMember = async (data) => {
-    const holdResponse = await fetch(`http://localhost:3030/get-member`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    })
-    return holdResponse;
+export const getMember = async (username) => {
+    const holdResponse = await fetch(`http://localhost:3030/get-member/${username}`);
+    return holdResponse.json();
 }
 export const deleteTableById = async (table, id) => {
     const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`, {

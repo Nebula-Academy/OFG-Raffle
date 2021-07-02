@@ -12,13 +12,9 @@ import awsconfig from './aws-exports';
 import { getSession, checkForUser, getCurrentAuthUser } from './amplifyAuth/amplifyAuth';
 import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
 import React from 'react';
+import { getMember } from './components/NetworkRequests';
 
 Amplify.configure(awsconfig);
-
-const getUserFromApi = async () => {
-  // placeholder function
-  return true;
-}
 
 // Global state for user...
 // We could check validation before each request...
@@ -41,14 +37,15 @@ class App extends React.Component {
     getCurrentAuthUser().then(async cognitoUser => {
       // If a user is already signed in, save that user to state.
       if(cognitoUser?.attributes.email_verified){
-        const apiUser = await getUserFromApi();
+        console.log(cognitoUser.attributes);
+        const memberArr = await getMember(cognitoUser.attributes.email);
+        const apiUser = memberArr[0];
         // Get user data from API and save to state (along with cognitoUser info)
         apiUser ? this.setState({cognitoUser, apiUser}) : alert('error getting api user');
       }
     });  
     // Otherwise no one is logged in.
   }
-
 
   render(){
     return (

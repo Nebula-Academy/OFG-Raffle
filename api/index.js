@@ -16,6 +16,8 @@ app.get('/', (request, response) => {
 
 app.post('/create-member', db.createMember);
 
+app.get('/get-member/:username', db.getMember);
+
 app.get('/:table', db.getTable);
 
 app.get('/:table/:id', db.getTableById);

@@ -1,5 +1,6 @@
 import React from "react";
 import "./LoginPage.css";
+import { Redirect } from 'react-router-dom';
 import { signUp, confirmSignUp, signIn } from "../amplifyAuth/amplifyAuth";
 import { createMember } from "./NetworkRequests";
 
@@ -95,12 +96,14 @@ class LoginPage extends React.Component {
     // Need error handling when auth fails
     if(res.authenticationFlowType === "USER_SRP_AUTH"){
       // HERE WE NEED TO FIGURE OUT WHAT TO DO NEXT... STORE THE TOKEN? WHERE? HMMM...
+      window.location.pathname = "/";
     } else {
       alert(" Something went wrong ...");
     } 
   }
 
   signMeUp = async () => {
+    // If we delete user in Cognito we also need to delete user in postgres...
     // Returns an object - ISignUpResult (check documentaion)
     const res = await signUp({ email: this.state.email, password: this.state.password })
     // userConfirmed: false
@@ -116,6 +119,9 @@ class LoginPage extends React.Component {
     // Returns a 'SUCCESS' string or authentication error / alert
     const res = await confirmSignUp(this.state.email, this.state.code);
     console.log(res, "<--- verify response");
+    if(res === 'SUCCESS') {
+      this.setState({verification: true});
+    }
     return res === 'SUCCESS';
   }
 

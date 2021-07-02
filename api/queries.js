@@ -22,8 +22,7 @@ const createMember = (request, response) => {
 }
 
 const getMember = (request, response) => {
-    const { username } = request.body;
-    pool.query(`SELECT * FROM member WHERE email = $1`, [username], (error, results) => {
+    pool.query(`SELECT * FROM member WHERE email = '${request.params.username}'`, (error, results) => {
         if(error) {
             throw error;
         }

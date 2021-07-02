@@ -11,7 +11,7 @@ class Header extends React.Component {
                         OUR FUTURE GENERATION
                     </a>
                 </h1>
-                <button onClick={signOut}>SIGN OUT</button>
+                <button onClick={signOut}>(BUTTON FOR DEV) SIGN OUT</button>
                 <nav>
                     <ul>
                         <li onClick={this.raffle}>RAFFLE</li>
