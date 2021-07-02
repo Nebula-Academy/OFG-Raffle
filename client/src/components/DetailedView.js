@@ -37,29 +37,30 @@ class DetailedView extends React.Component {
     render() {
         console.log(this.state.raffle)
         return (
-            <div className='mainContianerWrapper'>
+            <div className='detailed-view-wrap'>
                 <Link to={`/raffles`}>
                     <button>↩️</button>
                 </Link>
-
-                <Modal 
-                className='modal'
-                open= {this.state.UpdateRaffleModal}
-                Onclose= {this.closeUpdateRaffleModal} 
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description" 
-                >
-                    <UpdateRaffle close={this.closeUpdateRaffleModal} refresh={this.refresh} raffle={this.state.raffle}></UpdateRaffle>
-                </Modal>
-                <button className= 'updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> 
-                <div className='mainContianer'>
-                    
+                    <Modal 
+                        className='modal'
+                        open= {this.state.UpdateRaffleModal}
+                        Onclose= {this.closeUpdateRaffleModal} 
+                        aria-labelledby="simple-modal-title"
+                        aria-describedby="simple-modal-description" 
+                    >
+                        <UpdateRaffle 
+                            close={this.closeUpdateRaffleModal} 
+                            refresh={this.refresh} 
+                            raffle={this.state.raffle} />
+                    </Modal> 
+                <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> 
+                <div className='detailed-view-item-wrap'>
                     <h3 className='itemTitle'>
                         {this.state.raffle.title}
                     </h3>
                     <img className='raffleItem' src={this.state.raffle.image_file_path} />
                      <div className='itemInfo'>
-                     <p>   Ticket Price: ${this.state.raffle.ticket_price}</p>
+                     <p>Ticket Price: ${this.state.raffle.ticket_price}</p>
                         <TicketBar tickets_sold={this.state.raffle.tickets_sold} total_tickets={this.state.raffle.total_tickets} />
                       <p> {this.state.raffle.raffle_description}</p>
                       <p> Category: {this.state.category} </p>

@@ -4,7 +4,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    background-color: rgb(219, 219, 219);
+    height: 94px;
+    border-top: 4px solid #800020;
+    border-bottom: 30px solid #800020;
 }
 
 #ht-masthead h1 {
@@ -20,13 +23,6 @@
     color:#800020;
 }
 
-header{
-  background-color: rgb(219, 219, 219);
-  height: 94px;
-  border-top: 4px solid #800020;
-  border-bottom: 30px solid #800020;
-}
-
 #ht-masthead li {
     background-color: transparent;
     border:maroon;
@@ -37,7 +33,7 @@ header{
     list-style-type: none;
     text-emphasis-style: initial;  
 }
-ul {
-    display:flex;
-    
+
+#ht-masthead ul {
+    display: flex;
 }

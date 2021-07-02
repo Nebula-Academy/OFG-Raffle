@@ -1,21 +1,18 @@
-.mainContianer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.mainContianerWrapper{
+.detailed-view-wrap {
     /* display: flex;
     justify-content: center; */
     border: 3px solid #802;
     background-color: #802;
-    height: 700px;
-    
 }
 
-.itemTitle{
+.detailed-view-item-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemTitle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,22 +20,22 @@
     margin: 7px;
     font-size: 175%;
     text-shadow: 0 0 20px grey;
-    letter-spacing: 2px;
-    
+    letter-spacing: 2px;    
 }
-.itemTitle::after,.itemTitle::before{
+
+.itemTitle::after,.itemTitle::before {
     content:'*';
     margin:0 15px;
 }
 
-.raffleItem{
+.raffleItem {
     width: 400px;
     height: 250px;
     border: 5px solid #404040;
     margin: 20px;
 }
 
-.itemInfo{
+.itemInfo {
     border: 3px solid black;
     background-color: white;
     width: 400px;
@@ -52,7 +49,7 @@
     justify-content:center;
 }
 
-.ticketCounter{
+.ticketCounter {
     display: flex;
     flex-direction: column;
     border: 1px solid green;
@@ -63,7 +60,7 @@
     justify-content: center;
 }
 
-.purchaseButton{
+.purchaseButton {
     display: flex;
     align-items: end;
     justify-content: end;
@@ -87,13 +84,13 @@
     transition: all 0.5s;
 }
 
-.purchaseButton:hover{
+.purchaseButton:hover {
     color: grey;
     background-color: #404040;
     transform: scale(1.05)
 }
 
-.buttonWrapper{
+.buttonWrapper {
     display: flex;
     justify-content: flex-end;
     width: 100%;
