@@ -40,6 +40,7 @@ class App extends React.Component {
         console.log(cognitoUser.attributes);
         const memberArr = await getMember(cognitoUser.attributes.email);
         const apiUser = memberArr[0];
+        console.log(apiUser, "<--- api user")
         // Get user data from API and save to state (along with cognitoUser info)
         apiUser ? this.setState({cognitoUser, apiUser}) : alert('error getting api user');
       }
