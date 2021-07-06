@@ -2,10 +2,20 @@ import './Header.css';
 import React from 'react';
 import { signOut } from '../amplifyAuth/amplifyAuth';
 
+import { Link } from 'react-router-dom';
+import MenuIcon from '@material-ui/icons/Menu';
 class Header extends React.Component {
+    state = {
+        collapsed: true
+    }
+    collapseButtonClick = () => {
+        this.setState({ collapsed: !this.state.collapsed })
+
+    }
+    
     render() {
         return (
-            <header id="ht-masthead" className="ht-site-heder">
+            <header id="ht-masthead" className="ht-site-header">
                 <h1>
                     <a>
                         OUR FUTURE GENERATION
@@ -13,14 +23,26 @@ class Header extends React.Component {
                 </h1>
                 <button onClick={signOut}>(BUTTON FOR DEV) SIGN OUT</button>
                 <nav>
-                    <ul>
-                        <li onClick={this.raffle}>RAFFLE</li>
-                        <li onClick={this.home}>HOME</li>
-                        <li onClick={this.about}>ABOUT</li>
-                        <li onClick={this.gallery}>GALLERY</li>
-                        <li onClick={this.scholarships}>SCHOLARSHIPS</li>
-
+                    <ul className={this.state.collapsed ? '' : 'opened'}>
+                        <Link to='/raffles' onClick={this.collapseButtonClick}>
+                            <li>RAFFLES</li>
+                        </Link>
+                        <Link to='/' onClick={this.collapseButtonClick}>
+                            <li>HOME</li>
+                        </Link>
+                        <Link to='myprofile' onClick={this.collapseButtonClick}>
+                            <li>MY-Profile</li>
+                        </Link>
+                        <Link to='/signup' onClick={this.collapseButtonClick}>
+                            <li>SIGN-IN</li>
+                        </Link>
+                        <Link to='/signup' onClick={this.collapseButtonClick}>
+                            <li>SIGN-UP</li>
+                        </Link>
                     </ul>
+                    <button id='nav-bar-collapse-button' onClick={this.collapseButtonClick}>
+                        <MenuIcon />
+                    </button>
 
                 </nav>
             </header>

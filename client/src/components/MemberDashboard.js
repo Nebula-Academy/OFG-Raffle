@@ -1,5 +1,6 @@
 import './MemberDashboard.css';
 import React from 'react';
+import RaffleSummary from './RaffleSummary';
 
 class MemberDashboard extends React.Component {
     render() {
@@ -12,10 +13,10 @@ class MemberDashboard extends React.Component {
                 </h1>
                 <div className='member-dashboard'>
                     <form>
-                        <label>First_Name
+                        <label>First Name
                             <input className='membutton' onClick={this.firstName} />
                         </label>
-                        <label>Last_Name
+                        <label>Last Name
                             <input className='membutton' onclick={this.lastName} />
                         </label>
                         <label>Phone
@@ -24,10 +25,10 @@ class MemberDashboard extends React.Component {
                         <label>Email
                             <input className='membutton' onClick={this.email} />
                         </label>
-                        <label>Address1
+                        <label>Address
                             <input className='membutton' onClick={this.address1} />
                         </label>
-                        <label>Address2
+                        <label>Address(cont)
                             <input className='membutton' onClick={this.address2} />
                         </label>
                         <label>City
@@ -40,24 +41,8 @@ class MemberDashboard extends React.Component {
                     </form>
                 </div>
                 <div className='raf-bio'>
-                    <h2>RAFFLE</h2>              
-                    <div>
-                        <label>RAFFLE TITLE
-                            <input className='rafbutton' onclick={this.raftitle} />
-                        </label>
-                        <label>RAFFLE DESCRIPTION
-                            <input className='rafbutton' onclick={this.rafdescription} />
-                        </label>
-                        <label>TOTAL TICKETS
-                            <input className='rafbutton' onclick={this.total} />
-                        </label>
-                        <label>TICKET PRICE
-                            <input className='rafbutton' onclick={this.price} />
-                        </label>
-                        <label>TICKETS SOLD
-                            <input className='rafbutton' onclick={this.sold} />
-                        </label>
-                    </div>
+                    <h2>RAFFLES</h2>              
+                   <RaffleSummary />
 
                 </div>
             </div >
