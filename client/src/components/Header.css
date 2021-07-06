@@ -28,6 +28,9 @@ nav{
         flex-direction: column;
         right:0;
         top:50px;
+        z-index:2;
+        background-color: lightgray;
+    filter: drop-shadow(2px 4px 7px black )
     }
     #nav-bar-collapse-button{
         margin-right: 20px;
