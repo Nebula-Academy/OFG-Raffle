@@ -5,6 +5,7 @@ import { getTableById } from './NetworkRequests'
 import Modal from '@material-ui/core/Modal'
 import UpdateRaffle from './UpdateRaffle'
 import TicketBar from './TicketBar'
+import BuyTicket from './BuyTicket'
 
 
 class DetailedView extends React.Component {
@@ -12,7 +13,8 @@ class DetailedView extends React.Component {
     state = {
         raffle: {},
         category: '',
-        UpdateRaffleModal: false
+        UpdateRaffleModal: false,
+        BuyTicketModal: false
     }
 
     componentDidMount() {
@@ -34,6 +36,13 @@ class DetailedView extends React.Component {
         this.setState({ UpdateRaffleModal: false })
     }
 
+    openBuyTicketModal = () => {
+        this.setState({ BuyTicketModal: true })
+    }
+
+    closeBuyTicketModal = () => {
+        this.setState({ BuyTicketModal: false })
+    }
     render() {
         console.log(this.state.raffle)
         return (
@@ -66,7 +75,16 @@ class DetailedView extends React.Component {
                       <p> Category: {this.state.category} </p>
                     </div> 
                     <div className='buttonWrapper'>
-                        <button className='purchaseButton'>Buy Ticket</button>
+                        <Modal
+                            className='modal'
+                            open={this.state.BuyTicketModal}
+                            onClose={this.closeBuyTicketModal}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description" 
+                        >
+                            <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh}></BuyTicket>
+                        </Modal>
+                        <button className='purchaseButton' onClick={this.openBuyTicketModal}>Buy Ticket</button>
                     </div>
                 </div>
             </div>
