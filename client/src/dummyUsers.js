@@ -8,7 +8,7 @@ export const users = [
     city_name: 'Gotham',
     state_name: 'New Jersey',
     zip_code: 11111,
-    date_created: Date.now().toISOString(),
+    date_created: new Date().toISOString(),
     is_admin: true,
     donated: false
   },
@@ -21,7 +21,7 @@ export const users = [
     city_name: 'New York',
     state_name: 'NY',
     zip_code: 10432,
-    date_created: Date.now().toISOString(),
+    date_created: new Date().toISOString(),
     is_admin: true,
     donated: true
   },
@@ -34,7 +34,7 @@ export const users = [
     city_name: 'Brooklyn',
     state_name: 'NY',
     zip_code: 10002,
-    date_created: Date.now().toISOString(),
+    date_created: new Date().toISOString(),
     is_admin: true,
     donated: true
   }

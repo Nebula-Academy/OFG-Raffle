@@ -35,7 +35,7 @@ class DetailedView extends React.Component {
     }
 
     render() {
-        console.log(this.state.raffle)
+        console.log(this.state.raffle, this.props.user, "<--- user")
         return (
             <div className='detailed-view-wrap'>
                 <Link to={`/raffles`}>

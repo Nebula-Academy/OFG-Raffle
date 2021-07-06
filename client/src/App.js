@@ -22,29 +22,30 @@ class App extends React.Component {
   getCurrentUser(){
     return users[1];
   }
-
+ 
   render(){
+    const { currentUser: user } = this.state;
     return (
       <BrowserRouter>
-        <Header user={this.state.currentUser}/>
+        <Header user={user}/>
         <Route exact path="/signup">
           <h1>
             This is the sign Up Page!
           </h1>
         </Route>
         <Route exact path="/accountverification">
-          <AccountVerification user={this.state.currentUser}/>
+          <AccountVerification user={user}/>
         </Route>
         <Route path="/memberinfo">
-          <MemberDashboard user={this.state.currentUser}/>
+          <MemberDashboard user={user}/>
         </Route>
         <Route path="/" exact>
-          <LandingPage user={this.state.currentUser}/>
+          <LandingPage user={user}/>
         </Route>
         <Route path="/raffles">
-          <GridView user={this.state.currentUser}/>
+          <GridView user={user}/>
         </Route>
-        <Route path="/raffle/:id" component={<><DetailedView user={this.state.currentUser}/></>} />
+        <Route path="/raffle/:id" render={props => <DetailedView user={user} {...props} />} />
       </BrowserRouter>
     );
   }
