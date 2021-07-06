@@ -1,7 +1,7 @@
 import React from 'react';
 import './AddRaffle.css';
 import { addTable } from './NetworkRequests'
-const requiredFields = ['title', 'raffle_description','total_tickets','ticket_price', 'item_cost','image_file_path']
+const requiredFields = ['title', 'raffle_description','total_tickets','ticket_price', 'item_cost','image_file_path', 'category_id']
 
 class AddRaffle extends React.Component{
     
