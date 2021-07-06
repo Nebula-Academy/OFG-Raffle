@@ -1,7 +1,7 @@
 import './App.css';
-import Header from './components/Header'
+import Header from './components/Header';
 import MemberDashboard from './components/MemberDashboard';
-import { BrowserRouter, Link, Route } from 'react-router-dom'
+import { BrowserRouter, Link, Route } from 'react-router-dom';
 import DetailedView from './components/DetailedView';
 import GridView from './components/GridView';
 import LandingPage from './components/LandingPage'
