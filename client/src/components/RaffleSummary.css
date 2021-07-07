@@ -1,0 +1,26 @@
+.menu-item {
+    padding: 0 40px;
+    margin: 2px 10px;
+    user-select: none;
+    border: none;
+  }
+  .menu-item-wrapper.active {
+    border: 1px white;
+  }
+  .menu-item.active {
+    border: 3px white;
+  }
+  
+  .scroll-menu-arrow {
+    padding: 10px;
+    size: 10px;
+  }
+  
+  .Scroll-menu {
+      width: 100px;
+      display: flex;
+      flex-direction: row;
+      justify-content:center;
+      align-items: center;
+
+  }
