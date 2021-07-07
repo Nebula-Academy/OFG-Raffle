@@ -92,7 +92,7 @@ export default function BuyTicketSlider(props) {
                     <span>Total: ${value * props.raffle.ticket_price}.00</span>
                 </Grid>
             </Grid>
-            <button onClick={this.purchaseClick}>Purchase</button>
+            <button onClick={purchaseClick}>Purchase</button>
         </div>
     );
 }
