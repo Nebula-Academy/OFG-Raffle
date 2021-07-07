@@ -40,22 +40,24 @@ export default function BuyTicketSlider(props) {
 
     const purchaseClick = () => {
         //is user logged in and is user valid?
-        if(!props.user){
+        if (!props.user) {
             alert('You are not logged in, please do so to purchase tickets')
-            return 
+            return
         }
-        if(!props.user.donated){
+        if (!props.user.donated) {
             alert('Please verify billing information before purchasing a ticket')
             return
         }
-        if(value <= 0){
+        if (value <= 0) {
             alert('Please input a proper value')
             return
         }
         //update raffle table, purchase ticket amount by value 
-        updateTable('raffle', props.raffle.raffle_id, {tickets_sold: props.raffle.tickets_sold + value})
+        updateTable('raffle', props.raffle.raffle_id, { tickets_sold: props.raffle.tickets_sold + value })
         //create value amount of tickets in ticket table 
-        addTable('ticket', {raffle_id: props.raffle.raffle_id, member_id: props.user.member_id})
+        for (let i = 0; i < value; i++) {
+            addTable('ticket', { raffle_id: props.raffle.raffle_id, member_id: props.user.member_id })
+        }
         //notify user of purchase
     }
 
