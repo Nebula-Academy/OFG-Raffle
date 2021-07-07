@@ -2,6 +2,7 @@ import './MemberDashboard.css';
 import React from 'react';
 import Modal from '@material-ui/core/Modal'
 import AdminControl from './AdminControl';
+import RaffleSummary from './RaffleSummary';
 
 class MemberDashboard extends React.Component {
 
@@ -55,24 +56,8 @@ class MemberDashboard extends React.Component {
                     </form>
                 </div>
                 <div className='raf-bio'>
-                    <h2>RAFFLE</h2>
-                    <div>
-                        <label>RAFFLE TITLE
-                            <input className='rafbutton'/>
-                        </label>
-                        <label>RAFFLE DESCRIPTION
-                            <input className='rafbutton'/>
-                        </label>
-                        <label>TOTAL TICKETS
-                            <input className='rafbutton'  />
-                        </label>
-                        <label>TICKET PRICE
-                            <input className='rafbutton'  />
-                        </label>
-                        <label>TICKETS SOLD
-                            <input className='rafbutton' />
-                        </label>
-                    </div>
+                    <h2>RAFFLES</h2>              
+                   <RaffleSummary />
 
                 </div>
                 <Modal
