@@ -1,0 +1,3 @@
+.MuiInputBase-root::before, .MuiInputBase-root::after{
+    display: none;
+};

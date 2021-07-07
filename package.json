@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.12.0",
+    "react-multi-bar-slider": "^1.4.0"
+  }
+}
