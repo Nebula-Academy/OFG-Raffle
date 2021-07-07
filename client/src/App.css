@@ -6,14 +6,14 @@ body {
   text-align: center;
 }
 
-.box
-{
+.box {
     height:100px;
     width:200px;
     border:5px solid #fff;
     z-index:1; 
     position:relative;
 }
+
 .box:before {
     position:absolute;
     top:-5px; 
@@ -34,4 +34,44 @@ body {
     height:5px;
     width:30%;
     background:#802;
+}
+
+.modal{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    top: 50%!important;
+    left: 50%!important;
+    background-color: cornsilk;
+    color: white;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 15px 50px;
+    box-shadow: 4px 4px 4px black;
+    text-shadow: 1px 1px black;
+}
+
+.createRaffleModal{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    top: 50%!important;
+    left: 50%!important;
+    background-color: cornsilk;
+    color: white;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 15px 50px;
+    box-shadow: 4px 4px 4px black;
+    text-shadow: 1px 1px black;
+}
+
+.closeButton{
+    margin-left: 100px;
 }

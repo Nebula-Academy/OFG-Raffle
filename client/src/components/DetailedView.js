@@ -79,8 +79,6 @@ class DetailedView extends React.Component {
                             className='modal'
                             open={this.state.BuyTicketModal}
                             onClose={this.closeBuyTicketModal}
-                            aria-labelledby="simple-modal-title"
-                            aria-describedby="simple-modal-description" 
                         >
                             <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh} raffle={this.state.raffle} user={this.props.user} closeWindow={this.closeBuyTicketModal}></BuyTicket>
                         </Modal>

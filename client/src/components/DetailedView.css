@@ -65,13 +65,11 @@
     align-items: end;
     justify-content: end;
     max-width: 80px;
-    background-color: grey;
+    background-color: white;
     color: #802;
     cursor: pointer;
     box-sizing: border-box;
-    /* border-left-width: 10px; */
     border-left-style: solid;
-    /* border-right-width: 10px; */
     border-right-style: solid;
     border-top-color: #802;
     border-bottom-color: #802;
@@ -85,8 +83,8 @@
 }
 
 .purchaseButton:hover {
-    color: grey;
-    background-color: #404040;
+    color: white;
+    background-color: #802;
     transform: scale(1.05)
 }
 

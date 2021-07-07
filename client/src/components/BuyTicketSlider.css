@@ -1,3 +1,31 @@
 .MuiInputBase-root::before, .MuiInputBase-root::after{
     display: none;
 };
+
+#purchaseButton{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    max-width: 80px;
+    background-color: grey;
+    color: #802;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-color: #802;
+    border-bottom-color: #802;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'Pontano Sans', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    transition: all 0.5s;
+}
+
+#purchaseButton:hover {
+    color: green;
+    background-color: tan;
+    transform: scale(1.05)
+}

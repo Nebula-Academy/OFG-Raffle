@@ -69,7 +69,6 @@ export default function BuyTicketSlider(props) {
     return (
         <div className={classes.root}>
             <Typography id="input-slider" gutterBottom>
-                How many tickets?
             </Typography>
             <Grid container spacing={2} alignItems="center">
                 <Grid item></Grid>
@@ -101,7 +100,7 @@ export default function BuyTicketSlider(props) {
                     <span>Total: ${value * props.raffle.ticket_price}.00</span>
                 </Grid>
             </Grid>
-            <button onClick={purchaseClick}>Purchase</button>
+            <button id='purchaseButton' onClick={purchaseClick}>Purchase</button>
         </div>
     );
 }

@@ -18,7 +18,6 @@ class BuyTicket extends React.Component{
         return(
             <div>
                 <button className='closeButton' onClick={this.props.close}>X</button>
-                <h3>Buy Ticket</h3>
                 <h4>Ticket Price ${this.props.raffle.ticket_price}</h4>
                 <BuyTicketSlider raffle={this.props.raffle} user={this.props.user} refresh={this.props.refresh} closeWindow={this.props.closeWindow}/>
             </div>
