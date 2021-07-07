@@ -82,9 +82,9 @@ class DetailedView extends React.Component {
                             aria-labelledby="simple-modal-title"
                             aria-describedby="simple-modal-description" 
                         >
-                            <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh} raffle={this.state.raffle} user={this.props.user}></BuyTicket>
+                            <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh} raffle={this.state.raffle} user={this.props.user} closeWindow={this.closeBuyTicketModal}></BuyTicket>
                         </Modal>
-                        <button className='purchaseButton' onClick={this.openBuyTicketModal}>Buy Ticket</button>
+                        {this.state.raffle.tickets_sold != this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}>Buy Ticket</button>}
                     </div>
                 </div>
             </div>

@@ -59,6 +59,11 @@ export default function BuyTicketSlider(props) {
             addTable('ticket', { raffle_id: props.raffle.raffle_id, member_id: props.user.member_id })
         }
         //notify user of purchase
+        alert('Thank you for your purchase, a receipt has been sent to your email')
+        //refresh detailed view
+        props.refresh()
+        //closing modal after purchase
+        props.closeWindow()
     }
 
     return (
@@ -87,6 +92,8 @@ export default function BuyTicketSlider(props) {
                         onBlur={handleBlur}
                         inputProps={{
                             step: 1,
+                            min: 1,
+                            max: props.raffle.total_tickets - props.raffle.tickets_sold,
                             type: "number",
                             "aria-labelledby": "input-slider"
                         }}
