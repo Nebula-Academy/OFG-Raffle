@@ -23,11 +23,9 @@
 .itemContainer a{
     display:flex;
     justify-content: center;
-    width: 500px;
 }
 
 .ItemImg{
-    width: 400px;
     border: 2px solid black;
 }
 
