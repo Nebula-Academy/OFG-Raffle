@@ -1,6 +1,28 @@
 import React from 'react'
 import './LandingPage.css'
+
 class LandingPage extends React.Component {
+    state = {
+        currRaffles: [],
+    }
+
+    componentDidMount() {
+        // here we're fetching raffles from our database
+        // then we're setting our state with those raffles
+
+    }
+
+    currentRaffles() {
+        return this.state.currRaffles.map(raffle => (
+            <div className="button1">
+                <img src={raffle.image_file_path}/>
+                <h2> {raffle.title} </h2>
+                <p> {raffle.ticket_price} </p>
+                <button>test</button>
+            </div>
+        ))
+    }
+
     render() {
         return (
             <div id='main-container'>
@@ -11,9 +33,7 @@ class LandingPage extends React.Component {
                 <div className="row">
                     <div className='column box'>
                         <h4>Current Raffles</h4>
-                        <button>test</button>
-                        <button>test</button>
-                        <button>test</button>
+                        {this.currentRaffles()}
                     </div>
                     <div className="column box">
                         <h4>Past Winners</h4>
@@ -22,9 +42,9 @@ class LandingPage extends React.Component {
                         <button>test</button>
                     </div>
                 </div>
-                
-                    <button id="register">REGISTER TO ENTER</button>
-                    <button id="login">LOGIN</button>
+
+                <button id="register">REGISTER TO ENTER</button>
+                <button id="login">LOGIN</button>
             </div>
         )
     }
