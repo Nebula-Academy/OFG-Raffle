@@ -1,7 +1,23 @@
 import './MemberDashboard.css';
 import React from 'react';
+import Modal from '@material-ui/core/Modal'
+import AdminControl from './AdminControl';
+import RaffleSummary from './RaffleSummary';
 
 class MemberDashboard extends React.Component {
+
+    state = {
+        adminControl: false
+    }
+
+    openAdminControl = () => {
+        this.setState({ adminControl: true })
+    }
+
+    closeAdminControl = () => {
+        this.setState({ adminControl: false })
+    }
+
     render() {
         return (
             <div className='member-dashboard-container'>
@@ -13,53 +29,47 @@ class MemberDashboard extends React.Component {
                 <div className='member-dashboard'>
                     <form>
                         <label>First_Name
-                            <input className='membutton' onClick={this.firstName} />
+                            <input className='membutton' />
                         </label>
                         <label>Last_Name
-                            <input className='membutton' onclick={this.lastName} />
+                            <input className='membutton'/>
                         </label>
                         <label>Phone
-                            <input className='membutton' onClick={this.phone} />
+                            <input className='membutton'  />
                         </label>
                         <label>Email
-                            <input className='membutton' onClick={this.email} />
+                            <input className='membutton'  />
                         </label>
                         <label>Address1
-                            <input className='membutton' onClick={this.address1} />
+                            <input className='membutton' />
                         </label>
                         <label>Address2
-                            <input className='membutton' onClick={this.address2} />
+                            <input className='membutton' />
                         </label>
                         <label>City
-                            <input className='membutton' onClick={this.city} />
+                            <input className='membutton' />
                         </label>
                         <label>State
-                            <input className='membutton' onClick={this.state} />
+                            <input className='membutton'  />
                         </label>
 
                     </form>
                 </div>
                 <div className='raf-bio'>
-                    <h2>RAFFLE</h2>              
-                    <div>
-                        <label>RAFFLE TITLE
-                            <input className='rafbutton' onclick={this.raftitle} />
-                        </label>
-                        <label>RAFFLE DESCRIPTION
-                            <input className='rafbutton' onclick={this.rafdescription} />
-                        </label>
-                        <label>TOTAL TICKETS
-                            <input className='rafbutton' onclick={this.total} />
-                        </label>
-                        <label>TICKET PRICE
-                            <input className='rafbutton' onclick={this.price} />
-                        </label>
-                        <label>TICKETS SOLD
-                            <input className='rafbutton' onclick={this.sold} />
-                        </label>
-                    </div>
+                    <h2>RAFFLES</h2>              
+                   <RaffleSummary />
 
                 </div>
+                <Modal
+                    className='modal'
+                    open={this.state.adminControl}
+                    onClose={this.closeAdminControl}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                >
+                    <AdminControl close={this.closeAdminControl}/>
+                </Modal>
+                <button onClick={this.openAdminControl}>Admin Control</button>
             </div >
 
         )

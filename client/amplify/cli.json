@@ -2,7 +2,10 @@
   "features": {
     "graphqltransformer": {
       "addmissingownerfields": true,
+<<<<<<< HEAD
       "improvepluralization": true,
+=======
+>>>>>>> main
       "validatetypenamereservedwords": true,
       "useexperimentalpipelinedtransformer": false,
       "enableiterativegsiupdates": true,
@@ -26,8 +29,12 @@
       "addtimestampfields": true,
       "handlelistnullabilitytransparently": true,
       "emitauthprovider": true,
+<<<<<<< HEAD
       "generateindexrules": true,
       "enabledartnullsafety": true
+=======
+      "generateindexrules": true
+>>>>>>> main
     },
     "appsync": {
       "generategraphqlpermissions": true

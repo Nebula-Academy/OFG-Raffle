@@ -5,13 +5,18 @@ import { getTableById } from './NetworkRequests'
 import Modal from '@material-ui/core/Modal'
 import UpdateRaffle from './UpdateRaffle'
 import TicketBar from './TicketBar'
+import BuyTicket from './BuyTicket'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 
 
 class DetailedView extends React.Component {
 
     state = {
         raffle: {},
-        UpdateRaffleModal: false
+        category: '',
+        UpdateRaffleModal: false,
+        BuyTicketModal: false
     }
 
     componentDidMount() {
@@ -21,7 +26,8 @@ class DetailedView extends React.Component {
     refresh = async () => {
         const { id } = this.props.match.params;
         const raffle = await getTableById("raffle", id);
-        this.setState({ raffle })
+        const category = await getTableById("category", raffle.category_id)
+        this.setState({ raffle, category: category.category_name })
     }
 
     openUpdateRaffleModal = () => {
@@ -32,16 +38,21 @@ class DetailedView extends React.Component {
         this.setState({ UpdateRaffleModal: false })
     }
 
+    openBuyTicketModal = () => {
+        this.setState({ BuyTicketModal: true })
+    }
+
+    closeBuyTicketModal = () => {
+        this.setState({ BuyTicketModal: false })
+    }
     render() {
-        console.log(this.state.raffle)
         return (
             <div className='detailed-view-wrap'>
                 <Link to={`/raffles`}>
-                    <button>↩️</button>
+                    <button><KeyboardBackspaceIcon/></button>
                 </Link>
-                {/* 
                     <Modal 
-                        className='modal'
+                        className='modal updateRaffleModal'
                         open= {this.state.UpdateRaffleModal}
                         Onclose= {this.closeUpdateRaffleModal} 
                         aria-labelledby="simple-modal-title"
@@ -52,7 +63,6 @@ class DetailedView extends React.Component {
                             refresh={this.refresh} 
                             raffle={this.state.raffle} />
                     </Modal> 
-                */}
                 <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> 
                 <div className='detailed-view-item-wrap'>
                     <h3 className='itemTitle'>
@@ -62,11 +72,18 @@ class DetailedView extends React.Component {
                      <div className='itemInfo'>
                      <p>Ticket Price: ${this.state.raffle.ticket_price}</p>
                         <TicketBar tickets_sold={this.state.raffle.tickets_sold} total_tickets={this.state.raffle.total_tickets} />
-                      <p>{this.state.raffle.raffle_description}</p>
-                    </div>
-                    {/* <div className='ticketCounter'> {this.state.raffle.tickets_sold}/{this.state.raffle.total_tickets} </div> */} 
+                      <p> {this.state.raffle.raffle_description}</p>
+                      <p> Category: {this.state.category} </p>
+                    </div> 
                     <div className='buttonWrapper'>
-                        <button className='purchaseButton'>Buy Ticket</button>
+                        <Modal
+                            className='modal'
+                            open={this.state.BuyTicketModal}
+                            onClose={this.closeBuyTicketModal}
+                        >
+                            <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh} raffle={this.state.raffle} user={this.props.user} closeWindow={this.closeBuyTicketModal}></BuyTicket>
+                        </Modal>
+                        {this.state.raffle.tickets_sold != this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}><ConfirmationNumberIcon/>Buy Ticket</button>}
                     </div>
                 </div>
             </div>

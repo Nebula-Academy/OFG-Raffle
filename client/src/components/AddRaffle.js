@@ -1,7 +1,7 @@
 import React from 'react';
 import './AddRaffle.css';
 import { addTable } from './NetworkRequests'
-const requiredFields = ['title', 'raffle_description','total_tickets','ticket_price', 'item_cost','image_file_path']
+const requiredFields = ['title', 'raffle_description','total_tickets','ticket_price', 'item_cost','image_file_path', 'category_id']
 
 class AddRaffle extends React.Component{
     
@@ -36,9 +36,9 @@ class AddRaffle extends React.Component{
 
     render(){
         return(
+            <div>
+            <button className='closeButton' onClick={this.props.close}>X</button>
             <div className='inputs'>
-                
-                <button className='closeButton' onClick={this.props.close}>X</button>
                 {requiredFields.map(input => <div className='inputColumn' key={input}>
                     <label>
                         {this.titleTranslator(input)}
@@ -46,6 +46,7 @@ class AddRaffle extends React.Component{
                     <input onChange={this.handleChange} name={input} value={this.state[input]}/>
                 </div>)}
                 <button className='submitButton' onClick={this.onClick}> Submit </button>
+            </div>
             </div>
         )
     }
