@@ -1,8 +1,15 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const { PSQL_PASS, PSQL_HOST, PSQL_USER } = process.env;
+const jwt = require('jsonwebtoken');
+const jwkToPem = require('jwk-to-pem');
+const JWK = require('./userpoolJWK.json');
 const Pool = require('pg').Pool;
 
+// Using the Access token
+const pem = jwkToPem(JWK['keys'][1]);
+
+console.log("ok -->", pem)
 const pool = new Pool({
     user: PSQL_USER,
     password: PSQL_PASS,
@@ -31,12 +38,25 @@ const getMember = (request, response) => {
 }
 
 const getTable = (request, response) => {
-    pool.query(`SELECT * FROM ${request.params.table}`, (error, result) => {
-        if (error) {
-            throw error;
+    console.log(request.headers.authentication, "<--- REQUEST");
+    response.status(200)
+    // Find jwt token on request
+    // IF WE DECODE THE ACCESS TOKEN (JWT) WE SHOULD BE ABLE TO GET THE 
+
+    // Figure out how to compare the local key ID (kid) to the public key (pem)
+    jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, decodedtoken) => {
+        if(err) {
+            console.log("Error: " + err);
+            return null;
         }
-        response.status(200).json(result.rows);
-    });
+        console.log(decodedtoken, "<--- decoded token");
+        // pool.query(`SELECT * FROM ${request.params.table}`, (error, result) => {
+        //     if (error) {
+        //         throw error;
+        //     }
+        //     response.status(200).json(result.rows);
+        // });
+    })
 }
 
 const getTableById = (request, response) => {

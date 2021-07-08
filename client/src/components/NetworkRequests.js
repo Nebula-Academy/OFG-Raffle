@@ -1,6 +1,14 @@
-export const getTable = async (table) => {
-    const holdResponse = await fetch (`http://localhost:3030/${table}`);
-    return holdResponse.json();
+export const getTable = async (table, jwt) => {
+    const holdResponse = await fetch (`http://localhost:3030/${table}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authentication': jwt
+        }
+    });
+    const res = holdResponse.json();
+    console.log(res, "<--- table")
+    return res;
 }
 
 export const getTableById = async (table, id) => {

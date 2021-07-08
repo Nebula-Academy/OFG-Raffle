@@ -1,16 +1,18 @@
 import './Header.css';
 import React from 'react';
 import { signOut } from '../amplifyAuth/amplifyAuth';
-
+import { getTable } from './NetworkRequests';
 import { Link } from 'react-router-dom';
+import { getTokenFromStorage } from './utils';
 import MenuIcon from '@material-ui/icons/Menu';
+
 class Header extends React.Component {
     state = {
         collapsed: true
     }
+
     collapseButtonClick = () => {
         this.setState({ collapsed: !this.state.collapsed })
-
     }
     
     render() {
@@ -21,6 +23,7 @@ class Header extends React.Component {
                         OUR FUTURE GENERATION
                     </a>
                 </h1>
+                <button onClick={() => getTable('raffle', getTokenFromStorage())}>(BUTTON FOR DEV) Get Table</button>
                 <button onClick={signOut}>(BUTTON FOR DEV) SIGN OUT</button>
                 <nav>
                     <ul className={this.state.collapsed ? '' : 'opened'}>
@@ -30,9 +33,10 @@ class Header extends React.Component {
                         <Link to='/' onClick={this.collapseButtonClick}>
                             <li>HOME</li>
                         </Link>
+                        { this.props.loggedIn ?
                         <Link to='myprofile' onClick={this.collapseButtonClick}>
                             <li>MY-Profile</li>
-                        </Link>
+                        </Link> : null}
                         <Link to='/signup' onClick={this.collapseButtonClick}>
                             <li>SIGN-IN</li>
                         </Link>

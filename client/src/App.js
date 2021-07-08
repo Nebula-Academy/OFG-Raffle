@@ -37,9 +37,10 @@ class App extends React.Component {
     getCurrentAuthUser().then(async cognitoUser => {
       // If a user is already signed in, save that user to state.
       if(cognitoUser?.attributes.email_verified){
-        console.log(cognitoUser.attributes);
+        console.log(cognitoUser.signInUserSession.accessToken.jwtToken, "<-- token");
         const memberArr = await getMember(cognitoUser.attributes.email);
         const apiUser = memberArr[0];
+        console.log(cognitoUser, "<--- cognito user")
         console.log(apiUser, "<--- api user")
         // Get user data from API and save to state (along with cognitoUser info)
         apiUser ? this.setState({cognitoUser, apiUser}) : alert('error getting api user');
@@ -51,7 +52,7 @@ class App extends React.Component {
   render(){
     return (
       <BrowserRouter>
-        <Header verify={this.getSession} />
+        <Header cognitoUser={this.cognitoUser} />
         <Route exact path="/signup">
           {/* <AmplifySignOut /> */}
           <LoginPage />
