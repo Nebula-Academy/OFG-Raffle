@@ -6,6 +6,8 @@ import Modal from '@material-ui/core/Modal'
 import UpdateRaffle from './UpdateRaffle'
 import TicketBar from './TicketBar'
 import BuyTicket from './BuyTicket'
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 
 
 class DetailedView extends React.Component {
@@ -44,14 +46,13 @@ class DetailedView extends React.Component {
         this.setState({ BuyTicketModal: false })
     }
     render() {
-        console.log(this.state.raffle, this.props.user, "<--- user")
         return (
             <div className='detailed-view-wrap'>
                 <Link to={`/raffles`}>
-                    <button>↩️</button>
+                    <button><KeyboardBackspaceIcon/></button>
                 </Link>
                     <Modal 
-                        className='modal'
+                        className='modal updateRaffleModal'
                         open= {this.state.UpdateRaffleModal}
                         Onclose= {this.closeUpdateRaffleModal} 
                         aria-labelledby="simple-modal-title"
@@ -82,7 +83,7 @@ class DetailedView extends React.Component {
                         >
                             <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh} raffle={this.state.raffle} user={this.props.user} closeWindow={this.closeBuyTicketModal}></BuyTicket>
                         </Modal>
-                        {this.state.raffle.tickets_sold != this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}>Buy Ticket</button>}
+                        {this.state.raffle.tickets_sold != this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}><ConfirmationNumberIcon/>Buy Ticket</button>}
                     </div>
                 </div>
             </div>
