@@ -2,6 +2,20 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { PSQL_PASS, PSQL_HOST, PSQL_USER } = process.env;
 const Pool = require('pg').Pool;
+// const transporter = nodemailer.createTransport({
+//     host: 'smtp.ethereal.email',
+//     port: 587,
+//     auth: {
+//         user: 'yvette29@ethereal.email',
+//         pass: 'DQFydEDBR2qBP1kzW7'
+//     }
+// });
+// const message = {
+//     from: 'yvette29@ethereal.email',
+//     to: winner.email, 
+//     subject: 'Congratulations!',
+//     html: "<p>You're ticket was selcted for the {raffle.title} raffle. You Win!</p>"
+// }
 
 const pool = new Pool({
     user: PSQL_USER,
@@ -62,7 +76,7 @@ const deleteTableByID = (request, response) => {
 
 const chooseRaffleWinner = (raffle) =>{
     //fetch all tickets with raffle.raffle_id 
-    pool.query(`SELECT ticket FROM raffle WHERE raffle_id = ${raffle.raffle_id}`, (error, results) => {
+    pool.query(`SELECT * FROM raffle WHERE raffle_id = ${raffle.raffle_id}`, (error, results) => {
         if (error){
             throw error;
         }
@@ -72,9 +86,9 @@ const chooseRaffleWinner = (raffle) =>{
         pool.query(`INSERT INTO winner (member_id, raffle_id) VALUES ($1, $2)`, [winner.member_id, winner.raffle_id])
         //email notification? 
             // need to get email from members table with get request from winner.member_id
-            //
-    })
-    
+    }) 
+    pool.query(`SELECT * FROM member WHERE member_id = $1`, [winner.member_id])
+    transporter.sendmail(message)
 }
 
 const updateTable = (request, response) => {
@@ -108,5 +122,6 @@ module.exports = {
     getTableById,
     postTable,
     updateTable,
-    deleteTableByID
+    deleteTableByID,
+    chooseRaffleWinner
 }

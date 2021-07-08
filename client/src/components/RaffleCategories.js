@@ -1,5 +1,4 @@
 import React from 'react' 
-import { getTable, } from './NetworkRequests'
 
 class RaffleCategories extends React.Component{
     constructor(props){
@@ -7,14 +6,8 @@ class RaffleCategories extends React.Component{
     }
 
     state = {
-        categoryMenu: [],
         displayedCategory: [],
         selectedCategory: ""
-    }
-
-    componentDidMount = async () => {
-        const holdResponse = await getTable('category')
-        this.setState({categoryMenu: holdResponse})
     }
 
     dropDownMenue = (e) => {
@@ -28,10 +21,10 @@ class RaffleCategories extends React.Component{
     render(){
         return(
             <div>
-                {this.state.categoryMenu.length > 0 && <select onChange={this.dropDownMenue} value={this.state.selectedCategory}>
+                {this.props.categories.length > 0 && <select onChange={this.dropDownMenue} value={this.state.selectedCategory}>
                 <option disabled value=''>Categories</option>
                 <option value='all categories'>All</option>
-                {this.state.categoryMenu.map(category => <option key={category.category_id} value={category.category_id}>{category.category_name}</option>)}
+                {this.props.categories.map(category => <option key={category.category_id} value={category.category_id}>{category.category_name}</option>)}
                 </select>}
             </div>
         )
