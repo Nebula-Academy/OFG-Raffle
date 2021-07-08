@@ -6,7 +6,9 @@ import DetailedView from './components/DetailedView';
 import GridView from './components/GridView';
 import LandingPage from './components/LandingPage'
 import AccountVerification from './components/AccountVerification'
-import LoginPage from './components/LoginPage'
+import LoginPage from './components/LoginPage';
+import PaymentPage from './components/PaymentPage';
+
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +29,9 @@ function App() {
       </Route>
       <Route path="/raffles">
         <GridView />
+      </Route>
+      <Route path="/paymentpage">
+        <PaymentPage />
       </Route>
       <Route path="/raffle/:id" component={DetailedView} />
     </BrowserRouter>

@@ -1,3 +1,5 @@
+CREATE DATABASE raffle;
+
 CREATE TABLE IF NOT EXISTS member (
     member_id serial PRIMARY KEY UNIQUE NOT NULL,
     first_name varchar( 50 ) NULL,
@@ -36,7 +38,6 @@ CREATE TABLE IF NOT EXISTS raffle (
     image_file_path varchar NULL,
     CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES category (category_id)
 );
-
 
 CREATE TABLE IF NOT EXISTS winner	(
 winner_id serial PRIMARY KEY UNIQUE NOT NULL,
