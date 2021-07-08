@@ -14,6 +14,10 @@ app.get('/', (request, response) => {
     response.json({ info: 'Thanks for connecting to our API' })
 });
 
+app.get('/favico.ico', (req, res) => {
+    res.sendStatus(404);
+});
+
 app.get('/:table', db.getTable);
 
 app.get('/:table/:id', db.getTableById);

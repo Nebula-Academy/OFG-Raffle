@@ -60,6 +60,23 @@ const deleteTableByID = (request, response) => {
     })
 }
 
+const chooseRaffleWinner = (raffle) =>{
+    //fetch all tickets with raffle.raffle_id 
+    pool.query(`SELECT ticket FROM raffle WHERE raffle_id = ${raffle.raffle_id}`, (error, results) => {
+        if (error){
+            throw error;
+        }
+        //choose 1 random winner from that list 
+        const winner = results.rows[Math.floor(Math.random() * results.rows.length)]
+        //insert them into our winners table
+        pool.query(`INSERT INTO winner (member_id, raffle_id) VALUES ($1, $2)`, [winner.member_id, winner.raffle_id])
+        //email notification? 
+            // need to get email from members table with get request from winner.member_id
+            //
+    })
+    
+}
+
 const updateTable = (request, response) => {
     const { table, id } = request.params;
     const values = Object.values(request.body)
@@ -77,6 +94,9 @@ const updateTable = (request, response) => {
     pool.query(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`, values, (error, results) => {
         if (error) {
             throw error
+        }
+        if(table == 'raffle' && results.rows[0].total_tickets == results.rows[0].tickets_sold){
+            chooseRaffleWinner(results.rows[0])
         }
         response.status(200).json(results.rows)
     })
