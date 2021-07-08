@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     color:aliceblue;
+
 }
 .row{
     display:flex;
@@ -14,14 +15,16 @@
     width: 600px;
     
 }
-.column{
+.column-box{
+    height: 100%;
+    width: 100%;
     display:flex;
     flex-direction: column;
     color: aliceblue;
-    padding:30px;
-    /* border:1px  aliceblue; */
+    /* padding:30px; */
+    border:1px  aliceblue;
     justify-content:space-around;
-    height:150px;
+    /* height:150px; */
     
 }
 h4{
@@ -41,4 +44,37 @@ h1
     vertical-align:middle;
     position:relative;
     
+}
+
+img {
+    height: 200px;
+    width: 325px;
+}
+
+.current-raffles-container, .past-winners-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.current-raffle-card {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 95%;
+}
+
+.current-raffle-card img {
+    max-width: 95%;
+    height: auto;
+    border: dashed 1px white;
+}
+
+.current-raffle-card button {
+    background-color: transparent;
+    color: white;
 }
