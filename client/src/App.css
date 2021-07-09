@@ -52,6 +52,7 @@ body {
     border-radius: 15px 50px;
     box-shadow: 4px 4px 4px black;
     text-shadow: 1px 1px black;
+    overflow: scroll;
 }
 
 .modal button{

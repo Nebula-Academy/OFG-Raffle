@@ -17,7 +17,7 @@ class EditCategories extends React.Component {
 
     refresh = async () => {
         const holdResponse = await getTable('category')
-        this.setState({ categories: holdResponse })
+        this.props.updateCategories(holdResponse)
     }
 
     handleChange = (e) => {
@@ -49,7 +49,7 @@ class EditCategories extends React.Component {
             <div>
                 <button className='closeButton' onClick={this.props.close}>X</button>
                 <ul className="editCategories">
-                    {this.state.categories.map(category => <div><li className='categories'>{category.category_name}
+                    {this.props.categories.map(category => <div className='['><li className='categories'>{category.category_name}
                         <button onClick={() => this.onClickDelete(category.category_id)}>Delete</button>
                         <button onClick={() => this.toggleUpdate(category.category_id)}>Edit</button>
                         {this.state.currentUpdate == category.category_id && <div>
