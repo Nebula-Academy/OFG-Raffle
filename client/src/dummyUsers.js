@@ -9,7 +9,7 @@ export const users = [
     state_name: 'New Jersey',
     zip_code: 11111,
     date_created: new Date().toISOString(),
-    is_admin: true,
+    is_admin: false,
     donated: false
   },
   {
@@ -36,6 +36,6 @@ export const users = [
     zip_code: 10002,
     date_created: new Date().toISOString(),
     is_admin: true,
-    donated: true
+    donated: false
   }
 ];
