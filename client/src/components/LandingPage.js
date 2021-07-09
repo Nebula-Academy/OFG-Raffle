@@ -12,22 +12,25 @@ class LandingPage extends React.Component {
         // here we're fetching raffles from our database
         // then we're setting our state with those raffles
         getTable("raffle")
-        .then(res => this.setState({currRaffles:res}))
+        .then(res => this.setState({currRaffles:res})) // reaching into database grabbing info requeated then setting state/swtiching array from an 
         // need to make network request that finds the past raffle winners associated with winners table
         // getTable('winner')
         // .then(res => this.setState({pastWinners:res}))
     }
+    //network request hitting our api which is reaching into database, grabbing info requested then sending it back to our component(landing page) 
+   //.then, sets state, inputting data from the database, setting state/swtiching the currRaffle array from an empty to one with information
+   // component re-renders because setState does that by default
 
     currentRaffles() {
+        //iterating over the array with the information which gives you the display
         return this.state.currRaffles.map(raffle => (
             <div className="current-raffle-card">
                 <img src={raffle.image_file_path}/>
                 <h2> {raffle.title} </h2>
                 <p> {raffle.ticket_price} </p>
-                <button>test</button>
+                <button> Enter </button>
             </div>
         ))
-
     }
 
     pastWins() {
@@ -41,8 +44,6 @@ class LandingPage extends React.Component {
     render() {
         return (
             <div id='main-container'>
-
-
                 <h1>Welcome To Our Future Generation </h1>
                 <h1>Raffles</h1>
                 <div className="row">
@@ -59,7 +60,6 @@ class LandingPage extends React.Component {
                         </div>
                     </div>
                 </div>
-
                 <button id="register">REGISTER TO ENTER</button>
                 <button id="login">LOGIN</button>
             </div>
