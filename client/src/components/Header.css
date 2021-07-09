@@ -26,8 +26,21 @@ nav{
         display:flex !important;
         position:absolute;
         flex-direction: column;
+        align-items: center;
+        text-align:center;
+        margin:0;
+        padding:0;
         right:0;
         top:50px;
+        z-index:2;
+        background-color: lightgray;
+    filter: drop-shadow(2px 4px 7px black )
+    }
+    ul.opened li{
+        margin:0;
+        padding:0;
+        width:80px;
+        
     }
     #nav-bar-collapse-button{
         margin-right: 20px;

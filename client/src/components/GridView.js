@@ -11,14 +11,21 @@ class GridView extends React.Component {
     state = {
         raffleItems: [],
         addRaffleModal: false,
-        editCategory: false
+        editCategory: false,
+        categories: []
     }
 
     componentDidMount() {
         this.refresh();
     }
 
+    updateCategories = (categories) =>{
+        this.setState({categories})
+    }
+
     refresh = async (category_id) => {
+        const holdResponse = await getTable('category')
+        this.setState({categories: holdResponse})
         let raffleItems = await getTable("raffle");
         if (category_id) {
             raffleItems = raffleItems.filter(raffleItem => raffleItem.category_id == category_id)
@@ -48,23 +55,19 @@ class GridView extends React.Component {
 
             <div>
                 <Modal
-                    className='modal'
+                    className='modal createRaffleModal'
                     open={this.state.addRaffleModal}
                     onClose={this.closeAddRaffleModal}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
                 >
                     <AddRaffle close={this.closeAddRaffleModal} refresh={this.refresh} />
                 </Modal>
-                <RaffleCategories refresh={this.refresh} />
+                <RaffleCategories refresh={this.refresh} categories={this.state.categories} />
                 <Modal
                     className='modal'
                     open={this.state.editCategory}
                     onClose={this.closeEditCategory}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
                 >
-                    <EditCategories close={this.closeEditCategory} refresh={this.refresh} />
+                    <EditCategories close={this.closeEditCategory} refresh={this.refresh} categories={this.state.categories} updateCategories={this.updateCategories}/>
                 </Modal>
                 <button className='editButton' onClick={this.openEditCategory}>Edit Categories</button>
                 <button className='createRaffle' onClick={this.openAddRaffleModal}> Create Raffle </button>

@@ -1,5 +1,6 @@
 export const users = [
   {
+    member_id: 1,
     first_name: 'Shaundel',
     last_name: 'Crumpton',
     phone: 2313513451,
@@ -13,6 +14,7 @@ export const users = [
     donated: false
   },
   {
+    member_id: 2,
     first_name: 'Bayley',
     last_name: 'Arens',
     phone: 5231431341,
@@ -26,6 +28,7 @@ export const users = [
     donated: true
   },
   {
+    member_id: 3,
     first_name: 'Tefe',
     last_name: 'Del Rosario-Bell',
     phone: 1234901939,
