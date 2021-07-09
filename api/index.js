@@ -1,8 +1,13 @@
+const bcrypt = require('bcrypt');
 const express  = require('express'); 
 const app = express();
 const db = require('./queries.js');
 const port = 3030;
 const cors = require("cors");
+
+const createHeader = async () => {
+    return bcrypt.hash(Math.round(+Date.now() / 60000) * 60000), process.env.TOKEN_SALT
+}
 
 app.use(cors());
 

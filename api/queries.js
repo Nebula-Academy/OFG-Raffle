@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { PSQL_PASS, PSQL_HOST, PSQL_USER } = process.env;
 const Pool = require('pg').Pool;
+const allowTables = ['member', 'category', 'raffle', 'ticket', 'winner']
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
@@ -21,7 +22,11 @@ const pool = new Pool({
 });
 
 const getTable = (request, response) => {
-    pool.query(`SELECT * FROM ${request.params.table}`, (error, result) => {
+    const {table} = request.params 
+    if(!allowTables.includes(table)){
+        return response.sendStatus(404)
+    }
+    pool.query(`SELECT * FROM ${table}`, (error, result) => {
         if (error) {
             throw error;
         }
@@ -30,7 +35,11 @@ const getTable = (request, response) => {
 }
 
 const getTableById = (request, response) => {
-    pool.query(`SELECT * FROM ${request.params.table} WHERE ${request.params.table}_id = ${request.params.id}`, (error, results) => {
+    const {table, id} = request.params 
+    if(!allowTables.includes(table)){
+        return response.sendStatus(404)
+    };
+    pool.query(`SELECT * FROM ${table} WHERE ${table}_id = ${id}`, (error, results) => {
         if (error) {
             throw error;
         }
@@ -40,6 +49,9 @@ const getTableById = (request, response) => {
 
 const postTable = (request, response) => {
     const { table } = request.params;
+    if(!allowTables.includes(table)){
+        return response.sendStatus(404)
+    };
     const values = Object.values(request.body)
     const keys = Object.keys(request.body);
     let PSQLvalueString = ''
@@ -61,6 +73,9 @@ const postTable = (request, response) => {
 
 const deleteTableByID = (request, response) => {
     const { table, id } = request.params;
+    if(!allowTables.includes(table)){
+        return response.sendStatus(404)
+    };
     pool.query(`DELETE FROM ${table} WHERE ${table}_id = ${id}`, (error, results) => {
         if (error) {
             throw error;
@@ -116,6 +131,9 @@ const chooseRaffleWinner = async (raffle) => {
 
 const updateTable = (request, response) => {
     const { table, id } = request.params;
+    if(!allowTables.includes(table)){
+        return response.sendStatus(404)
+    };
     const values = Object.values(request.body)
     const keys = Object.keys(request.body);
     const number = Object.keys.length;
