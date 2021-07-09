@@ -39,17 +39,17 @@ CREATE TABLE IF NOT EXISTS raffle (
 
 
 CREATE TABLE IF NOT EXISTS winner	(
-winner_id serial PRIMARY KEY UNIQUE NOT NULL,
-member_id int NOT NULL,
-raffle_id int NOT NULL,
-date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-was_notified boolean DEFAULT FALSE NOT NULL,
-CONSTRAINT fk_raffle
-FOREIGN KEY (raffle_id)
-REFERENCES raffle (raffle_id),
-CONSTRAINT fk_member
-FOREIGN KEY (member_id)
-REFERENCES member (member_id)
+    winner_id serial PRIMARY KEY UNIQUE NOT NULL,
+    member_id int NOT NULL,
+    raffle_id int NOT NULL,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    was_notified boolean DEFAULT FALSE NOT NULL,
+    CONSTRAINT fk_raffle
+    FOREIGN KEY (raffle_id)
+    REFERENCES raffle (raffle_id),
+    CONSTRAINT fk_member
+    FOREIGN KEY (member_id)
+    REFERENCES member (member_id)
 );
 
 CREATE TABLE IF NOT EXISTS ticket (

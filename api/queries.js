@@ -1,6 +1,9 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const { PSQL_PASS, PSQL_HOST, PSQL_USER } = process.env;
+const jwt = require('jsonwebtoken');
+const jwkToPem = require('jwk-to-pem');
+const JWK = require('./userpoolJWK.json');
 const Pool = require('pg').Pool;
 const allowTables = ['member', 'category', 'raffle', 'ticket', 'winner']
 const nodemailer = require("nodemailer");
@@ -13,6 +16,9 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+// Using the Access token
+const pem = jwkToPem(JWK['keys'][1]);
+
 const pool = new Pool({
     user: PSQL_USER,
     password: PSQL_PASS,
@@ -21,30 +27,79 @@ const pool = new Pool({
     port: 5432
 });
 
+const authCheck = (request, func) => {
+    jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, decodedtoken) => {
+        if(err) throw err;
+        func();
+    });
+}
+
+const createMember = (request, response) => {
+    try {
+        authCheck(request, () => {
+            const { username } = request.body;
+            pool.query(`INSERT INTO member (email) VALUES ($1) RETURNING *`, [username], (error, results) => {
+                if(error) {
+                    throw error;
+                }
+                response.status(200).json(results.rows);
+            });
+        })
+    } catch (error) {
+        console.log("Something went wrong: " + error);
+    }
+}
+
+const getMember = (request, response) => {
+    try {
+        authCheck(request, () => {
+            pool.query(`SELECT * FROM member WHERE email = '${request.params.username}'`, (error, results) => {
+                if(error) {
+                    throw error;
+                }
+                response.status(200).json(results.rows);
+            });
+        })
+    } catch(error){
+        console.log("Something went wrong: " + error);
+    }
+}
+
 const getTable = (request, response) => {
     const {table} = request.params 
     if(!allowTables.includes(table)){
         return response.sendStatus(404)
     }
-    pool.query(`SELECT * FROM ${table}`, (error, result) => {
-        if (error) {
-            throw error;
-        }
-        response.status(200).json(result.rows);
-    });
+
+    try {
+        authCheck(request, () => {
+            pool.query(`SELECT * FROM ${table}`, (error, result) => {
+                if (error) {
+                    console.log("Query Error");
+                    throw error;
+                }
+                response.status(200).json(result.rows);
+            });
+        })
+    }
+    catch (error) {
+        console.log("Something went wrong: " + error);
+    }
 }
 
 const getTableById = (request, response) => {
-    const {table, id} = request.params 
-    if(!allowTables.includes(table)){
-        return response.sendStatus(404)
-    };
-    pool.query(`SELECT * FROM ${table} WHERE ${table}_id = ${id}`, (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response.status(200).json(results.rows);
-    })
+    try {
+        authCheck(request, () => {
+            pool.query(`SELECT * FROM ${request.params.table} WHERE ${request.params.table}_id = ${request.params.id}`, (error, results) => {
+                if (error) {
+                    throw error;
+                }
+                response.status(200).json(results.rows);
+            })
+        })
+    } catch (error) {
+        console.log("Something went wrong: " + error);
+    }
 }
 
 const postTable = (request, response) => {
@@ -52,22 +107,28 @@ const postTable = (request, response) => {
     if(!allowTables.includes(table)){
         return response.sendStatus(404)
     };
-    const values = Object.values(request.body)
-    const keys = Object.keys(request.body);
-    let PSQLvalueString = ''
-    for (i = 0; i < keys.length; i++) {
-        PSQLvalueString += `$${i + 1}${i != keys.length - 1 ? ',' : ''}`
-    }
-    pool.query(
-        `INSERT INTO ${table} (${(keys.join(','))}) VALUES (${PSQLvalueString}) RETURNING *`,
-        values,
-        (error, results) => {
-            if (error) {
-                throw error;
+    try {
+        authCheck(request, () => {
+            const values = Object.values(request.body)
+            const keys = Object.keys(request.body);
+            let PSQLvalueString = ''
+            for (i = 0; i < keys.length; i++) {
+                PSQLvalueString += `$${i + 1}${i != keys.length - 1 ? ',' : ''}`
             }
-            response.status(200).json(results.rows);
-        }
-    )
+            pool.query(
+                `INSERT INTO ${table} (${(keys.join(','))}) VALUES (${PSQLvalueString}) RETURNING *`,
+                values,
+                (error, results) => {
+                    if (error) {
+                        throw error;
+                    }
+                    response.status(200).json(results.rows);
+                }
+            )
+        });
+    } catch (error) {
+        console.log("Something went wrong: " + error);
+    }
 }
 
 
@@ -76,12 +137,18 @@ const deleteTableByID = (request, response) => {
     if(!allowTables.includes(table)){
         return response.sendStatus(404)
     };
-    pool.query(`DELETE FROM ${table} WHERE ${table}_id = ${id}`, (error, results) => {
-        if (error) {
-            throw error;
-        }
-        response.status(200).json(results.rows)
-    })
+    try {
+        authCheck(request, () => {
+            pool.query(`DELETE FROM ${table} WHERE ${table}_id = ${id}`, (error, results) => {
+                if (error) {
+                    throw error;
+                }
+                response.status(200).json(results.rows)
+            })
+        })
+    } catch (error) {
+        console.log("Something went wrong: " + error);
+    }
 }
 
 const testRaffleWinner = () => {
@@ -134,27 +201,30 @@ const updateTable = (request, response) => {
     if(!allowTables.includes(table)){
         return response.sendStatus(404)
     };
-    const values = Object.values(request.body)
-    const keys = Object.keys(request.body);
-    const number = Object.keys.length;
-    const configureString = () => {
-        let sqlStatement = "";
-        for (let i = 0; i < keys.length; i++) {
-            if (i === keys.length - 1) sqlStatement += `${keys[i]}=$${i + 1}`
-            else sqlStatement += `${keys[i]}=$${i + 1}, `
-        }
-        return sqlStatement
+    try {
+        authCheck(request, () => {
+            const values = Object.values(request.body)
+            const keys = Object.keys(request.body);
+            const number = Object.keys.length;
+            const configureString = () => {
+                let sqlStatement = "";
+                for (let i = 0; i < keys.length; i++) {
+                    if (i === keys.length - 1) sqlStatement += `${keys[i]}=$${i + 1}`
+                    else sqlStatement += `${keys[i]}=$${i + 1}, `
+                }
+                return sqlStatement
+            }
+        
+            pool.query(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`, values, (error, results) => {
+                if (error) {
+                    throw error
+                }
+                response.status(200).json(results.rows)
+            })
+        });
+    } catch (error) {
+        console.log("Something went wrong: " + error);
     }
-
-    pool.query(`UPDATE ${table} SET ${configureString()} WHERE ${table}_id=${id} RETURNING *`, values, (error, results) => {
-        if (error) {
-            throw error
-        }
-        if(table == 'raffle' && results.rows[0].total_tickets == results.rows[0].tickets_sold){
-            chooseRaffleWinner(results.rows[0])
-        }
-        response.status(200).json(results.rows)
-    })
 }
 
 
@@ -163,5 +233,7 @@ module.exports = {
     getTableById,
     postTable,
     updateTable,
+    createMember,
+    getMember,
     deleteTableByID
 }
