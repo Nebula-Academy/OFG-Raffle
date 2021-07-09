@@ -27,7 +27,7 @@ class Header extends React.Component {
                         <Link to='/' onClick={this.collapseButtonClick}>
                             <li>HOME</li>
                         </Link>
-                        <Link to='myprofile' onClick={this.collapseButtonClick}>
+                        <Link to='/memberinfo' onClick={this.collapseButtonClick}>
                             <li>MY-Profile</li>
                         </Link>
                         <Link to='/signup' onClick={this.collapseButtonClick}>

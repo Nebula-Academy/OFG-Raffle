@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal'
 import AdminControl from './AdminControl';
 import RaffleSummary from './RaffleSummary';
 
+
 class MemberDashboard extends React.Component {
 
     state = {

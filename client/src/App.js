@@ -36,7 +36,7 @@ class App extends React.Component {
         <Route exact path="/accountverification">
           <AccountVerification user={user}/>
         </Route>
-        <Route path="/memberinfo">
+        <Route exact path="/memberinfo">
           <MemberDashboard user={user}/>
         </Route>
         <Route path="/" exact>
