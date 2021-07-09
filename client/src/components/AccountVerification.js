@@ -1,35 +1,42 @@
 import React from 'react'
 import './AccountVerification.js';
 import './AccountVerification.css';
+import PaymentPage from './PaymentPage';
+
 class AccountVerification extends React.Component {
+
+    state = {
+
+    }
+
+    updateChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
     render() {
         return (
             <div id='main-container'>
-                <h1>All Information Required</h1>
+                <h1>Account Verification</h1>
+                <h3>Please make a $5 donation in order to verify your account</h3>
+                <h3 className='thanks'>Thank you!</h3>
 
                 <div className="row">
                     <div className='column box'>
-                        <div id="name-div">
-                            <label>Name</label>
 
-                            <input id="name" placeholder="First Name"></input>
-                            <input id="name" placeholder="Last Name"></input>
-                            <input id="name" placeholder="Name on Card"></input>
-
+                            <input onChange={this.updateChange} name='givenName' placeholder="First Name"></input>
+                            <input onChange={this.updateChange} name='familyName' placeholder="Last Name"></input>
+                            <input onChange={this.updateChange} name='country' placeholder="Country"></input>
+                            <input onChange={this.updateChange} name='city' placeholder="City"></input>
+                            <input onChange={this.updateChange} name='addressLine1' placeholder="Billing Address"></input>
+                            <input onChange={this.updateChange} name='addressLine2' placeholder="Billing Address 2"></input>
+                            <input onChange={this.updateChange} name='postalCode' placeholder="Zip Code"></input>
+                            <input onChange={this.updateChange} name='phone' placeholder="Phone Number"></input>
+                    </div>
                             <div id="card-div">
-                                <label>Card</label>
-
-                                <input className="card" placeholder="Card Number"></input>
-                                <input className="card" placeholder="mm/yr"></input>
-                                <input className="card" placeholder="cvc#"></input>
-                                <input className="card" placeholder="email"></input>
-                                <input className="card" placeholder="billing address"></input>
-                                <button>ADD</button>
+                                <PaymentPage billingContact={this.state}/>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>)
+            )
     }
 
 }

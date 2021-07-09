@@ -43,7 +43,7 @@ class App extends React.Component {
         <Route path="/" exact>
           <LandingPage user={user}/>
         </Route>
-        <Route path="/payment">
+        <Route path="/paymentpage">
         <PaymentPage user={user}/>
       </Route>
         <Route path="/raffles">

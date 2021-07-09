@@ -1,5 +1,6 @@
 import React from 'react';
 import 'react-square-payment-form/lib/default.css';
+import './PaymentPage.css';
 import {
     SquarePaymentForm,
     CreditCardNumberInput,
@@ -8,8 +9,10 @@ import {
     CreditCardCVVInput,
     CreditCardSubmitButton
   } from 'react-square-payment-form';
-  
-  
+import { squareConnection } from './NetworkRequests';
+// import { purple } from '@material-ui/core/colors';
+
+
 class PaymentPage extends React.Component {
 
     constructor(props) {
@@ -27,13 +30,24 @@ class PaymentPage extends React.Component {
   
       this.setState({ errorMessages: [] })
       alert("nonce created: " + nonce + ", buyerVerificationToken: " + buyerVerificationToken)
+      //create square customer with this nonce
+    //const customer = await squareConnection('POST', '/customers')
+        //use network request squareconnection to post to /customers
+        //await squareConnection('POST', '/customers') //create new customer
+      //create payment
+    // await squareConnection('POST', '/payment')
+        //await squareConnection('POST', '/payment')
+      //add card to square customer
+    // await squareConnection('POST',`/customers/${customer.id}/cards`)
+       //await squareConnection('POST', `/customers/${customer.id}/cards`)
     }
   
     createVerificationDetails() {
       return {
-        amount: '100.00',
+        amount: '5.00',
         currencyCode: "USD",
         intent: "CHARGE",
+        // billingContact: this.props.billingContact
         billingContact: {
           familyName: "Smith",
           givenName: "John",
@@ -50,7 +64,7 @@ class PaymentPage extends React.Component {
     render() {
       return (
         <div>
-          <h1>Payment Page</h1>
+          {/* <h1>Payment Page</h1> */}
   
           <SquarePaymentForm
             sandbox={true}
@@ -68,14 +82,13 @@ class PaymentPage extends React.Component {
             <div className="sq-form-third">
                 <CreditCardPostalCodeInput />
             </div>
-        
             <div className="sq-form-third">
                 <CreditCardCVVInput />
             </div>
             </fieldset>
         
             <CreditCardSubmitButton>
-                Pay $1.00
+                Pay $5.00
             </CreditCardSubmitButton>
           </SquarePaymentForm>
   

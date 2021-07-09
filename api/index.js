@@ -3,8 +3,18 @@ const app = express();
 const db = require('./queries.js');
 const port = 3030;
 const cors = require("cors");
+const {createProxyMiddleware} = require('http-proxy-middleware');
 
 app.use(cors());
+
+app.use('/api/square/*',createProxyMiddleware({
+    target:'https://connect.squareup.com/v2/',
+    changeOrigin:true,
+    secure: true,
+    pathRewrite: {'^/api/square' : ''},
+    onProxyReq:proxy=>proxy.setHeader('Authorization','Bearer EAAAEDrc4qrnLqenokc__FaUzAsr-qZoxYN9sTaP1Wzky2t-p8CRTQz6wnakhqwt')
+    // onProxyReq:proxy=>proxy.setHeader('Authorization','Bearer EAAAEfuwJ3YKczDlhmGV7o19lPKY76t-WcBtbArIwl_JUjewBUxF2AvtGEx29ixc')
+}))
 
 app.use(express.json());
 

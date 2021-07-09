@@ -40,4 +40,20 @@ export const deleteTableById = async (table, id) => {
     return holdResponse
 }
 
+//Square API Connections
 
+export const squareConnection = async (method = 'POST', route = '/', body) => {
+    const headers = {
+        'Content-Type':'application/json',
+        'Square-Version': '2021-03-17',
+        'Access-Control-Allow-Origin':'*'
+    }
+    const response = await fetch(`http://localhost:3030/api/square${route}`,{
+        method,
+        headers,
+        body: JSON.stringify(body)
+    })
+
+}
+
+squareConnection('POST', '/customers')
