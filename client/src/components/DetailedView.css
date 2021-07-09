@@ -62,10 +62,10 @@
 
 .purchaseButton {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 160px;
-    background-color: white;
+    align-items: flex-end;
+    justify-content: flex-end;
+    max-width: 80px;
+    background-color: grey;
     color: #802;
     cursor: pointer;
     box-sizing: border-box;
