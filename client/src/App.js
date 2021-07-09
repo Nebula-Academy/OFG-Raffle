@@ -9,50 +9,46 @@ import LandingPage from './components/LandingPage';
 import AccountVerification from './components/AccountVerification';
 import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
-import { getSession, checkForUser, getCurrentAuthUser } from './amplifyAuth/amplifyAuth';
-import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
+import { getSession, checkForUser, getCurrentAuthUser, signOut } from './amplifyAuth/amplifyAuth';
+// import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
 import React from 'react';
 import { getMember } from './components/NetworkRequests';
 
 Amplify.configure(awsconfig);
 
-// Global state for user...
-// We could check validation before each request...
-
-// AUTH FLOW:
-// Hit amplify with a sign in - if we are good to go then...
-// grab that user from our members table, then save to app state,
-// then there is no way for the user to manipulate the data...
-
-// There should always be a two step process when making requests like buying tickets -
-// authenticating user given their email and password in app state through Amplify and 
-// matching that up with their session jwt? If all checks out, then they are able to make
-// that request...
-
 class App extends React.Component {
-  state = { cognitoUser: null, apiUser: null };
+  state = { cognitoUser: null, apiUser: null, signedIn: false };
 
   componentDidMount(){
     // Check for user sign in
     getCurrentAuthUser().then(async cognitoUser => {
+      console.log(cognitoUser, "<-- cog")
       // If a user is already signed in, save that user to state.
       if(cognitoUser?.attributes.email_verified){
-        console.log(cognitoUser.signInUserSession.accessToken.jwtToken, "<-- token");
+        // console.log(cognitoUser.signInUserSession.accessToken.jwtToken, "<-- token");
         const memberArr = await getMember(cognitoUser.attributes.email);
         const apiUser = memberArr[0];
         console.log(cognitoUser, "<--- cognito user")
         console.log(apiUser, "<--- api user")
         // Get user data from API and save to state (along with cognitoUser info)
-        apiUser ? this.setState({cognitoUser, apiUser}) : alert('error getting api user');
+        apiUser ? this.setState({cognitoUser, apiUser, signedIn: true}) : alert('error getting api user');
+      } else {
+        this.setState({ signedIn: false })
       }
+      
     });  
     // Otherwise no one is logged in.
+  }
+
+  signOut = () => {
+    signOut();
+    this.setState({ cognitoUser: null, apiUser: null, signedIn: false });
   }
 
   render(){
     return (
       <BrowserRouter>
-        <Header cognitoUser={this.cognitoUser} />
+        <Header signOut={this.signOut} signedIn={this.state.signedIn} />
         <Route exact path="/signup">
           {/* <AmplifySignOut /> */}
           <LoginPage />

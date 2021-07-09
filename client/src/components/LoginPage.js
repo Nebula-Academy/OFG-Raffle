@@ -1,6 +1,5 @@
 import React from "react";
 import "./LoginPage.css";
-import { Redirect } from 'react-router-dom';
 import { signUp, confirmSignUp, signIn } from "../amplifyAuth/amplifyAuth";
 import { createMember } from "./NetworkRequests";
 
