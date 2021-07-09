@@ -7,7 +7,7 @@ export const getTableById = async (table, id) => {
     const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`)
     return ( await holdResponse.json() )[0];
 }
-
+//add new entry to table with data
 export const addTable = async (table, data) => {
     const holdResponse = await fetch(`http://localhost:3030/${table}`, {
         method: "POST",
@@ -20,7 +20,6 @@ export const addTable = async (table, data) => {
 }
 
 export const updateTable = async (table, id, data) => {
-    console.log(data)
     const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`, {
         method: "PUT",
         headers: {

@@ -48,11 +48,9 @@ class GridView extends React.Component {
 
             <div>
                 <Modal
-                    className='modal'
+                    className='modal createRaffleModal'
                     open={this.state.addRaffleModal}
                     onClose={this.closeAddRaffleModal}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
                 >
                     <AddRaffle close={this.closeAddRaffleModal} refresh={this.refresh} />
                 </Modal>

@@ -17,7 +17,6 @@ class EditCategories extends React.Component {
 
     refresh = async () => {
         const holdResponse = await getTable('category')
-        console.log(holdResponse)
         this.setState({ categories: holdResponse })
     }
 
