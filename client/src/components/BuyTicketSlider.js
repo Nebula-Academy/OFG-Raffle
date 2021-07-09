@@ -27,7 +27,7 @@ export default function BuyTicketSlider(props) {
     };
 
     const handleInputChange = (event) => {
-        setValue(event.target.value === "" ? "" : Number(event.target.value));
+        setValue(event.target.value === "" ? "" : Math.min(props.raffle.total_tickets - props.raffle.tickets_sold, Math.max(1, Number(event.target.value))));
     };
 
     const handleBlur = () => {
