@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   getCurrentUser(){
-    return users[1];
+    return users[0];
   }
  
   render(){

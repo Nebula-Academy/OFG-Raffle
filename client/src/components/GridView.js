@@ -65,12 +65,14 @@ class GridView extends React.Component {
                 <Modal
                     className='modal'
                     open={this.state.editCategory}
-                    onClose={this.closeEditCategory}
+                    onClose={this.closeEditCategory} 
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
                 >
                     <EditCategories close={this.closeEditCategory} refresh={this.refresh} categories={this.state.categories} updateCategories={this.updateCategories}/>
                 </Modal>
-                <button className='editButton' onClick={this.openEditCategory}>Edit Categories</button>
-                <button className='createRaffle' onClick={this.openAddRaffleModal}> Create Raffle </button>
+                {this.props.user?.is_admin && <button className='editButton' onClick={this.openEditCategory}>Edit Categories</button>}
+                {this.props.user?.is_admin &&<button className='createRaffle' onClick={this.openAddRaffleModal}> Create Raffle </button>}
                 <div id='grid'>
                     {this.state.raffleItems.map(raffleItem => <div className='itemContainer' key={raffleItem.title}>
                         <h3 className='ItemName'> {raffleItem.title}</h3>
