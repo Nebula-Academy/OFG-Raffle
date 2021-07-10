@@ -1,8 +1,8 @@
 import './MemberDashboard.css';
 import React from 'react';
 import Modal from '@material-ui/core/Modal'
-import AdminControl from './AdminControl';
-import RaffleSummary from './RaffleSummary';
+import AdminControl from './admin/AdminControl';
+import RaffleSummary from './raffles/RaffleSummary';
 
 
 class MemberDashboard extends React.Component {
@@ -70,7 +70,7 @@ class MemberDashboard extends React.Component {
                 >
                     <AdminControl close={this.closeAdminControl}/>
                 </Modal>
-                <button onClick={this.openAdminControl}>Admin Control</button>
+                { this.props.user.is_admin && <button onClick={this.openAdminControl}>Admin Control</button> }
             </div >
 
         )

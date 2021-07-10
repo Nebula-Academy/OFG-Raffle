@@ -1,6 +1,6 @@
 import React from 'react';
 import './UpdateRaffle.css';
-import { updateTable } from './NetworkRequests';
+import { updateTable } from '../NetworkRequests';
 const requiredFields = ['title', 'raffle_description', 'total_tickets', 'ticket_price', 'item_cost', 'image_file_path', 'category_id']
 
 class UpdateRaffle extends React.Component {

@@ -2,12 +2,12 @@ import './App.css';
 import Header from './components/Header';
 import MemberDashboard from './components/MemberDashboard';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
-import DetailedView from './components/DetailedView';
-import GridView from './components/GridView';
+import DetailedView from './components/raffles/DetailedView';
+import GridView from './components/raffles/GridView';
 import LoginPage from './components/LoginPage';
 import LandingPage from './components/LandingPage';
 import AccountVerification from './components/AccountVerification';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { getSession, checkForUser, getCurrentAuthUser, signOut } from './amplifyAuth/amplifyAuth';
 // import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
@@ -35,8 +35,7 @@ class App extends React.Component {
       } else {
         this.setState({ signedIn: false })
       }
-      
-    });  
+    }); 
     // Otherwise no one is logged in.
   }
 
@@ -56,14 +55,14 @@ class App extends React.Component {
         <Route exact path="/accountverification">
           <AccountVerification />
         </Route>
-        <Route path="/memberinfo">
+        <Route path="/myprofile">
           <MemberDashboard user={this.state.apiUser} />
         </Route>
         <Route path="/" exact>
           <LandingPage />
         </Route>
         <Route path="/raffles">
-          <GridView />
+          <GridView user={this.state.apiUser} />
         </Route>
         <Route path="/raffle/:id" component={DetailedView} />
       </BrowserRouter>
@@ -71,5 +70,4 @@ class App extends React.Component {
   }
 }
 
-// export default withAuthenticator(App);
 export default App;

@@ -1,6 +1,5 @@
 import './Header.css';
 import React from 'react';
-import { getTable } from './NetworkRequests';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -22,7 +21,6 @@ class Header extends React.Component {
                         OUR FUTURE GENERATION
                     </a>
                 </h1>
-                <button onClick={() => getTable('raffle')}>(BUTTON FOR DEV) Get Table</button>
                 <nav>
                     <ul className={this.state.collapsed ? '' : 'opened'}>
                         <Link to='/raffles' onClick={this.collapseButtonClick}>
@@ -32,8 +30,8 @@ class Header extends React.Component {
                             <li>HOME</li>
                         </Link>
                         { signedIn ?
-                        <Link to='myprofile' onClick={this.collapseButtonClick}>
-                            <li>MY-Profile</li>
+                        <Link to='/myprofile' onClick={this.collapseButtonClick}>
+                            <li>MY-PROFILE</li>
                         </Link> : null }
                         
                         { signedIn ? <Link to='/'><li onClick={signOut}>SIGN-OUT</li></Link> :

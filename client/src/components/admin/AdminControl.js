@@ -1,6 +1,6 @@
 import React from 'react'
 import './AdminControl.css'
-import { updateTable, getTable } from './NetworkRequests'
+import { updateTable, getTable } from '../NetworkRequests'
 
 
 

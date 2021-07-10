@@ -1,9 +1,9 @@
 import React from 'react'
 import './DetailedView.css'
 import { Link } from 'react-router-dom'
-import { getTableById } from './NetworkRequests'
+import { getTableById } from '../NetworkRequests'
 import Modal from '@material-ui/core/Modal'
-import UpdateRaffle from './UpdateRaffle'
+import UpdateRaffle from '../admin/UpdateRaffle'
 import TicketBar from './TicketBar'
 import BuyTicket from './BuyTicket'
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';

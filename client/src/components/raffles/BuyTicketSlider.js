@@ -1,6 +1,6 @@
 import React from "react";
 import './BuyTicketSlider.css'
-import { updateTable, addTable } from "./NetworkRequests";
+import { updateTable, addTable } from "../NetworkRequests";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";

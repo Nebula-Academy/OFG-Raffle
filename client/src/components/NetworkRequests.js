@@ -8,7 +8,7 @@ export const getTable = async (table) => {
             'Authentication':  getTokenFromStorage()
         }
     });
-    const res = holdResponse.json();
+    const res = await holdResponse.json();
     console.log(res, "<--- table")
     return res;
 }

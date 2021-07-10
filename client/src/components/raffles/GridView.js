@@ -1,11 +1,11 @@
 import React from 'react'
 import './GridView.css'
-import { getTable } from './NetworkRequests'
+import { getTable } from '../NetworkRequests'
 import { Link } from 'react-router-dom'
 import Modal from '@material-ui/core/Modal'
 import AddRaffle from './AddRaffle'
 import RaffleCategories from './RaffleCategories'
-import EditCategories from './EditCategories'
+import EditCategories from '../admin/EditCategories'
 
 class GridView extends React.Component {
     state = {

@@ -1,6 +1,6 @@
 import React from 'react'
 import './EditCategories.css'
-import { addTable, getTable, deleteTableById, updateTable } from './NetworkRequests'
+import { addTable, getTable, deleteTableById, updateTable } from '../NetworkRequests'
 
 class EditCategories extends React.Component {
 

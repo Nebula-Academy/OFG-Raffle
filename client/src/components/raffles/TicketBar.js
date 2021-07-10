@@ -9,8 +9,8 @@ class TicketBar extends React.Component {
                 <div id="ticket-bar">
                     <div id ="filled-ticket-bar" style={{width:this.props.tickets_sold/this.props.total_tickets*100+"%"}}/>
                 </div>
-            </div>)
-            
+            </div>
+        )
     }
     
 }
