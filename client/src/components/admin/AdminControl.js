@@ -36,7 +36,7 @@ class AdminControl extends React.Component {
                 {console.log(this.state.members)}
                 <button onClick={this.props.close}>X</button>
                 <ul>
-                    {this.state.members.map(member => <div key={member.member_id}><li>{member.first_name} {member.last_name} {member.is_admin}
+                    {this.state.members.map(member => <div key={member.member_id}><li>{member.first_name} {member.last_name} {member.is_admin} {member.email}
                        {! member.is_admin ? <button onClick={() => this.onClickPromoteStatus(member)}>👑</button> :
                         <button onClick={() => this.onClickDemoteStatus(member)}>❌</button>}
                     </li></div>)}
