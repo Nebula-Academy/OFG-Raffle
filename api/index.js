@@ -7,7 +7,7 @@ const cors = require("cors");
 const path = require('path');
 
 const createHeader = async () => {
-    return bcrypt.hash(Math.round(+Date.now() / 60000) * 60000), process.env.TOKEN_SALT
+    return bcrypt.hash(Math.round(+Date.now() / 60000) * 60000), process.env.TOKEN_SALT;
 }
 
 const {createProxyMiddleware} = require('http-proxy-middleware');
@@ -20,7 +20,7 @@ app.use('/api/square/*',createProxyMiddleware({
     secure: true,
     pathRewrite: {'^/api/square' : ''},
     onProxyReq:proxy=>proxy.setHeader('Authorization',`Bearer ${process.env.BEARER_TOKEN}`) //abes production token for squarespace
-}))
+}));
 
 app.use(express.json());
 

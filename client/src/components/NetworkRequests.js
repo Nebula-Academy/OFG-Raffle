@@ -1,5 +1,7 @@
 import { getTokenFromStorage } from './utils';
 const endPoint = `http://localhost:3030/api`;
+// const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
+
 
 export const getTable = async (table) => {
     const holdResponse = await fetch (`${endPoint}/${table}`, {
@@ -83,12 +85,10 @@ export const squareConnection = async (method = 'POST', route = '/', body) => {
         'Square-Version': '2021-03-17',
         'Access-Control-Allow-Origin':'*'
     }
-    const response = await fetch(`http://localhost:3030/api/square${route}`,{
+    const response = await fetch(`${endPoint}/square${route}`,{
         method,
         headers,
         body: JSON.stringify(body)
     })
 
 }
-
-squareConnection('POST', '/customers')
