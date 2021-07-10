@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const express  = require('express'); 
 const app = express();
 const db = require('./queries.js');
-const port = process.env.PORT || 3030;
+const port = 3030 || process.env.PORT || 3030;
 const cors = require("cors");
 const path = require('path');
 
