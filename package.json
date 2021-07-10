@@ -1,0 +1,8 @@
+{
+    "name": "our-future-generation-raffles", 
+    "version": "0.0.1",
+    "scripts": {
+        "start": "nodemon api/index.js",
+        "build": "cd client && npm run build"
+      }
+}

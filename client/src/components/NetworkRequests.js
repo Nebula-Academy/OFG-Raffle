@@ -1,7 +1,8 @@
 import { getTokenFromStorage } from './utils';
+const endPoint = `${endPoint}/api/`
 
 export const getTable = async (table) => {
-    const holdResponse = await fetch (`http://localhost:3030/${table}`, {
+    const holdResponse = await fetch (`${endPoint}/${table}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -14,12 +15,12 @@ export const getTable = async (table) => {
 }
 
 export const getTableById = async (table, id) => {
-    const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`)
+    const holdResponse = await fetch(`${endPoint}/${table}/${id}`)
     return ( await holdResponse.json() )[0];
 }
 
 export const addTable = async (table, data) => {
-    const holdResponse = await fetch(`http://localhost:3030/${table}`, {
+    const holdResponse = await fetch(`${endPoint}/${table}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -31,7 +32,7 @@ export const addTable = async (table, data) => {
 }
 
 export const updateTable = async (table, id, data) => {
-    const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`, {
+    const holdResponse = await fetch(`${endPoint}/${table}/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -43,7 +44,7 @@ export const updateTable = async (table, id, data) => {
 }
 
 export const createMember = async (data) => {
-    const holdResponse = await fetch(`http://localhost:3030/create-member`, {
+    const holdResponse = await fetch(`${endPoint}/create-member`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -55,7 +56,7 @@ export const createMember = async (data) => {
 }
 
 export const getMember = async (username) => {
-    const holdResponse = await fetch(`http://localhost:3030/get-member/${username}`, {
+    const holdResponse = await fetch(`${endPoint}/get-member/${username}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ export const getMember = async (username) => {
 }
 
 export const deleteTableById = async (table, id) => {
-    const holdResponse = await fetch(`http://localhost:3030/${table}/${id}`, {
+    const holdResponse = await fetch(`${endPoint}/${table}/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
