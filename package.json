@@ -2,7 +2,6 @@
     "name": "our-future-generation-raffles", 
     "version": "0.0.2",
     "scripts": {
-        "postinstall": "cd api && npm install",
         "start": "nodemon api/index.js",
         "build": "cd client && npm run build"
       }
