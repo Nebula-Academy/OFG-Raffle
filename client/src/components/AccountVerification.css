@@ -13,8 +13,6 @@
 
 .box
 {
-    height:250px;
-    width:200px;
     border:5px solid #fff;
     z-index:1; 
     position:relative;
