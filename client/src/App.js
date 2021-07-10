@@ -10,8 +10,7 @@ import AccountVerification from './components/AccountVerification';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 import PaymentPage from './components/PaymentPage';
-import { getSession, checkForUser, getCurrentAuthUser, signOut } from './amplifyAuth/amplifyAuth';
-// import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
+import { getCurrentAuthUser, signOut } from './amplifyAuth/amplifyAuth';
 import React from 'react';
 import { getMember } from './components/NetworkRequests';
 
@@ -22,36 +21,46 @@ class App extends React.Component {
 
   componentDidMount(){
     // Check for user sign in
+    this.checkForSignedInUser()
+  }
+
+  checkForSignedInUser = () => {
     getCurrentAuthUser().then(async cognitoUser => {
       console.log(cognitoUser, "<-- cog")
-      // If a user is already signed in, save that user to state.
       if(cognitoUser?.attributes.email_verified){
-        // console.log(cognitoUser.signInUserSession.accessToken.jwtToken, "<-- token");
         const memberArr = await getMember(cognitoUser.attributes.email);
         const apiUser = memberArr[0];
         console.log(cognitoUser, "<--- cognito user")
         console.log(apiUser, "<--- api user")
-        // Get user data from API and save to state (along with cognitoUser info)
         apiUser ? this.setState({cognitoUser, apiUser, signedIn: true}) : alert('error getting api user');
       } else {
         this.setState({ signedIn: false })
       }
     }); 
-    // Otherwise no one is logged in.
   }
 
-  signOut = () => {
-    signOut();
+  componentDidUpdate(prevprops, prevState){
+    if(prevState.signedIn !== this.state.signedIn){
+      console.log("checked...")
+      this.checkForSignedInUser();
+    }
+  }
+
+  signOutSwitch = async () => {
+    await signOut();
     this.setState({ cognitoUser: null, apiUser: null, signedIn: false });
+  }
+
+  signInSwitch = () => {
+    this.setState({ signedIn: true });
   }
 
   render(){
     return (
       <BrowserRouter>
-        <Header signOut={this.signOut} signedIn={this.state.signedIn} />
+        <Header signOutSwitch={this.signOutSwitch} signedIn={this.state.signedIn} />
         <Route exact path="/signup">
-          {/* <AmplifySignOut /> */}
-          <LoginPage />
+          <LoginPage signInSwitch={this.signInSwitch} />
         </Route>
         <Route exact path="/accountverification">
           <AccountVerification />

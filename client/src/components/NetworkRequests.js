@@ -5,8 +5,7 @@ export const getTable = async (table) => {
     const holdResponse = await fetch (`${endPoint}/${table}`, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authentication':  getTokenFromStorage()
+            'Content-Type': 'application/json'
         }
     });
     const res = await holdResponse.json();
@@ -48,7 +47,6 @@ export const createMember = async (data) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            'Authentication':  getTokenFromStorage()
         },
         body: JSON.stringify(data)
     })

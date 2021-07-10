@@ -1,5 +1,6 @@
 import React from "react";
 import "./LoginPage.css";
+import { Redirect } from 'react-router-dom';
 import { signUp, confirmSignUp, signIn } from "../amplifyAuth/amplifyAuth";
 import { createMember } from "./NetworkRequests";
 
@@ -36,6 +37,7 @@ const SignUp = ({ handleChange, signMeUp }) => {
           onChange={handleChange}
           name="password"
           placeholder="Password"
+          type="password"
         />
         {/* <input name="Confirm Password" placeholder="Confirm Password"/> */}
         <button onClick={signMeUp}> Sign Me Up </button>
@@ -81,7 +83,7 @@ const SignIn = ({ handleChange, signIn }) => {
 
 //#802 page color
 class LoginPage extends React.Component {
-  state = { email: null, password: null, code: null, verification: false };
+  state = { email: null, password: null, code: null, verification: false, redirect: false, verified: null };
 
   handleChange = (e) => {
     e.preventDefault();
@@ -93,25 +95,29 @@ class LoginPage extends React.Component {
     const res = await signIn(this.state.email, this.state.password);
     console.log(res, "<--- user");
     // Need error handling when auth fails
-    if(res.authenticationFlowType === "USER_SRP_AUTH"){
+    if(res?.code === "UserNotConfirmedException"){
+      alert("Please verify your account");
+      this.setState({verified: false});
+    }
+    if(res?.code === "UserNotFoundException"){
+      alert(res.message);
+    }
+    if(res?.authenticationFlowType === "USER_SRP_AUTH"){
       // HERE WE NEED TO FIGURE OUT WHAT TO DO NEXT... STORE THE TOKEN? WHERE? HMMM...
-      window.location.pathname = "/";
-    } else {
-      alert(" Something went wrong ...");
-    } 
+      this.setState({ redirect: true }, this.props.signInSwitch());
+    }
   }
 
   signMeUp = async () => {
     // If we delete user in Cognito we also need to delete user in postgres...
     // Returns an object - ISignUpResult (check documentaion)
-    const res = await signUp({ email: this.state.email, password: this.state.password })
-    // userConfirmed: false
-    if(res.user.authenticationFlowType === "USER_SRP_AUTH"){
-      createMember({ username: this.state.email });
-      this.setState({ verification: true })
-    } else {
-      alert(" Something went wrong ...");
-    } 
+      const res = await signUp({ email: this.state.email, password: this.state.password })
+      // userConfirmed: false
+      if(res?.code == "UsernameExistsException") alert("User already exists");
+      if(res?.user?.authenticationFlowType === "USER_SRP_AUTH"){
+        createMember({ username: this.state.email });
+        this.setState({ verified: false })
+      }
   };
 
   verify = async () => {
@@ -119,7 +125,7 @@ class LoginPage extends React.Component {
     const res = await confirmSignUp(this.state.email, this.state.code);
     console.log(res, "<--- verify response");
     if(res === 'SUCCESS') {
-      this.setState({verification: true});
+      this.setState({email: null, password: null, code: null, verified: true});
     }
     return res === 'SUCCESS';
   }
@@ -127,8 +133,9 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div id="page">
+        {this.state.redirect && <Redirect to="/" />}
         <SignIn handleChange={this.handleChange} signIn={this.signIn} />
-        { this.state.verification ?
+        { this.state.verified === false ?
           <Verify email={this.state.email} handleChange={this.handleChange} verify={this.verify} />
         :
           <SignUp handleChange={this.handleChange} signMeUp={this.signMeUp} />

@@ -13,7 +13,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const { signedIn, signOut } = this.props;
+        const { signedIn, signOutSwitch } = this.props;
         return (
             <header id="ht-masthead" className="ht-site-header">
                 <h1>
@@ -34,7 +34,7 @@ class Header extends React.Component {
                             <li>MY-PROFILE</li>
                         </Link> : null }
                         
-                        { signedIn ? <Link to='/'><li onClick={signOut}>SIGN-OUT</li></Link> :
+                        { signedIn ? <Link to='/'><li onClick={signOutSwitch}>SIGN-OUT</li></Link> :
                         <Link to='/signup' onClick={this.collapseButtonClick}>
                             <li>SIGN-IN</li>
                         </Link>    

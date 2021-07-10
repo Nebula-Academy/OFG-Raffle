@@ -18,6 +18,7 @@ export async function signUp(userInput){
     return signUpResult;
   } catch (error) {
     console.log('error signing up: ', error);
+    return error;
   }
 }
 
@@ -37,6 +38,7 @@ export async function signIn(username, password){
     return signedInUser;
   } catch (error) {
     console.log('error signing in', error);
+    return error;
   }
 }
 

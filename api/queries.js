@@ -28,24 +28,21 @@ const pool = new Pool({
 });
 
 const authCheck = (request, func) => {
-    func();
-    // jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, decodedtoken) => {
-    //     if(err) throw err;
-    //     func();
-    // });
+    jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, ) => {
+        if(err) throw err;
+        func();
+    });
 }
 
 const createMember = (request, response) => {
     try {
-        authCheck(request, () => {
-            const { username } = request.body;
-            pool.query(`INSERT INTO member (email) VALUES ($1) RETURNING *`, [username], (error, results) => {
-                if(error) {
-                    throw error;
-                }
-                response.status(200).json(results.rows);
-            });
-        })
+        const { username } = request.body;
+        pool.query(`INSERT INTO member (email) VALUES ($1) RETURNING *`, [username], (error, results) => {
+            if(error) {
+                throw error;
+            }
+            response.status(200).json(results.rows);
+        });
     } catch (error) {
         console.log("Something went wrong: " + error);
     }
@@ -73,15 +70,13 @@ const getTable = (request, response) => {
     }
 
     try {
-        authCheck(request, () => {
-            pool.query(`SELECT * FROM ${table}`, (error, result) => {
-                if (error) {
-                    console.log("Query Error");
-                    throw error;
-                }
-                response.status(200).json(result.rows);
-            });
-        })
+        pool.query(`SELECT * FROM ${table}`, (error, result) => {
+            if (error) {
+                console.log("Query Error");
+                throw error;
+            }
+            response.status(200).json(result.rows);
+        });
     }
     catch (error) {
         console.log("Something went wrong: " + error);
@@ -90,13 +85,11 @@ const getTable = (request, response) => {
 
 const getTableById = (request, response) => {
     try {
-        authCheck(request, () => {
-            pool.query(`SELECT * FROM ${request.params.table} WHERE ${request.params.table}_id = ${request.params.id}`, (error, results) => {
-                if (error) {
-                    throw error;
-                }
-                response.status(200).json(results.rows);
-            })
+        pool.query(`SELECT * FROM ${request.params.table} WHERE ${request.params.table}_id = ${request.params.id}`, (error, results) => {
+            if (error) {
+                throw error;
+            }
+            response.status(200).json(results.rows);
         })
     } catch (error) {
         console.log("Something went wrong: " + error);
