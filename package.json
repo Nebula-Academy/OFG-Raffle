@@ -6,7 +6,7 @@
     "scripts": {
         "preinstall": "npm i && cd api && npm i && cd ../client && npm i",
         "start": "nodemon api/index.js",
-        "build": "cd client && npm run build",
+        "build": "cd client && npm run build"
       },
       "browserslist": [
         "since 2017-06"
