@@ -4,5 +4,5 @@
     "scripts": {
         "start": "nodemon api/index.js",
         "build": "cd client && npm run build"
-      }
+      } 
 }
