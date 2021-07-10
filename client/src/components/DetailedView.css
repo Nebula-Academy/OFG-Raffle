@@ -62,9 +62,9 @@
 
 .purchaseButton {
     display: flex;
-    align-items: flex-end;
+    /* align-items: flex-end;
     justify-content: flex-end;
-    max-width: 80px;
+    max-width: 80px; */
     background-color: grey;
     color: #802;
     cursor: pointer;
@@ -73,8 +73,7 @@
     border-right-style: solid;
     border-top-color: #802;
     border-bottom-color: #802;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding:0 30px;
     font-family: 'Pontano Sans', sans-serif;
     font-size: 17px;
     font-weight: bold;

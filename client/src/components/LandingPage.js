@@ -44,24 +44,26 @@ class LandingPage extends React.Component {
     render() {
         return (
             <div id='main-container'>
-                <h1>Welcome To Our Future Generation </h1>
-                <h1>Raffles</h1>
-                <div className="row">
-                    <div className='column-box'>
-                        <h4>Current Raffles</h4>
-                        <div className="current-raffles-container"> 
-                            {this.currentRaffles()}
+                <div className='box'>
+                    <h1>Welcome To Our Future Generation </h1>
+                    <h1>Raffles</h1>
+                    <div className="row">
+                        <div className='column-box'>
+                            <h4>Current Raffles</h4>
+                            <div className="current-raffles-container"> 
+                                {this.currentRaffles()}
+                            </div>
+                        </div>
+                        <div className="column-box">
+                            <h4>Past Winners</h4>
+                            <div className="past-winners-container">
+                                {this.pastWins()}
+                            </div>
                         </div>
                     </div>
-                    <div className="column-box">
-                        <h4>Past Winners</h4>
-                        <div className="past-winners-container">
-                            {this.pastWins()}
-                        </div>
-                    </div>
+                    <button id="register">REGISTER TO ENTER</button>
+                    <button id="login">LOGIN</button>
                 </div>
-                <button id="register">REGISTER TO ENTER</button>
-                <button id="login">LOGIN</button>
             </div>
         )
     }

@@ -7,8 +7,9 @@ body {
 }
 
 .box {
-    height:100px;
-    width:200px;
+    /* height:100px; */
+    /* width:200px; */
+    padding:20px;
     border:5px solid #fff;
     z-index:1; 
     position:relative;
@@ -44,7 +45,7 @@ body {
     position: absolute;
     top: 50%!important;
     left: 50%!important;
-    background-color: #401;
+    background-color: rgb(162, 114, 126);
     color: white;
     transform: translate(-50%, -50%);
     padding: 20px;
@@ -52,7 +53,7 @@ body {
     border-radius: 15px 50px;
     box-shadow: 4px 4px 4px black;
     text-shadow: 1px 1px black;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .modal button{
