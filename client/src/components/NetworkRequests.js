@@ -1,5 +1,5 @@
 import { getTokenFromStorage } from './utils';
-const endPoint = `${endPoint}/api/`
+const endPoint = `http://localhost:3030/api`;
 
 export const getTable = async (table) => {
     const holdResponse = await fetch (`${endPoint}/${table}`, {

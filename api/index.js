@@ -27,6 +27,7 @@ app.use(express.urlencoded({extended:true}));
 // });
 
 app.use('/api',(r,R,n)=>{
+    console.log('api request');
     app.get('/api/:table', db.getTable);
 
     app.post('/api/create-member', db.createMember);
