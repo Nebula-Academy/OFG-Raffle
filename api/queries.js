@@ -28,10 +28,11 @@ const pool = new Pool({
 });
 
 const authCheck = (request, func) => {
-    jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, decodedtoken) => {
-        if(err) throw err;
-        func();
-    });
+    func();
+    // jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, decodedtoken) => {
+    //     if(err) throw err;
+    //     func();
+    // });
 }
 
 const createMember = (request, response) => {
@@ -53,7 +54,7 @@ const createMember = (request, response) => {
 const getMember = (request, response) => {
     try {
         authCheck(request, () => {
-            pool.query(`SELECT * FROM member WHERE email = '${request.params.username}'`, (error, results) => {
+            pool.query(`SELECT * FROM member WHERE email = $1`,[request.params.username], (error, results) => {
                 if(error) {
                     throw error;
                 }
