@@ -1,6 +1,6 @@
 import { getTokenFromStorage } from './utils';
-const endPoint = `http://localhost:3030/api`;
-// const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
+// const endPoint = `http://localhost:3030/api`;
+const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
 
 
 export const getTable = async (table) => {
