@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 {
   "auth": {
     "amplifytestproj37203e6d": {
+=======
+<<<<<<< HEAD
+{
+  "auth": {
+    "ofgamplify4ad6ffb1": {
+>>>>>>> origin/287-User-Management-System
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -8,3 +15,9 @@
     }
   }
 }
+<<<<<<< HEAD
+=======
+=======
+{}
+>>>>>>> main
+>>>>>>> origin/287-User-Management-System

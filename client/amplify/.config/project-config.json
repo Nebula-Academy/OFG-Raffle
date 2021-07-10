@@ -1,5 +1,13 @@
 {
+<<<<<<< HEAD
   "projectName": "amplifytestproj",
+=======
+<<<<<<< HEAD
+  "projectName": "OFGAmplify",
+=======
+  "projectName": "raffle",
+>>>>>>> main
+>>>>>>> origin/287-User-Management-System
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
@@ -7,8 +15,18 @@
     "config": {
       "SourceDir": "src",
       "DistributionDir": "build",
+<<<<<<< HEAD
       "BuildCommand": "npm.cmd run-script build",
       "StartCommand": "npm.cmd run-script start"
+=======
+<<<<<<< HEAD
+      "BuildCommand": "npm.cmd run-script build",
+      "StartCommand": "npm.cmd run-script start"
+=======
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "npm run-script start"
+>>>>>>> main
+>>>>>>> origin/287-User-Management-System
     }
   },
   "providers": [

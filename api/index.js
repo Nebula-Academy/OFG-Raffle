@@ -6,13 +6,21 @@ const port = process.env.PORT || 3000;
 const cors = require("cors");
 const path = require('path');
 
-
 const createHeader = async () => {
     return bcrypt.hash(Math.round(+Date.now() / 60000) * 60000), process.env.TOKEN_SALT
 }
 
+const {createProxyMiddleware} = require('http-proxy-middleware');
 
 app.use(cors());
+
+app.use('/api/square/*',createProxyMiddleware({
+    target:'https://connect.squareup.com/v2/',
+    changeOrigin:true,
+    secure: true,
+    pathRewrite: {'^/api/square' : ''},
+    onProxyReq:proxy=>proxy.setHeader('Authorization',`Bearer ${process.env.BEARER_TOKEN}`) //abes production token for squarespace
+}))
 
 app.use(express.json());
 
