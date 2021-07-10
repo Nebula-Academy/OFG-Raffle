@@ -2,7 +2,6 @@ import './App.css';
 import Header from './components/Header';
 import MemberDashboard from './components/MemberDashboard';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
-<<<<<<< HEAD
 import DetailedView from './components/raffles/DetailedView';
 import GridView from './components/raffles/GridView';
 import LoginPage from './components/LoginPage';
@@ -10,16 +9,9 @@ import LandingPage from './components/LandingPage';
 import AccountVerification from './components/AccountVerification';
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
+import PaymentPage from './components/PaymentPage';
 import { getSession, checkForUser, getCurrentAuthUser, signOut } from './amplifyAuth/amplifyAuth';
 // import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
-=======
-import DetailedView from './components/DetailedView';
-import GridView from './components/GridView';
-import LandingPage from './components/LandingPage'
-import AccountVerification from './components/AccountVerification';
-import LoginPage from './components/LoginPage';
-import PaymentPage from './components/PaymentPage';
->>>>>>> origin/287-User-Management-System
 import React from 'react';
 import { getMember } from './components/NetworkRequests';
 
@@ -71,7 +63,7 @@ class App extends React.Component {
           <LandingPage />
         </Route>
         <Route path="/paymentpage">
-        <PaymentPage user={user}/>
+        <PaymentPage user={this.state.apiUser}/>
       </Route>
         <Route path="/raffles">
           <GridView user={this.state.apiUser} />
