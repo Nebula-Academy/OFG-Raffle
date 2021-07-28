@@ -1,11 +1,12 @@
 import React from "react";
 import './BuyTicketSlider.css'
-import { updateTable, addTable } from "../NetworkRequests";
+import { updateTable, addTable, squareConnection, generateIdempotency } from "../NetworkRequests";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import Input from "@material-ui/core/Input";
+import PaymentPage from "../PaymentPage";
 
 const useStyles = makeStyles({
     root: {
@@ -38,8 +39,9 @@ export default function BuyTicketSlider(props) {
         }
     };
 
-    const purchaseClick = () => {
+    const purchaseClick = async () => {
         //is user logged in and is user valid?
+        console.log(props.user)
         if (!props.user) {
             alert('You are not logged in, please do so to purchase tickets')
             return
@@ -51,7 +53,27 @@ export default function BuyTicketSlider(props) {
         if (value <= 0) {
             alert('Please input a proper value')
             return
-        }
+        };
+
+        // error 'await is a reserved word' with the following code
+        const idempotency_key = await generateIdempotency(props.user)
+        let payment = await squareConnection('POST', '/payments', {
+            idempotency_key,
+            amount_money:{amount: value * props.raffle.ticket_price, currency:'USD'},
+            source_id:props.user.credit_card_id,
+            customer_id:props.user.square_id,
+            locationid:'LZW67XDNYNWPK',
+            // note:'$5 Account Verification Fee',
+            //verification_token:buyerVerificationToken
+        })
+    
+    console.log(payment);
+    if (payment.errors){
+      alert(payment.errors)
+      return
+    } else payment = payment.payment;
+    console.log(payment)
+
         //update raffle table, purchase ticket amount by value 
         updateTable('raffle', props.raffle.raffle_id, { tickets_sold: props.raffle.tickets_sold + value })
         //create value amount of tickets in ticket table 

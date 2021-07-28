@@ -63,7 +63,7 @@ class App extends React.Component {
           <LoginPage signInSwitch={this.signInSwitch} />
         </Route>
         <Route exact path="/accountverification">
-          <AccountVerification />
+          <AccountVerification user={this.state.apiUser} />
         </Route>
         <Route path="/myprofile">
           <MemberDashboard user={this.state.apiUser} />
@@ -77,7 +77,7 @@ class App extends React.Component {
         <Route path="/raffles">
           <GridView user={this.state.apiUser} />
         </Route>
-        <Route path="/raffle/:id" component={DetailedView} />
+        <Route path="/raffle/:id" render={(props) => <DetailedView user={this.state.apiUser} {...props}/>} />
       </BrowserRouter>
     );
   }

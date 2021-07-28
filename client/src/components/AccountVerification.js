@@ -32,7 +32,7 @@ class AccountVerification extends React.Component {
                             <input onChange={this.updateChange} name='phone' placeholder="Phone Number"></input>
                     </div>
                             <div id="card-div">
-                                <PaymentPage billingContact={this.state}/>
+                                <PaymentPage billingContact={this.state} user={this.props.user}/>
                             </div>
                         </div>
                     </div>

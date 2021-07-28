@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS member (
     zip_code varchar ( 10 ) NULL,
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     is_admin BOOLEAN DEFAULT FALSE NOT NULL,
-    donated BOOLEAN DEFAULT FALSE NOT NULL
+    donated BOOLEAN DEFAULT FALSE NOT NULL,
+    square_id varchar 
 );      
 
 CREATE TABLE IF NOT EXISTS category (
