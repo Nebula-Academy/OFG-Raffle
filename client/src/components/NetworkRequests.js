@@ -1,6 +1,6 @@
 import { getTokenFromStorage } from './utils';
 import bcrypt from 'bcryptjs';
-const endPoint = `https://ofg-raffle-test.herokuapp.com/api`;
+const endPoint = `https://ofg-auction-test.herokuapp.com/api`;
 // const endPoint = `https://ofg-raffle.herokuapp.com/api`;
 // const endPoint = `http://localhost:3030/api`;
 // const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
