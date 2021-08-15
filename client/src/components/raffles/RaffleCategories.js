@@ -13,7 +13,7 @@ class RaffleCategories extends React.Component{
     dropDownMenu = (e) => {
         this.setState({ selectedCategory: e.target.value})
         this.props.refresh(e.target.value)
-        if(e.target.value == 'all categories'){
+        if(e.target.value === 'all categories'){
             this.props.refresh()
         }
     }

@@ -28,7 +28,7 @@ class GridView extends React.Component {
         this.setState({categories: holdResponse})
         let raffleItems = await getTable("raffle");
         if (category_id) {
-            raffleItems = raffleItems.filter(raffleItem => raffleItem.category_id == category_id)
+            raffleItems = raffleItems.filter(raffleItem => raffleItem.category_id === category_id)
         }
         this.setState({ raffleItems });
     };

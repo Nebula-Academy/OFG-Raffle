@@ -70,7 +70,7 @@ class MemberDashboard extends React.Component {
                 >
                     <AdminControl close={this.closeAdminControl}/>
                 </Modal>
-                { this.props.user.is_admin && <button onClick={this.openAdminControl}>Admin Control</button> }
+                { this.props.user?.is_admin && <button onClick={this.openAdminControl}>Admin Control</button> }
             </div >
 
         )

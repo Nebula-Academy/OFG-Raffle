@@ -113,7 +113,7 @@ class LoginPage extends React.Component {
     // Returns an object - ISignUpResult (check documentaion)
       const res = await signUp({ email: this.state.email, password: this.state.password })
       // userConfirmed: false
-      if(res?.code == "UsernameExistsException") alert("User already exists");
+      if(res?.code === "UsernameExistsException") alert("User already exists");
       if(res?.user?.authenticationFlowType === "USER_SRP_AUTH"){
         createMember({ username: this.state.email });
         this.setState({ verified: false })

@@ -52,7 +52,7 @@ class EditCategories extends React.Component {
                     {this.props.categories.map(category => <div className='['><li className='categories'>{category.category_name}
                         <button onClick={() => this.onClickDelete(category.category_id)}>Delete</button>
                         <button onClick={() => this.toggleUpdate(category.category_id)}>Edit</button>
-                        {this.state.currentUpdate == category.category_id && <div>
+                        {this.state.currentUpdate === category.category_id && <div>
                             <input name='updateCat' onChange={this.handleChange}></input>
                             <button onClick={() => this.onClickUpdate(category.category_id)}>✏️</button>
                         </div>}

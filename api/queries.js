@@ -50,16 +50,17 @@ const createMember = (request, response) => {
 
 const getMember = (request, response) => {
     try {
-        authCheck(request, () => {
-            pool.query(`SELECT * FROM member WHERE email = $1`,[request.params.username], (error, results) => {
-                if(error) {
-                    throw error;
-                }
-                response.status(200).json(results.rows);
-            });
-        })
+        // authCheck(request, () => {
+        pool.query(`SELECT * FROM member WHERE email = $1`,[request.params.username], (error, results) => {
+            if(error) {
+                throw error;
+            }
+            response.status(200).json(results.rows);
+        });
+        // })
     } catch(error){
         console.log("Something went wrong: " + error);
+        response.status(500).json(error);
     }
 }
 
@@ -107,7 +108,7 @@ const postTable = (request, response) => {
             const keys = Object.keys(request.body);
             let PSQLvalueString = ''
             for (i = 0; i < keys.length; i++) {
-                PSQLvalueString += `$${i + 1}${i != keys.length - 1 ? ',' : ''}`
+                PSQLvalueString += `$${i + 1}${i !== keys.length - 1 ? ',' : ''}`
             }
             pool.query(
                 `INSERT INTO ${table} (${(keys.join(','))}) VALUES (${PSQLvalueString}) RETURNING *`,

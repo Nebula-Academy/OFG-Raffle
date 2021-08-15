@@ -1,6 +1,7 @@
-import React from 'react'
-import './LandingPage.css'
-import {getTable} from './NetworkRequests'
+import React from 'react';
+import './LandingPage.css';
+import {getTable} from './NetworkRequests';
+import {Link} from 'react-router-dom';
 
 class LandingPage extends React.Component {
     state = {
@@ -24,12 +25,13 @@ class LandingPage extends React.Component {
     currentRaffles() {
         //iterating over the array with the information which gives you the display
         return this.state.currRaffles.map(raffle => (
-            <div className="current-raffle-card" key={raffle.raffle_id}>
-                <img src={raffle.image_file_path}/>
-                <h2> {raffle.title} </h2>
-                <p> {raffle.ticket_price} </p>
-                <button> Enter </button>
-            </div>
+            <Link to={`raffle/${raffle.raffle_id}`}  key={raffle.raffle_id}>
+                <div className="current-raffle-card">
+                    <img src={raffle.image_file_path}/>
+                    <h2> {raffle.title} </h2>
+                    <p> ${raffle.ticket_price} per ticket</p>
+                </div>
+            </Link>
         ))
     }
 
@@ -49,13 +51,13 @@ class LandingPage extends React.Component {
                     <h1>Raffles</h1>
                     <div className="row">
                         <div className='column-box'>
-                            <h4>Current Raffles</h4>
+                            <h2>Current Raffles</h2>
                             <div className="current-raffles-container"> 
                                 {this.currentRaffles()}
                             </div>
                         </div>
                         <div className="column-box">
-                            <h4>Past Winners</h4>
+                            <h2>Past Winners</h2>
                             <div className="past-winners-container">
                                 {this.pastWins()}
                             </div>

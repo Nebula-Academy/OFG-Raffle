@@ -15,8 +15,8 @@ const {createProxyMiddleware} = require('http-proxy-middleware');
 app.use(cors());
 
 app.use('/api/square/*',createProxyMiddleware({
-    // target:'https://connect.squareup.com/v2/',
-    target:'https://connect.squareupsandbox.com/v2/',
+    target:'https://connect.squareup.com/v2/', //deployment
+    // target:'https://connect.squareupsandbox.com/v2/', //local testing
     changeOrigin:true,
     secure: true,
     pathRewrite: {'^/api/square' : ''},

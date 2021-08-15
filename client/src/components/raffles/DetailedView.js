@@ -63,7 +63,7 @@ class DetailedView extends React.Component {
                             refresh={this.refresh} 
                             raffle={this.state.raffle} />
                     </Modal> 
-                <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> 
+                {this.props.user?.is_admin && <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> }
                 <div className='detailed-view-item-wrap'>
                     <h3 className='itemTitle'>
                         {this.state.raffle.title}
@@ -83,7 +83,7 @@ class DetailedView extends React.Component {
                         >
                             <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh} raffle={this.state.raffle} user={this.props.user} closeWindow={this.closeBuyTicketModal}></BuyTicket>
                         </Modal>
-                        {this.state.raffle.tickets_sold != this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}><ConfirmationNumberIcon/>Buy Ticket</button>}
+                        {this.state.raffle.tickets_sold !== this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}><ConfirmationNumberIcon/>Buy Ticket</button>}
                     </div>
                 </div>
             </div>

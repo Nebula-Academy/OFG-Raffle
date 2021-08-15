@@ -6,14 +6,23 @@
     flex-direction: column;
     align-items: center;
     color:aliceblue;
-    
+    text-align:center;
 }
-.row{
+#main-container a{
+    color:aliceblue;
+    text-decoration: none;
+}
+#main-container .box{
+    /* padding:20px 120px; */
+    width: 80%;
+    margin-bottom:40px;
+    /* background-color: #000000AA; */
+
+}
+#main-container .row{
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: 600px;
-    
+    justify-content: space-around;   
 }
 .column-box{
     height: 100%;
@@ -27,18 +36,13 @@
     /* height:150px; */
     
 }
-h4{
-    margin:0;
-    text-align:center;
-
-}
 #register{
     margin:20px;
     color:grey;
 }
 
 
-h1
+#main-container h1
 {
     text-align:center;
     vertical-align:middle;
@@ -46,34 +50,45 @@ h1
     
 }
 
-img {
-    height: 200px;
-    width: 325px;
-}
-
 .current-raffles-container, .past-winners-container {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     height:95%;
     overflow-y: auto;
     width: 100%;
+
 }
 
 .current-raffle-card {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     flex-direction: column;
-    width: 95%;
-    height: 100%;
+    text-align: center;
+    width: 275px;
+    padding:12px 6px;
+    margin:10px 5px;
+    background-color: white;
+    /* text-shadow: 0 0 5px; */
+    color:black;
+    box-shadow:0 0 5px black;
+    /* height: 100%; */
 }
 
 .current-raffle-card img {
-    max-width: 95%;
-    height: auto;
     border: dashed 1px white;
+    height: 150px;
+    width: 200px;
+    
 }
+.current-raffle-card h2, .current-raffle-card p{
+    margin:5px 0;
+}
+
+
 
 .current-raffle-card button {
     background-color: transparent;

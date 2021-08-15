@@ -84,19 +84,19 @@ class RaffleSummary extends React.Component {
                 <div className='raffle-summary-container'>
 
                     <label>RAFFLE TITLE
-                        <input className='rafbutton' onclick={this.raftitle} />
+                        <input className='rafbutton' onClick={this.raftitle} />
                     </label>
                     <label>RAFFLE DESCRIPTION
-                        <input className='rafbutton' onclick={this.rafdescription} />
+                        <input className='rafbutton' onClick={this.rafdescription} />
                     </label>
                     <label>TOTAL TICKETS
-                        <input className='rafbutton' onclick={this.total} />
+                        <input className='rafbutton' onClick={this.total} />
                     </label>
                     <label>TICKET PRICE
-                        <input className='rafbutton' onclick={this.price} />
+                        <input className='rafbutton' onClick={this.price} />
                     </label>
                     <label>TICKETS SOLD
-                        <input className='rafbutton' onclick={this.sold} />
+                        <input className='rafbutton' onClick={this.sold} />
                     </label>
 
                 </div>

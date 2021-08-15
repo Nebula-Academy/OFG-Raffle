@@ -122,9 +122,15 @@ class PaymentPage extends React.Component {
           {/* <h1>Payment Page</h1> */}
   
           <SquarePaymentForm
+            //deployed
+            applicationId = 'sq0idp-RYdlhKrqTQNHcTCQOCtckQ'
+            locationId='LB6JEVWJGZZMF'
+            /*
             sandbox={true}
+            local testing
             applicationId='sandbox-sq0idb--cW87B_bDCIx4xAtrUwKlQ'
             locationId='LZW67XDNYNWPK'
+            */
             cardNonceResponseReceived={this.cardNonceResponseReceived}
             createVerificationDetails={this.createVerificationDetails}
           >

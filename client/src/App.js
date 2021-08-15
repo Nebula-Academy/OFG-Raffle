@@ -28,11 +28,10 @@ class App extends React.Component {
     getCurrentAuthUser().then(async cognitoUser => {
       console.log(cognitoUser, "<-- cog")
       if(cognitoUser?.attributes.email_verified){
-        const memberArr = await getMember(cognitoUser.attributes.email);
-        const apiUser = memberArr[0];
-        console.log(cognitoUser, "<--- cognito user")
-        console.log(apiUser, "<--- api user")
-        apiUser ? this.setState({cognitoUser, apiUser, signedIn: true}) : alert('error getting api user');
+        const apiUser = (await getMember(cognitoUser.attributes.email));
+        console.log(apiUser);
+        // ;?.[0];
+        if(apiUser) this.setState({cognitoUser, apiUser, signedIn: true});
       } else {
         this.setState({ signedIn: false })
       }
@@ -41,7 +40,6 @@ class App extends React.Component {
 
   componentDidUpdate(prevprops, prevState){
     if(prevState.signedIn !== this.state.signedIn){
-      console.log("checked...")
       this.checkForSignedInUser();
     }
   }
@@ -62,10 +60,10 @@ class App extends React.Component {
         <Route exact path="/signup">
           <LoginPage signInSwitch={this.signInSwitch} />
         </Route>
-        <Route exact path="/accountverification">
+        <Route exact path="/account-verification">
           <AccountVerification user={this.state.apiUser} />
         </Route>
-        <Route path="/myprofile">
+        <Route path="/profile">
           <MemberDashboard user={this.state.apiUser} />
         </Route>
         <Route path="/" exact>

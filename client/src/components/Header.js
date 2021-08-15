@@ -23,15 +23,15 @@ class Header extends React.Component {
                 </h1>
                 <nav>
                     <ul className={this.state.collapsed ? '' : 'opened'}>
-                        <Link to='/raffles' onClick={this.collapseButtonClick}>
-                            <li>RAFFLES</li>
-                        </Link>
                         <Link to='/' onClick={this.collapseButtonClick}>
                             <li>HOME</li>
                         </Link>
+                        <Link to='/raffles' onClick={this.collapseButtonClick}>
+                            <li>RAFFLES</li>
+                        </Link>
                         { signedIn ?
-                        <Link to='/myprofile' onClick={this.collapseButtonClick}>
-                            <li>MY-PROFILE</li>
+                        <Link to='/profile' onClick={this.collapseButtonClick}>
+                            <li>MY PROFILE</li>
                         </Link> : null }
                         
                         { signedIn ? <Link to='/'><li onClick={signOutSwitch}>SIGN-OUT</li></Link> :
@@ -40,9 +40,9 @@ class Header extends React.Component {
                         </Link>    
                         }
                         
-                        <Link to='/signup' onClick={this.collapseButtonClick}>
+                        {!signedIn && <Link to='/signup' onClick={this.collapseButtonClick}>
                             <li>SIGN-UP</li>
-                        </Link>
+                        </Link>}
                     </ul>
                     <button id='nav-bar-collapse-button' onClick={this.collapseButtonClick}>
                         <MenuIcon />

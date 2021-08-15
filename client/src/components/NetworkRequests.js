@@ -1,7 +1,7 @@
 import { getTokenFromStorage } from './utils';
 import bcrypt from 'bcryptjs';
-// const endPoint = `https://ofg-raffle.herokuapp.com/api`;
-const endPoint = `http://localhost:3030/api`;
+const endPoint = `https://ofg-raffle.herokuapp.com/api`;
+// const endPoint = `http://localhost:3030/api`;
 // const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
 
 export const getTable = async (table) => {
@@ -83,7 +83,7 @@ export const deleteTableById = async (table, id) => {
 export const squareConnection = async (method = 'POST', route = '/', body) => {
     const headers = {
         'Content-Type':'application/json',
-        'Square-Version': '2021-06-16',
+        'Square-Version': '2021-07-21',
         'Access-Control-Allow-Origin':'*'
     }
     const response = await fetch(`${endPoint}/square${route}`,{
@@ -98,5 +98,5 @@ export const squareConnection = async (method = 'POST', route = '/', body) => {
 
 }
 
-export const generateIdempotency = async (user) => (await bcrypt.hash(`${new Date().toString().slice(8, 24)}${user.email}`,11)).slice(0,44)
+export const generateIdempotency = async (user) => (await bcrypt.hash(`${new Date().toString().slice(8, 24)}${user?.email}`,11)).slice(0,44)
 
