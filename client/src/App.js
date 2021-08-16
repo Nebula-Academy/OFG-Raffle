@@ -26,11 +26,8 @@ class App extends React.Component {
 
   checkForSignedInUser = () => {
     getCurrentAuthUser().then(async cognitoUser => {
-      console.log(cognitoUser, "<-- cog")
       if(cognitoUser?.attributes.email_verified){
-        const apiUser = (await getMember(cognitoUser.attributes.email));
-        console.log(apiUser);
-        // ;?.[0];
+        const apiUser = (await getMember(cognitoUser.attributes.email))?.[0];
         if(apiUser) this.setState({cognitoUser, apiUser, signedIn: true});
       } else {
         this.setState({ signedIn: false })

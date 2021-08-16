@@ -11,13 +11,26 @@
     margin-bottom: 50px;
 }
 
-.box
+/* .box
 {
     border:5px solid #fff;
     z-index:1; 
     position:relative;
     margin-right: -20px;
     margin-left: -75px
+} */
+.account-verification .box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* .square-payment-form{
+
+} */
+.box input{
+    padding:16px;
+    border-radius:5px;
+    outline:none!important;
 }
 #card-div{
     display:flex;

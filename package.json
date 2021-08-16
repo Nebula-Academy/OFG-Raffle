@@ -10,7 +10,7 @@
         "preinstall": "cd api && npm i && cd ../client && npm i",
         "start": "nodemon api/index.js",
         "build": "cd client && npm run build",
-        "dev": "concurrently \"nodemon api/index.js\" \"cd && client && npm start\"",
+        "dev": "concurrently \"nodemon api\" \"cd client && npm start\"",
         "frontend": "cd client && npm start"
     },
     "browserslist": [

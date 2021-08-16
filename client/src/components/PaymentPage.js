@@ -118,7 +118,7 @@ class PaymentPage extends React.Component {
     render()  {
       // console.log(await generateIdempotency(this.props.user))
       return (
-        <div>
+        <>
           {/* <h1>Payment Page</h1> */}
   
           <SquarePaymentForm
@@ -159,7 +159,7 @@ class PaymentPage extends React.Component {
             )}
           </div>
   
-        </div>
+        </>
       )
     }
   }

@@ -1,8 +1,8 @@
 import { getTokenFromStorage } from './utils';
 import bcrypt from 'bcryptjs';
-const endPoint = `https://ofg-auction-test.herokuapp.com/api`;
+// const endPoint = `https://ofg-auction-test.herokuapp.com/api`;
 // const endPoint = `https://ofg-raffle.herokuapp.com/api`;
-// const endPoint = `http://localhost:3030/api`;
+const endPoint = `http://localhost:3030/api`;
 // const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
 
 export const getTable = async (table) => {
@@ -93,7 +93,9 @@ export const squareConnection = async (method = 'POST', route = '/', body) => {
         body: JSON.stringify(body)
     })
 
-    return response.json()
+    try{
+        return response.json();
+    } catch(error){ console.warn(error); }
 
 
 

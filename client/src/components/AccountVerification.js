@@ -14,7 +14,7 @@ class AccountVerification extends React.Component {
     }
     render() {
         return (
-            <div id='main-container'>
+            <div id='main-container' className='account-verification'>
                 <h1>Account Verification</h1>
                 <h3>Please make a $5 donation in order to verify your account</h3>
                 <h3 className='thanks'>Thank you!</h3>
@@ -30,10 +30,10 @@ class AccountVerification extends React.Component {
                             <input onChange={this.updateChange} name='addressLine2' placeholder="Billing Address 2"></input>
                             <input onChange={this.updateChange} name='postalCode' placeholder="Zip Code"></input>
                             <input onChange={this.updateChange} name='phone' placeholder="Phone Number"></input>
+                            <PaymentPage billingContact={this.state} user={this.props.user}/>
                     </div>
-                            <div id="card-div">
-                                <PaymentPage billingContact={this.state} user={this.props.user}/>
-                            </div>
+                            {/* <div id="card-div"> */}
+                            {/* </div> */}
                         </div>
                     </div>
             )
