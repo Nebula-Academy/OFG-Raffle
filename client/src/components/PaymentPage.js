@@ -28,7 +28,7 @@ class PaymentPage extends React.Component {
       }
       
       this.setState({ errorMessages: [] })
-      alert("nonce created: " + nonce + ", buyerVerificationToken: " + buyerVerificationToken)
+      // alert("nonce created: " + nonce + ", buyerVerificationToken: " + buyerVerificationToken)
       //create square customer with this nonce
       //use network request squareconnection to post to /customers
       const idempotency_key = await generateIdempotency(this.props.user)
@@ -45,26 +45,24 @@ class PaymentPage extends React.Component {
     })
     console.log(customer)
     if (customer.errors){
-      alert(customer.errors)
+      this.setState({ errorMessages: customer.errors});
       return
     } else customer=customer.customer
 
       //create payment
     // await squareConnection('POST', '/payment')
-    let payment = await squareConnection('POST', '/payments', {
+    let payment = false && await squareConnection('POST', '/payments', {
           idempotency_key,
           amount_money:{amount:500,currency:'USD'},
           source_id:nonce, //this.props.user.credit_card_id,
           customer_id:customer.id,
           locationid:'LZW67XDNYNWPK',
-          // note:'$5 Account Verification Fee',
+          note:'$5 Account Verification Fee',
           verification_token:buyerVerificationToken
       })
-  
-  console.log(payment);
-  if (customer.errors){
-    alert(customer.errors)
-    return
+  if (payment?.errors){
+    this.setState({ errorMessages: payment.errors});
+    return;
   } else payment = payment.payment;
   console.log(payment)
         
@@ -85,8 +83,12 @@ class PaymentPage extends React.Component {
               postal_code:this.props.billingContact.postalCode,
             }
           }
-      })
-  
+      });
+      //console.log(card);
+      if(card.errors){
+         this.setState({ errorMessages: card.errors});
+         return
+      } else card = card.card;
        //await squareConnection('POST', `/customers/${customer.id}/cards`)
       //update our database with customer.id which is square id
       updateTable('member', this.props.user.member_id,{

@@ -92,13 +92,9 @@ export const squareConnection = async (method = 'POST', route = '/', body) => {
         headers,
         body: JSON.stringify(body)
     })
-
     try{
         return response.json();
     } catch(error){ console.warn(error); }
-
-
-
 }
 
 export const generateIdempotency = async (user) => (await bcrypt.hash(`${new Date().toString().slice(8, 24)}${user?.email}`,11)).slice(0,44)

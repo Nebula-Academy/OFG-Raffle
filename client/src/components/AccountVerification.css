@@ -24,13 +24,21 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-/* .square-payment-form{
-
-} */
+.square-payment-wrapper{
+    flex-basis:100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .box input{
     padding:16px;
+    border: none;
+    margin: 5px;
+    background: white;
     border-radius:5px;
     outline:none!important;
+    font-family: 'Helvetica Neue san-serif';
+    line-height: 24px;
 }
 #card-div{
     display:flex;
