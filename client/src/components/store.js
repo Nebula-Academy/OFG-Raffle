@@ -1,7 +1,13 @@
 export const data = {};
 export const subscriptions = {}
 export const set = (key, value) => {
-    if(!data[key])data[key] = {}
+    if(!data[key]){
+        if(Array.isArray(value)) data[key] = [];
+        else if(typeof value === 'function') data[key] = ()=>{};
+        else if(typeof value === 'string') data[key] = '';
+        else if(typeof value === 'number') data[key] = 0;
+        else data[key] = Object.create(value);
+    }
     Object.assign(data[key], value);
     for(let i = 0; i < subscriptions[key]?.length; i++) subscriptions[key][i]?.();
 }

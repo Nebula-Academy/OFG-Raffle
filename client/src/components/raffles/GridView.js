@@ -24,8 +24,8 @@ class GridView extends React.Component {
     }
 
     refresh = async (category_id) => {
-        const holdResponse = await getTable('category')
-        this.setState({categories: holdResponse})
+        console.log(await getTable('category'));
+        getTable('category').then(holdResponse => this.setState({categories: holdResponse}));
         let raffleItems = await getTable("raffle");
         if (category_id) {
             raffleItems = raffleItems.filter(raffleItem => raffleItem.category_id === category_id)
@@ -74,7 +74,8 @@ class GridView extends React.Component {
                 {this.props.user?.is_admin && <button className='editButton' onClick={this.openEditCategory}>Edit Categories</button>}
                 {this.props.user?.is_admin &&<button className='createRaffle' onClick={this.openAddRaffleModal}> Create Raffle </button>}
                 <div id='grid'>
-                    {this.state.raffleItems.map(raffleItem => <div className='itemContainer' key={raffleItem.title}>
+                    {console.log(this.state.raffleItems)}
+                    {this.state.raffleItems?.map?.(raffleItem => <div className='itemContainer' key={raffleItem.title}>
                         <h3 className='ItemName'> {raffleItem.title}</h3>
                         <Link to={`/raffle/${raffleItem.raffle_id}`}>
                             <img className='ItemImg' src={raffleItem.image_file_path}></img>

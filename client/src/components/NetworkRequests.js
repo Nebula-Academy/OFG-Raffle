@@ -7,8 +7,8 @@ const endPoint = `http://localhost:3030/api`;
 // const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
 
 export const getTable = async (table) => {
-    const val = store.get(`get ${table}`);
-    if(val) return val;
+    const val = store.get('db') || {};
+    if(val[table]) return val[table];
     const holdResponse = await fetch (`${endPoint}/${table}`, {
         method: 'GET',
         headers: {
@@ -22,8 +22,7 @@ export const getTable = async (table) => {
         store.set(table, existingData);
         return data;
     });
-    console.log(store.data, response);
-    store.set(`sql: ${table}`, response);
+    store.set('db', {...val, [table]:response});
     return response;
 }
 
