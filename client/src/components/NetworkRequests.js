@@ -1,25 +1,39 @@
 import { getTokenFromStorage } from './utils';
 import bcrypt from 'bcryptjs';
+import * as store from './store';
 // const endPoint = `https://ofg-auction-test.herokuapp.com/api`;
 // const endPoint = `https://ofg-raffle.herokuapp.com/api`;
 const endPoint = `http://localhost:3030/api`;
 // const endPoint = `https://main.d39h9sudxy5itw.amplifyapp.com/api`;
 
 export const getTable = async (table) => {
+    const val = store.get(`get ${table}`);
+    if(val) return val;
     const holdResponse = await fetch (`${endPoint}/${table}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
     });
-    const res = await holdResponse.json();
-    console.log(res, "<--- table")
-    return res;
+    const response = (await holdResponse.json()).map(data => {
+        const existingData = store.get(table) || {};
+        if(existingData[data[`${table}_id`]]) return existingData[data[`${table}_id`]];
+        Object.assign(existingData, {[data[`${table}_id`]]:data})
+        store.set(table, existingData);
+        return data;
+    });
+    console.log(store.data, response);
+    store.set(`sql: ${table}`, response);
+    return response;
 }
 
 export const getTableById = async (table, id) => {
-    const holdResponse = await fetch(`${endPoint}/${table}/${id}`)
-    return ( await holdResponse.json() )[0];
+    const val = store.get(table) || {};
+    if(val[id]) return val[id];
+    const holdResponse = await fetch(`${endPoint}/${table}/${id}`);
+    const data = (await holdResponse.json())[0];
+    store.set(table,{...val,id: data});
+    return data;
 }
 
 export const addTable = async (table, data) => {

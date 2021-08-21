@@ -5,11 +5,18 @@ body {
 .App {
   text-align: center;
 }
-
+a{
+    text-decoration: none;
+    filter:grayscale(0.1) brightness(0.8);
+    transition: all .2s ease-out;
+}
+a:hover{
+    filter:grayscale(0) brightness(1);
+}
 .box {
     /* height:100px; */
     /* width:200px; */
-    padding:20px;
+    padding:24px 36px;
     border:5px solid #fff;
     z-index:1; 
     position:relative;

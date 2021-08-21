@@ -1,5 +1,5 @@
 import './App.css';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
 import MemberDashboard from './components/MemberDashboard';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import DetailedView from './components/raffles/DetailedView';
@@ -53,7 +53,7 @@ class App extends React.Component {
   render(){
     return (
       <BrowserRouter>
-        <Header signOutSwitch={this.signOutSwitch} signedIn={this.state.signedIn} />
+        <Navbar signOutSwitch={this.signOutSwitch} signedIn={this.state.signedIn} />
         <Route exact path="/signup">
           <LoginPage signInSwitch={this.signInSwitch} />
         </Route>

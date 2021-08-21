@@ -47,8 +47,7 @@ class LandingPage extends React.Component {
         return (
             <div id='main-container'>
                 <div className='box'>
-                    <h1>Welcome To Our Future Generation </h1>
-                    <h1>Raffles</h1>
+                    <h1>Welcome To Our Future Generation: Raffles</h1>
                     <div className="row">
                         <div className='column-box'>
                             <h2>Current Raffles</h2>
@@ -63,8 +62,6 @@ class LandingPage extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <button id="register">REGISTER TO ENTER</button>
-                    <button id="login">LOGIN</button>
                 </div>
             </div>
         )

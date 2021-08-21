@@ -1,9 +1,9 @@
-import './Header.css';
+import './Navbar.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 
-class Header extends React.Component {
+class Navbar extends React.Component {
     state = {
         collapsed: true
     }
@@ -17,9 +17,9 @@ class Header extends React.Component {
         return (
             <header id="ht-masthead" className="ht-site-header">
                 <h1>
-                    <a>
+                    <Link to='/'>
                         OUR FUTURE GENERATION
-                    </a>
+                    </Link>
                 </h1>
                 <nav>
                     <ul className={this.state.collapsed ? '' : 'opened'}>
@@ -53,4 +53,4 @@ class Header extends React.Component {
         )
     }
 }
-export default Header;
+export default Navbar;
