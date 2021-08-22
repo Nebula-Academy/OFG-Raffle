@@ -20,13 +20,13 @@ class RaffleCategories extends React.Component{
 
     render(){
         return(
-            <div>
+            <>
                 {this.props.categories.length > 0 && <select onChange={this.dropDownMenu} value={this.state.selectedCategory}>
                 <option disabled value=''>Categories</option>
                 <option value='all categories'>All</option>
                 {this.props.categories.map(category => <option key={category.category_id} value={category.category_id}>{category.category_name}</option>)}
                 </select>}
-            </div>
+            </>
         )
     }
 }

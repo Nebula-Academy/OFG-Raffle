@@ -1,11 +1,12 @@
-import React from 'react'
-import './GridView.css'
-import { getTable } from '../NetworkRequests'
-import { Link } from 'react-router-dom'
-import Modal from '@material-ui/core/Modal'
-import AddRaffle from './AddRaffle'
-import RaffleCategories from './RaffleCategories'
-import EditCategories from '../admin/EditCategories'
+import React from 'react';
+import './GridView.css';
+import { getTable } from '../NetworkRequests';
+import { Link } from 'react-router-dom';
+import Modal from '@material-ui/core/Modal';
+import AddRaffle from './AddRaffle';
+import RaffleCategories from './RaffleCategories';
+import EditCategories from '../admin/EditCategories';
+import * as store from '../store';
 
 class GridView extends React.Component {
     state = {
@@ -18,17 +19,27 @@ class GridView extends React.Component {
     componentDidMount() {
         this.refresh();
     }
-
-    updateCategories = (categories) =>{
-        this.setState({categories})
+    componentWillUnmount(){
+        store.set('header-menu', null);
     }
+    
+    updateCategories = (categories) =>{
+        this.setState({categories});
+        this.createHeaderMenu();
+    }
+    
+    createHeaderMenu = () => store.set('header-menu', <>
+        <RaffleCategories refresh={this.refresh} categories={this.state.categories} />
+        <input placeholder='Search'></input>
+        {this.props.user?.is_admin && <button className='editButton' onClick={this.openEditCategory}>Edit Categories</button>}
+        {this.props.user?.is_admin &&<button className='createRaffle' onClick={this.openAddRaffleModal}> Create Raffle </button>}
+    </>)
 
     refresh = async (category_id) => {
-        console.log(await getTable('category'));
-        getTable('category').then(holdResponse => this.setState({categories: holdResponse}));
+        getTable('category').then(catagories => this.updateCategories(catagories));
         let raffleItems = await getTable("raffle");
         if (category_id) {
-            raffleItems = raffleItems.filter(raffleItem => raffleItem.category_id === category_id)
+            raffleItems = raffleItems.filter(raffleItem => raffleItem.category_id === +category_id)
         }
         this.setState({ raffleItems });
     };
@@ -52,8 +63,9 @@ class GridView extends React.Component {
     }
     render() {
         return (
-
-            <div>
+        <div id='main-container'>
+            <div className='box'>
+                <h1>All Raffles: </h1>
                 <Modal
                     className='modal createRaffleModal'
                     open={this.state.addRaffleModal}
@@ -61,7 +73,6 @@ class GridView extends React.Component {
                 >
                     <AddRaffle close={this.closeAddRaffleModal} refresh={this.refresh} />
                 </Modal>
-                <RaffleCategories refresh={this.refresh} categories={this.state.categories} />
                 <Modal
                     className='modal'
                     open={this.state.editCategory}
@@ -71,10 +82,8 @@ class GridView extends React.Component {
                 >
                     <EditCategories close={this.closeEditCategory} refresh={this.refresh} categories={this.state.categories} updateCategories={this.updateCategories}/>
                 </Modal>
-                {this.props.user?.is_admin && <button className='editButton' onClick={this.openEditCategory}>Edit Categories</button>}
-                {this.props.user?.is_admin &&<button className='createRaffle' onClick={this.openAddRaffleModal}> Create Raffle </button>}
+                
                 <div id='grid'>
-                    {console.log(this.state.raffleItems)}
                     {this.state.raffleItems?.map?.(raffleItem => <div className='itemContainer' key={raffleItem.title}>
                         <h3 className='ItemName'> {raffleItem.title}</h3>
                         <Link to={`/raffle/${raffleItem.raffle_id}`}>
@@ -88,7 +97,7 @@ class GridView extends React.Component {
                     </div>)}
                 </div>
             </div>
-
+        </div>
         )
     }
 }

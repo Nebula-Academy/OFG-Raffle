@@ -7,11 +7,14 @@ body {
 }
 a{
     text-decoration: none;
-    filter:grayscale(0.1) brightness(0.8);
+    filter:saturate(.5) brightness(.8);
     transition: all .2s ease-out;
 }
 a:hover{
-    filter:grayscale(0) brightness(1);
+    filter:saturate(1) brightness(1);
+}
+.row{
+    display: flex;
 }
 .box {
     /* height:100px; */
@@ -20,6 +23,7 @@ a:hover{
     border:5px solid #fff;
     z-index:1; 
     position:relative;
+    margin: 24px;
 }
 
 .box:before {

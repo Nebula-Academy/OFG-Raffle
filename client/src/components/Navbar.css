@@ -1,14 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-
+.main-navbar{
+    position:sticky;
+    top:0;
+    z-index:5;
+    margin-bottom:20px;
+}
 #ht-masthead {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: rgb(219, 219, 219);
     height: 94px;
-    border-top: 4px solid #800020;
-    border-bottom: 30px solid #800020;
+    border-top: 6px solid #401;
+    border-bottom: 6px solid #401;
 }
+.subheader-menu{
+    justify-content: space-around;
+    padding: 8px 16px;
+    background-color:#000000cc;
+    color:white;
+    margin-top: -6px;}
 nav{
     position:relative;
 }
@@ -59,7 +70,13 @@ nav{
     /* letter-spacing: 1px; */
     /* line-height: 1px;   */
     text-shadow: 2px 2px rgb(0 0 0 / 30%);
-    color:#800020;
+    /* color:#800020; */
+    color:#802;
+    filter:brightness(0.95) saturate(0.8);
+}
+#ht-masthead a:hover, #ht-masthead a:hover li{
+    color:#802;
+    filter:brightness(1.1) saturate(1.1);
 }
 
 #ht-masthead li {

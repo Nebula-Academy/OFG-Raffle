@@ -1,13 +1,13 @@
-import React from 'react'
-import './DetailedView.css'
-import { Link } from 'react-router-dom'
-import { getTableById } from '../NetworkRequests'
-import Modal from '@material-ui/core/Modal'
-import UpdateRaffle from '../admin/UpdateRaffle'
-import TicketBar from './TicketBar'
-import BuyTicket from './BuyTicket'
+import React from 'react';
+import './DetailedView.css';
+import { getTableById } from '../NetworkRequests';
+import Modal from '@material-ui/core/Modal';
+import UpdateRaffle from '../admin/UpdateRaffle';
+import TicketBar from './TicketBar';
+import BuyTicket from './BuyTicket';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
+import * as store from '../store';
 
 
 class DetailedView extends React.Component {
@@ -21,13 +21,21 @@ class DetailedView extends React.Component {
 
     componentDidMount() {
         this.refresh();
+        store.set('header-menu', <>
+            <button onClick={()=>window.history.back()}><KeyboardBackspaceIcon/></button>
+            {this.props.user?.is_admin && <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> }
+        </>)
+    }
+    componentWillUnmount(){
+        store.set('header-menu', null);
     }
 
     refresh = async () => {
         const { id } = this.props.match.params;
         const raffle = await getTableById("raffle", id);
-        const category = await getTableById("category", raffle.category_id)
-        this.setState({ raffle, category: category.category_name })
+        const category = await getTableById("category", raffle.category_id);
+        
+        this.setState({ raffle, category: category.category_name });
     }
 
     openUpdateRaffleModal = () => {
@@ -48,9 +56,6 @@ class DetailedView extends React.Component {
     render() {
         return (
             <div className='detailed-view-wrap'>
-                <Link to={`/raffles`}>
-                    <button><KeyboardBackspaceIcon/></button>
-                </Link>
                     <Modal 
                         className='modal updateRaffleModal'
                         open= {this.state.UpdateRaffleModal}
@@ -62,9 +67,8 @@ class DetailedView extends React.Component {
                             close={this.closeUpdateRaffleModal} 
                             refresh={this.refresh} 
                             raffle={this.state.raffle} />
-                    </Modal> 
-                {this.props.user?.is_admin && <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> }
-                <div className='detailed-view-item-wrap'>
+                    </Modal>
+                <div className='detailed-view-item-wrap box'>
                     <h3 className='itemTitle'>
                         {this.state.raffle.title}
                     </h3>
