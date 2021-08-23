@@ -4,7 +4,6 @@
     flex-direction: column;
     align-items: center;
     color:aliceblue;
-   ;
 }
 
 .thanks {
@@ -39,6 +38,7 @@
     outline:none!important;
     font-family: 'Helvetica Neue san-serif';
     line-height: 24px;
+    filter:none;
 }
 #card-div{
     display:flex;

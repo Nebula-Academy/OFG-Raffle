@@ -42,6 +42,7 @@ class App extends React.Component {
   }
 
   signOutSwitch = async () => {
+    if(!window.confirm('Are you sure you want to sign out?'))return;
     await signOut();
     this.setState({ cognitoUser: null, apiUser: null, signedIn: false });
   }

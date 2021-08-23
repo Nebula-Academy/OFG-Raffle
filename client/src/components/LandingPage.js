@@ -36,6 +36,7 @@ class LandingPage extends React.Component {
     }
 
     pastWins() {
+        if(!this.state.pastWinners.length) return <p>No winners yet you could be first!</p>
         return this.state.pastWinners.map(raffle => (
             <div className="past-winners-card" key={raffle.raffle_id}>
                 <img src={raffle.image_file_path}/>
@@ -47,7 +48,11 @@ class LandingPage extends React.Component {
         return (
             <div id='main-container'>
                 <div className='box'>
-                    <h1>Welcome To Our Future Generation: Raffles</h1>
+                    <div className='box-background'>
+                        <div className='box-header'></div>
+                        <div className='box-body'></div>
+                    </div>
+                    <h1>Our Future Generation: Raffles</h1>
                     <div className="row">
                         <div className='column-box'>
                             <h2>Current Raffles</h2>

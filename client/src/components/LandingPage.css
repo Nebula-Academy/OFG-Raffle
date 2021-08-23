@@ -5,20 +5,9 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    color:aliceblue;
     text-align:center;
 }
-#main-container a{
-    color:aliceblue;
-    text-decoration: none;
-}
-#main-container .box{
-    /* padding:20px 120px; */
-    width: 80%;
-    margin-bottom:40px;
-    /* background-color: #000000AA; */
 
-}
 #main-container .row{
     display:flex;
     flex-direction: row;
@@ -29,7 +18,6 @@
     width: 100%;
     display:flex;
     flex-direction: column;
-    color: aliceblue;
     /* padding:30px; */
     border:1px  aliceblue;
     justify-content:space-around;
@@ -42,12 +30,27 @@
 }
 
 
-#main-container h1
-{
+#main-container h1{
+    font-family: 'Indie Flower', cursive;
+    font-size:32pt;
     text-align:center;
     vertical-align:middle;
     position:relative;
-    
+    display:inline;
+    margin-bottom:35px;
+    display:inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+#main-container h1:after{
+    position: absolute;
+    bottom: -5px;
+    content:' ';
+    height:5px;
+    width:80%;
+    /* left:50%; */
+    background:#802;
+    /* transform:translateX(-50%); */
 }
 
 .current-raffles-container, .past-winners-container {

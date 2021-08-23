@@ -1,8 +1,5 @@
 .detailed-view-wrap {
-    /* display: flex;
-    justify-content: center; */
-    border: 3px solid #802;
-    background-color: #802;
+    display: inline;
 }
 
 .detailed-view-item-wrap {
@@ -10,13 +7,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin:0 auto;
 }
 
 .itemTitle {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #802;
     margin: 7px;
     font-size: 175%;
     text-shadow: 0 0 20px grey;

@@ -23,6 +23,7 @@ class DetailedView extends React.Component {
         this.refresh();
         store.set('header-menu', <>
             <button onClick={()=>window.history.back()}><KeyboardBackspaceIcon/></button>
+            <button onClick={this.openBuyTicketModal}>Buy Ticket</button>
             {this.props.user?.is_admin && <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> }
         </>)
     }
@@ -69,6 +70,10 @@ class DetailedView extends React.Component {
                             raffle={this.state.raffle} />
                     </Modal>
                 <div className='detailed-view-item-wrap box'>
+                    <div className='box-background'>
+                        <div className='box-header'></div>
+                        <div className='box-body'></div>
+                    </div>
                     <h3 className='itemTitle'>
                         {this.state.raffle.title}
                     </h3>

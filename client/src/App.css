@@ -1,51 +1,83 @@
 body {
-    background:#802;
+    background:#401;
    }
-
 .App {
   text-align: center;
 }
-a{
+a, button, select, input{
     text-decoration: none;
-    filter:saturate(.5) brightness(.8);
-    transition: all .2s ease-out;
+    filter:saturate(.7) brightness(.85);
+    transition: all .25s ease-out;
+    cursor: pointer;
 }
-a:hover{
-    filter:saturate(1) brightness(1);
+input{
+    cursor: text;
+}
+a:hover, button:hover, select:hover, input:hover{
+    filter:saturate(1.05) brightness(1.05);
 }
 .row{
     display: flex;
 }
 .box {
-    /* height:100px; */
-    /* width:200px; */
     padding:24px 36px;
-    border:5px solid #fff;
+    border:10px solid #802!important;
     z-index:1; 
     position:relative;
     margin: 24px;
+    background:#fff;
+    width: 80%;
+    margin-bottom:40px;
+    color:black;
+    box-shadow:0 0 20px #ddda;
+    border-radius: 25px;
+    overflow: hidden;
 }
 
 .box:before {
     position:absolute;
-    top:-5px; 
+    top:0px; 
     left:35%;
     content:"";
     display:block;
-    height:5px;
+    height:10px;
     width:30%;
-    background:#802;
+    background:#fff;
 }
 
 .box:after {
     position:absolute;
-    bottom:-5px; 
+    bottom:0px; 
     left:35%;
     content:"";
     display:block;
-    height:5px;
+    height:10px;
     width:30%;
-    background:#802;
+    background:#fff;
+}
+
+.box-background{
+    user-select: none;
+    position:absolute;
+    z-index: -1;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    display:flex;
+    flex-direction: column;
+}
+.box-header{
+    flex: 0 1 auto;
+    height:100px;
+    background-image:url('./img/looseleaf-header.png');
+    background-size: 100% auto;
+}
+.box-body{
+    flex: 1 1 auto;
+    background-image:url('./img/looseleaf-body.png');
+    background-size: 100% auto;
+    background-repeat: repeat-y;
 }
 
 .modal{
@@ -65,6 +97,9 @@ a:hover{
     box-shadow: 4px 4px 4px black;
     text-shadow: 1px 1px black;
     overflow: auto;
+}
+.modal::-webkit-scrollbar {
+    display: none;
 }
 
 .modal button{

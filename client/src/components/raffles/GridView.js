@@ -65,6 +65,10 @@ class GridView extends React.Component {
         return (
         <div id='main-container'>
             <div className='box'>
+                <div className='box-background'>
+                    <div className='box-header'></div>
+                    <div className='box-body'></div>
+                </div>
                 <h1>All Raffles: </h1>
                 <Modal
                     className='modal createRaffleModal'
