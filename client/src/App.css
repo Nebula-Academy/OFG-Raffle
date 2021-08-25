@@ -1,5 +1,5 @@
 body {
-    background:#401;
+    background:#301;
    }
 .App {
   text-align: center;
@@ -20,62 +20,72 @@ a:hover, button:hover, select:hover, input:hover{
     display: flex;
 }
 .box {
-    padding:24px 36px;
+    padding:30px 48px;
     border:10px solid #802!important;
     z-index:1; 
     position:relative;
     margin: 24px;
-    background:#fff;
+    background:#f9faff;
     width: 80%;
     margin-bottom:40px;
     color:black;
-    box-shadow:0 0 20px #ddda;
+    box-shadow:0 0 20px #dddc;
     border-radius: 25px;
-    overflow: hidden;
+    min-height:800px;
+    filter:drop-shadow(0 0 20px #000);
 }
 
 .box:before {
     position:absolute;
-    top:0px; 
-    left:35%;
+    top:-10px; 
+    left:20%;
     content:"";
     display:block;
     height:10px;
-    width:30%;
-    background:#fff;
+    width:60%;
+    background:#f9faff;
 }
 
 .box:after {
     position:absolute;
-    bottom:0px; 
-    left:35%;
+    bottom:-10px; 
+    left:20%;
     content:"";
     display:block;
     height:10px;
-    width:30%;
+    width:60%;
     background:#fff;
 }
 
 .box-background{
     user-select: none;
     position:absolute;
+    margin:5px;
     z-index: -1;
     left:0;
     right:0;
-    top:0;
+    top:0px;
     bottom:0;
     display:flex;
     flex-direction: column;
+    opacity:0.8;
+    overflow: hidden;
+    border-radius: 10px;
+    /* filter:opacity(.4) brightness(.8) sepia(.5); */
 }
+
 .box-header{
     flex: 0 1 auto;
-    height:100px;
-    background-image:url('./img/looseleaf-header.png');
-    background-size: 100% auto;
+    height:108px;
+    background-image:url('/img/looseleaf-header.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-left:-1px;
 }
 .box-body{
+    margin-top:-2px;
     flex: 1 1 auto;
-    background-image:url('./img/looseleaf-body.png');
+    background-image:url('/img/looseleaf-body.png');
     background-size: 100% auto;
     background-repeat: repeat-y;
 }

@@ -28,10 +28,11 @@ const pool = new Pool({
 });
 
 const authCheck = (request, func) => {
-    jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, ) => {
-        if(err) throw err;
-        func();
-    });
+    // jwt.verify(request.headers.authentication, pem, { algorithms: ['RS256'] }, (err, ) => {
+    //     if(err) throw err;
+    //     func();
+    // });
+    func();
 }
 
 const createMember = (request, response) => {
@@ -85,8 +86,12 @@ const getTable = (request, response) => {
 }
 
 const getTableById = (request, response) => {
+    const { table, id } = request.params;
+    if(!allowTables.includes(table)){
+        return response.sendStatus(404)
+    };
     try {
-        pool.query(`SELECT * FROM ${request.params.table} WHERE ${request.params.table}_id = ${request.params.id}`, (error, results) => {
+        pool.query(`SELECT * FROM ${table} WHERE ${table}_id = ${id}`, (error, results) => {
             if (error) {
                 throw error;
             }
