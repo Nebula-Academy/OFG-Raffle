@@ -26,13 +26,26 @@ a:hover, button:hover, select:hover, input:hover{
     position:relative;
     margin: 24px;
     background:#f9faff;
-    width: 80%;
+    width: 85%;
     margin-bottom:40px;
     color:black;
     box-shadow:0 0 20px #dddc;
     border-radius: 25px;
     min-height:800px;
     filter:drop-shadow(0 0 20px #000);
+    box-sizing: border-box;
+}
+@media(max-width:500px){
+    .box{
+        border-width: 3px!important;
+        width: 95%;
+    }
+}
+@media(max-width:950px){
+    .box{
+        border-width: 6px!important;
+        width: 90%;
+    }
 }
 
 .box:before {

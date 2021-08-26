@@ -19,30 +19,30 @@ Amplify.configure(awsconfig);
 class App extends React.Component {
   state = { cognitoUser: null, apiUser: null, signedIn: false };
 
-  componentDidMount(){
+  componentDidMount() {
     // Check for user sign in
     this.checkForSignedInUser()
   }
 
   checkForSignedInUser = () => {
     getCurrentAuthUser().then(async cognitoUser => {
-      if(cognitoUser?.attributes.email_verified){
+      if (cognitoUser?.attributes.email_verified) {
         const apiUser = (await getMember(cognitoUser.attributes.email))?.[0];
-        if(apiUser) this.setState({cognitoUser, apiUser, signedIn: true});
+        if (apiUser) this.setState({ cognitoUser, apiUser, signedIn: true });
       } else {
         this.setState({ signedIn: false })
       }
-    }); 
+    });
   }
 
-  componentDidUpdate(prevprops, prevState){
-    if(prevState.signedIn !== this.state.signedIn){
+  componentDidUpdate(prevprops, prevState) {
+    if (prevState.signedIn !== this.state.signedIn) {
       this.checkForSignedInUser();
     }
   }
 
   signOutSwitch = async () => {
-    if(!window.confirm('Are you sure you want to sign out?'))return;
+    if (!window.confirm('Are you sure you want to sign out?')) return;
     await signOut();
     this.setState({ cognitoUser: null, apiUser: null, signedIn: false });
   }
@@ -51,29 +51,29 @@ class App extends React.Component {
     this.setState({ signedIn: true });
   }
 
-  render(){
+  render() {
     return (
       <BrowserRouter>
         <Navbar signOutSwitch={this.signOutSwitch} signedIn={this.state.signedIn} />
-        <Route exact path="/signup">
-          <LoginPage signInSwitch={this.signInSwitch} />
-        </Route>
-        <Route exact path="/account-verification">
-          <AccountVerification user={this.state.apiUser} />
-        </Route>
-        <Route path="/profile">
-          <MemberDashboard user={this.state.apiUser} />
-        </Route>
-        <Route path="/" exact>
-          <LandingPage />
-        </Route>
-        <Route path="/paymentpage">
-        <PaymentPage user={this.state.apiUser}/>
-      </Route>
-        <Route path="/raffles">
-          <GridView user={this.state.apiUser} />
-        </Route>
-        <Route path="/raffle/:id" render={(props) => <DetailedView user={this.state.apiUser} {...props}/>} />
+          <Route exact path="/signup">
+            <LoginPage signInSwitch={this.signInSwitch} />
+          </Route>
+          <Route exact path="/account-verification">
+            <AccountVerification user={this.state.apiUser} />
+          </Route>
+          <Route path="/profile">
+            <MemberDashboard user={this.state.apiUser} />
+          </Route>
+          <Route path="/" exact>
+            <LandingPage />
+          </Route>
+          <Route path="/paymentpage">
+            <PaymentPage user={this.state.apiUser} />
+          </Route>
+          <Route path="/raffles">
+            <GridView user={this.state.apiUser} />
+          </Route>
+          <Route path="/raffle/:id" render={(props) => <DetailedView user={this.state.apiUser} {...props} />} />
       </BrowserRouter>
     );
   }

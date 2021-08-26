@@ -8,6 +8,7 @@ import BuyTicket from './BuyTicket';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import * as store from '../store';
+import { MainContainer } from '../MainContainer';
 
 
 class DetailedView extends React.Component {
@@ -22,12 +23,12 @@ class DetailedView extends React.Component {
     componentDidMount() {
         this.refresh();
         store.set('header-menu', <>
-            <button onClick={()=>window.history.back()}><KeyboardBackspaceIcon/></button>
+            <button onClick={() => window.history.back()}><KeyboardBackspaceIcon /></button>
             <button onClick={this.openBuyTicketModal}>Buy Ticket</button>
-            {this.props.user?.is_admin && <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button> }
+            {this.props.user?.is_admin && <button className='updateRaffle' onClick={this.openUpdateRaffleModal}>Update Raffle</button>}
         </>)
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         store.set('header-menu', null);
     }
 
@@ -35,7 +36,7 @@ class DetailedView extends React.Component {
         const { id } = this.props.match.params;
         const raffle = await getTableById("raffle", id);
         const category = await getTableById("category", raffle.category_id);
-        
+
         this.setState({ raffle, category: category.category_name });
     }
 
@@ -57,33 +58,29 @@ class DetailedView extends React.Component {
     render() {
         return (
             <div className='detailed-view-wrap'>
-                    <Modal 
-                        className='modal updateRaffleModal'
-                        open= {this.state.UpdateRaffleModal}
-                        Onclose= {this.closeUpdateRaffleModal} 
-                        aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description" 
-                    >
-                        <UpdateRaffle 
-                            close={this.closeUpdateRaffleModal} 
-                            refresh={this.refresh} 
-                            raffle={this.state.raffle} />
-                    </Modal>
-                <div className='detailed-view-item-wrap box'>
-                    <div className='box-background'>
-                        <div className='box-header'></div>
-                        <div className='box-body'></div>
-                    </div>
+                <Modal
+                    className='modal updateRaffleModal'
+                    open={this.state.UpdateRaffleModal}
+                    Onclose={this.closeUpdateRaffleModal}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                >
+                    <UpdateRaffle
+                        close={this.closeUpdateRaffleModal}
+                        refresh={this.refresh}
+                        raffle={this.state.raffle} />
+                </Modal>
+                <MainContainer className='detailed-view-item-wrap'>
                     <h3 className='itemTitle'>
                         {this.state.raffle.title}
                     </h3>
                     <img className='raffleItem' src={this.state.raffle.image_file_path} />
-                     <div className='itemInfo'>
-                     <p>Ticket Price: ${this.state.raffle.ticket_price}</p>
+                    <div className='itemInfo'>
+                        <p>Ticket Price: ${this.state.raffle.ticket_price}</p>
                         <TicketBar tickets_sold={this.state.raffle.tickets_sold} total_tickets={this.state.raffle.total_tickets} />
-                      <p> {this.state.raffle.raffle_description}</p>
-                      <p> Category: {this.state.category} </p>
-                    </div> 
+                        <p> {this.state.raffle.raffle_description}</p>
+                        <p> Category: {this.state.category} </p>
+                    </div>
                     <div className='buttonWrapper'>
                         <Modal
                             className='modal'
@@ -92,9 +89,9 @@ class DetailedView extends React.Component {
                         >
                             <BuyTicket close={this.closeBuyTicketModal} refresh={this.refresh} raffle={this.state.raffle} user={this.props.user} closeWindow={this.closeBuyTicketModal}></BuyTicket>
                         </Modal>
-                        {this.state.raffle.tickets_sold !== this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}><ConfirmationNumberIcon/>Buy Ticket</button>}
+                        {this.state.raffle.tickets_sold !== this.state.raffle.total_tickets && <button className='purchaseButton' onClick={this.openBuyTicketModal}><ConfirmationNumberIcon />Buy Ticket</button>}
                     </div>
-                </div>
+                </MainContainer>
             </div>
         )
     }
